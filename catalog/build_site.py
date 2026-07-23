@@ -65,7 +65,29 @@ FOOTER_PARTIAL = r"""<footer class="md-footer">
 </footer>
 """
 
-HOME_TEMPLATE = r"""{% extends "base.html" %}
+# main.html: adds Open Graph / Twitter card meta so shared links show the
+# code_saturne social card. home.html extends this so the home gets them too.
+MAIN_TEMPLATE = r"""{% extends "base.html" %}
+{% block extrahead %}
+  {% set og_image = config.site_url ~ 'assets/og-card.png' %}
+  {% set og_title = config.site_name if (not page or page.is_homepage) else (page.title ~ ' - ' ~ config.site_name) %}
+  {% set og_desc = page.meta.description if (page and page.meta.description) else config.site_description %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_desc }}">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title }}">
+  <meta name="twitter:description" content="{{ og_desc }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+{% endblock %}
+"""
+
+HOME_TEMPLATE = r"""{% extends "main.html" %}
 {% block content %}
 {% raw %}
 <div class="cs-hero">
@@ -213,7 +235,7 @@ def main():
     os.makedirs(os.path.join(docs,"stylesheets"))
 
     # logos (source of truth: catalog/assets/)
-    for f in ("code-saturne.svg","simvia.svg"):
+    for f in ("code-saturne.svg","simvia.svg","icone-code-saturne.svg","og-card.png"):
         src=os.path.join(HERE,"assets",f)
         if os.path.exists(src): shutil.copy(src, os.path.join(docs,"assets",f))
 
@@ -353,11 +375,13 @@ def main():
 
     # custom header partial: same top bar as the home (logo + links + GitHub + Simvia)
     os.makedirs(os.path.join(ovr,"partials"), exist_ok=True)
+    open(os.path.join(ovr,"main.html"),"w",encoding="utf-8").write(MAIN_TEMPLATE)
     open(os.path.join(ovr,"partials","header.html"),"w",encoding="utf-8").write(HEADER_PARTIAL)
     open(os.path.join(ovr,"partials","nav.html"),"w",encoding="utf-8").write(NAV_PARTIAL)
     open(os.path.join(ovr,"partials","footer.html"),"w",encoding="utf-8").write(FOOTER_PARTIAL)
 
     cfg = f"""site_name: code_saturne tutorials
+site_url: https://simvia-tech.github.io/tutorials-code_saturne/
 site_description: Verified step-by-step CFD tutorials for code_saturne, maintained by Simvia.
 repo_url: {GITHUB_URL}
 repo_name: tutorials
@@ -370,7 +394,7 @@ theme:
   name: material
   custom_dir: overrides
   logo: assets/code-saturne.svg
-  favicon: assets/code-saturne.svg
+  favicon: assets/icone-code-saturne.svg
   icon:
     repo: fontawesome/brands/github
   palette:

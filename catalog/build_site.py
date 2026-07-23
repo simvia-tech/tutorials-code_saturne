@@ -19,6 +19,36 @@ TOPIC_ORDER = ["Foundations","Preprocessing","Turbulence","Thermal & Radiation",
                "Particles & Dispersion","Reactive & Electric"]
 GITHUB_URL = "https://github.com/simvia-tech/tutorials-code_saturne"
 
+# GitHub mark (octicons), inlined so the per-tutorial "browse on GitHub" link
+# needs no icon extension.
+GH_MARK_SVG = ('<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 '
+               '2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69'
+               '-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 '
+               '1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15'
+               '-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 '
+               '1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 '
+               '3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 '
+               '8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>')
+
+def gh_source_banner(path):
+    """A 'browse this case on GitHub' link, injected under each tutorial's H1."""
+    url = f"{GITHUB_URL}/tree/main/{path}"
+    return (f'<a class="cs-ghsource" href="{url}" target="_blank" rel="noopener">'
+            f'{GH_MARK_SVG} Browse this case on GitHub</a>')
+
+def inject_gh_source(md, path):
+    """Insert the GitHub source link right after the first H1 heading."""
+    banner = gh_source_banner(path)
+    out, inserted = [], False
+    for ln in md.split("\n"):
+        out.append(ln)
+        if not inserted and ln.lstrip().startswith("# "):
+            out.extend(["", banner, ""])
+            inserted = True
+    if not inserted:
+        out = [banner, ""] + out
+    return "\n".join(out)
+
 FOOTER_PARTIAL = r"""<footer class="md-footer">
   <div class="md-footer-meta cs-footer">
     <div class="md-grid cs-footer__inner">
@@ -196,6 +226,7 @@ def main():
         os.makedirs(page_dir, exist_ok=True)
         rm = os.path.join(ROOT, path, "README.md")
         md = open(rm, encoding="utf-8").read() if os.path.exists(rm) else f"# {t['title']}\n"
+        md = inject_gh_source(md, path)
         open(os.path.join(page_dir,"index.md"),"w",encoding="utf-8").write(md)
         fig = os.path.join(ROOT, path, "FIGURES")
         if os.path.isdir(fig):
@@ -231,6 +262,10 @@ def main():
 @media (max-width:76.1875em){.cs-hnav{display:none}.cs-mnt{display:none}}
 /* headings in serif, like the home */
 .md-typeset h1,.md-typeset h2,.md-typeset h3{font-family:Charter,"Iowan Old Style",Georgia,serif}
+/* "browse this case on GitHub" link under each tutorial title */
+.md-typeset a.cs-ghsource{display:inline-flex;align-items:center;gap:.45rem;margin:-.3rem 0 1.4rem;padding:.4rem .8rem;font-size:.78rem;font-weight:600;color:var(--md-default-fg-color--light);border:1px solid var(--md-default-fg-color--lightest);border-radius:.6rem;text-decoration:none;transition:color .15s,border-color .15s,background .15s}
+.md-typeset a.cs-ghsource:hover{color:var(--md-primary-fg-color);border-color:var(--md-primary-fg-color);background:var(--cs-soft)}
+.md-typeset a.cs-ghsource svg{width:1rem;height:1rem;fill:currentColor;flex:none}
 .cs-home{color:var(--md-default-fg-color--light)}
 /* home hero (centered) */
 .cs-hero{max-width:52rem;margin:0 auto;padding:9vh 1rem 6rem;text-align:center;display:flex;flex-direction:column;align-items:center}

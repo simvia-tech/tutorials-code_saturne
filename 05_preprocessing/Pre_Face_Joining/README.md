@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **face joining** operation of **code_saturne**: assembling a computational domain from several independently meshed blocks whose interfaces do not match. A channel is split into two blocks (130 faces against 200 at the interface), glued at run time, and a Poiseuille flow is pushed through the junction to check that the assembly behaves like a single mesh.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

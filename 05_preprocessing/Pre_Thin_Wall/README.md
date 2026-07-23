@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **thin wall** operation of **code_saturne**: turning a set of interior faces into a zero-thickness internal wall, directly from the GUI. This is how baffles, guide vanes or splitter plates enter a mesh **without being meshed as solids**: no thickness to resolve, no remeshing, one selection criteria. A channel is shipped in two versions, identical but for the thin-wall node: open, and with a baffle blocking the lower 60% of the height.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

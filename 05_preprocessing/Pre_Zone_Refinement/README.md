@@ -5,7 +5,7 @@ A step-by-step tutorial for the **local refinement** operation of **code_saturne
 Like the boundary-layer insertion, this operation has **no GUI page** in this version: it lives in `cs_user_mesh.cpp` (the `cs_user_mesh_modify` function). Everything else in the case remains GUI-configured.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

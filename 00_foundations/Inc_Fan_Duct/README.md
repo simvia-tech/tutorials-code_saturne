@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **fan model** of **code_saturne**: a virtual disk placed inside the mesh, pushing the flow according to a prescribed characteristic curve $\Delta P(Q)$: the everyday tool for ventilation studies where meshing the real fan is out of the question. A duct is closed into a periodic loop with a fan and a resistance screen: the flow rate is imposed nowhere, and the computation settles on the **operating point**, the intersection of the fan curve with the circuit load.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the **Kelvin-Helmholtz instability** with the **VOF (Volume of Fluid) model** of **code_saturne**: two fluid layers in opposite motion destabilize at their interface, and the seeded perturbation grows into the classical rolling billows. The case is a compact demonstration of a two-phase VOF setup: per-phase properties, user initialization of the void fraction, and streamwise periodicity.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the steady, incompressible, turbulent flow in a mixing channel with **passive species transport**, using **code_saturne**. Two streams of different composition merge at a T-junction and mix along the downstream duct.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

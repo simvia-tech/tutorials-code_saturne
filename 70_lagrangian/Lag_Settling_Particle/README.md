@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **Lagrangian particle tracking module** of **code_saturne**: three glass beads of different diameters are released at rest in a box of quiescent water and settle under gravity. It is the entry case of the Lagrangian series: injection of particles, drag law, gravity and buoyancy, particle post-processing outputs. As a bonus, the settling dynamics has closed-form references: each bead relaxes to its terminal velocity following the Stokes or Schiller-Naumann drag law, and the computed velocities land on the theory to all displayed digits.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

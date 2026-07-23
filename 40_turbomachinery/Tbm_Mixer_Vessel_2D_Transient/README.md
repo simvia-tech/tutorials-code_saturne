@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating a **baffled stirred tank** with the **transient rotor (sliding mesh)** turbomachinery model of **code_saturne**: a four-blade impeller rotating at 60 rpm inside a cylindrical vessel equipped with four baffles. The companion tutorial [Tbm_Mixer_Vessel_2D](../Tbm_Mixer_Vessel_2D) computes a similar configuration with the *frozen rotor* approximation on a single mesh; this one resolves the **actual rotation**: the rotor mesh turns rigidly at every time step, and the rotor/stator interface is re-joined on the fly.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial extending [Elec_Joule_Bar](../Elec_Joule_Bar): the same conducting bar, now made of **two materials in series** ($\sigma_1 = 100$, $\sigma_2 = 25\ \mathrm{S/m}$). The case demonstrates that the electrical conductivity is a **field** (the industrial use of the Joule module: electrode regions and melts with different, temperature-dependent conductivities), and everything remains closed-form: the bar is a textbook voltage divider. It also teaches a classic finite-volume lesson along the way: the **harmonic face average** for discontinuous diffusivities.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for **RANS turbulence modelling with wall functions** in **code_saturne**, on the reference experiment of Sudo et al. (1998): the steady turbulent flow through a circular 90 degree pipe bend. The bend generates strong curvature-driven secondary flow and a low-velocity region near the inner wall, a demanding test where turbulence closures disagree. Two models are compared on the same mesh and the same near-wall treatment, and confronted with the experimental data and a reference LES: the tutorial's purpose is the **model comparison workflow**, the validation being the bonus.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

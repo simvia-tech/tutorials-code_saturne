@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **surface tension** of the VOF model of **code_saturne**: the one ingredient the other VOF cases of this collection leave switched off. A liquid drop is released as an ellipse in weightlessness; surface tension pulls it back toward the circle, inertia overshoots, and the drop oscillates at the capillary frequency of Rayleigh. The case checks two independent exact results at once: the **oscillation period** and the **Laplace pressure jump**.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

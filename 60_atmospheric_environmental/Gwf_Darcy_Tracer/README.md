@@ -10,7 +10,7 @@ on top of it. The case is validated against two exact references: Darcy's law
 (linear head, constant flux) and the Ogata-Banks advection-dispersion solution.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

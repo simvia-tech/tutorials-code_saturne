@@ -10,7 +10,7 @@ $R = 1 + \rho_b\,k_d/\theta_s$. The case is validated against the retarded
 Ogata-Banks solution.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

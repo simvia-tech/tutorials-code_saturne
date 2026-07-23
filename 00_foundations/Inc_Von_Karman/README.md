@@ -3,7 +3,7 @@
 A step-by-step tutorial for a **time-accurate unsteady** incompressible simulation in **code_saturne**: the laminar von Karman vortex street behind a 2D circular cylinder at $Re = 120$. The flow sheds a periodic, alternating street of counter-rotating vortices. The tutorial's purpose is the **unsteady workflow**: drive a time-accurate run to a statistically periodic state, extract the shedding frequency from the lift signal with a small user routine plus an FFT, and validate the resulting **Strouhal number** against the classical Williamson correlation.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

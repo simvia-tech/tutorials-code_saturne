@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the incompressible, inviscid flow through a 2D channel around a NACA 0012 hydrofoil using **code_saturne**. The case is a showcase to get familiar with **code_saturne**.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

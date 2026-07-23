@@ -3,7 +3,7 @@
 A step-by-step tutorial for **scale-resolving turbulence** in **code_saturne**: a wall-resolved **Large-Eddy Simulation (LES)** of the fully-developed turbulent channel at $Re_\tau = 180$. Where the RANS counterpart ([Inc_Turbulent_Channel](../Inc_Turbulent_Channel)) models all of the turbulence, the LES **resolves** the energy-containing eddies and models only the sub-grid scales. The tutorial's purpose is the LES workflow: a 3D periodic box driven by a momentum source, transition triggered from a perturbed field, and **time-averaged statistics** accumulated in-solver, validated against the law of the wall and the resolved Reynolds stresses.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

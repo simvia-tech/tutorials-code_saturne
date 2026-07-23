@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **mesh input transformations** of **code_saturne**: reading the *same* mesh file several times, each instance with its own translation and group renames, to assemble a domain from a repeated pattern. This is the industrial reflex for periodic equipment (tube banks, heat-exchanger passes, fuel assemblies): mesh the pattern **once**, replicate it at run time. Here a single "tube in a channel segment" pattern becomes a three-tube bank: one `.msh`, three instances, two joinings.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the **collapse of a vapor bubble** with the **cavitation model** of **code_saturne**: a spherical vapor bubble at rest in pressurized water implodes under the ambient overpressure. The case is the academic companion of [Vof_Cavitating_Throttle](../Vof_Cavitating_Throttle): the throttle exercises the **vaporization** source term in a realistic device, this case exercises the **condensation** term in the simplest possible geometry, on a built-in Cartesian mesh with no mesh file at all. As a bonus, the classical **Rayleigh solution** (1917) provides a reference to quantify the result.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

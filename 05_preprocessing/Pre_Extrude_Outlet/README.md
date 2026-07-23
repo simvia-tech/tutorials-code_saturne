@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **boundary-face extrusion** of **code_saturne**: extending a computational domain by extruding some of its boundary faces, directly from the GUI, without touching the original mesh. The use case is a classic of everyday CFD: an **outlet placed too close to a recirculation**. The backward-facing step shipped here has its outlet at only 4 step heights; the extrusion pushes it to 12, and the two shipped cases (identical but for the extrusion node) show what the short domain does to the solution.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating **cavitation** with the **VOF cavitation model (Merkle)** of **code_saturne**: the pressure drop through a small 2D throttle (orifice) creates a steady vapor pocket in which the pressure locks onto the saturation pressure. The case teaches the complete cavitation workflow, including the one **mandatory user routine** without which the model silently produces no vapor at all.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

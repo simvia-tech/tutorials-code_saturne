@@ -11,7 +11,7 @@ decays (ingrowth), and the stable end member accumulates. The steady-state
 profiles are validated against the **Bateman** solution.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

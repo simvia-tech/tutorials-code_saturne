@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **Joule effect module** of **code_saturne**: a static conducting bar carries a current between two electrodes, and the Joule dissipation heats it against its cooled walls. Everything has a closed form: the potential is linear, the total power is $P = UI$, and the steady temperature profile is a parabola. The case is the entry point of the electric module, and documents the three user-file requirements of its Joule variant.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

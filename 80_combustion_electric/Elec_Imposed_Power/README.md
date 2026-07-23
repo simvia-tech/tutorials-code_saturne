@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **imposed-power mode** of the Joule module of **code_saturne**: instead of prescribing the electrode potentials, the operator prescribes the **dissipated power**, and the module rescales the potentials automatically at every time step: this is how electric furnaces are actually driven. On the bar of [Elec_Joule_Bar](../Elec_Joule_Bar), imposing $P = 40$ W must yield $U = \sqrt{PR} = 20$ V exactly. The case also documents (and fixes, through the official user hook) a convergence flaw of the built-in scaling iteration for the Joule variant.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -324,6 +324,8 @@ theme:
   custom_dir: overrides
   logo: assets/code-saturne.svg
   favicon: assets/code-saturne.svg
+  icon:
+    repo: fontawesome/brands/github
   palette:
     scheme: default
     primary: custom

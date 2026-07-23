@@ -126,7 +126,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 2 MPI ranks)
-code_saturne run --nprocs 2
+code_saturne run --n 2
 ```
 
 The user routine `SRC/cs_user_initialization.cpp` is compiled automatically at the beginning of the run.

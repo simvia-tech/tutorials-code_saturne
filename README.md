@@ -45,7 +45,7 @@ the [Open Simulation Center](https://open-simulation-center.org/fr/downloads/cod
 ```bash
 cd <NN_topic>/<Case_Name>/CASE
 code_saturne run                 # serial
-code_saturne run --nprocs 8      # parallel
+code_saturne run --n 8      # parallel
 ```
 
 Each run writes a timestamped `CASE/RESU/<id>/` with `run_solver.log` and the

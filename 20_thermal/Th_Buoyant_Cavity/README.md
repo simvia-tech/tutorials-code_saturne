@@ -182,7 +182,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 2 MPI ranks)
-code_saturne run --nprocs 2
+code_saturne run --n 2
 ```
 
 This 2D case runs fine in serial; 2 MPI processes are enough to speed it up.

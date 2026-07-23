@@ -116,7 +116,7 @@ the outlet and symmetry boundaries. The run advances to a near-steady state
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 Each run writes a timestamped `CASE/RESU/<id>/` with `run_solver.log` and the

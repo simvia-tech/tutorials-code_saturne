@@ -174,7 +174,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 8 MPI ranks)
-code_saturne run --nprocs 8
+code_saturne run --n 8
 ```
 
 The user routine `SRC/cs_user_source_terms.cpp` is compiled automatically at the beginning of the run.

@@ -105,7 +105,7 @@ at step 5000 once the flow is statistically steady.
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 The mesh is generated internally. LES is more expensive than the RANS case

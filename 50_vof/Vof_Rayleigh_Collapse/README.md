@@ -129,7 +129,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 4 MPI ranks)
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 The two user routines are compiled automatically at the beginning of the run. The case takes a few minutes on 4 cores.

@@ -167,7 +167,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 2 MPI ranks)
-code_saturne run --nprocs 2
+code_saturne run --n 2
 ```
 
 With only 3364 cells this case runs comfortably in serial.

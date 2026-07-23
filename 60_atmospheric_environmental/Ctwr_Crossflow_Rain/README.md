@@ -110,7 +110,7 @@ run advances to a near-steady state ($3000$ steps).
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 ## Results

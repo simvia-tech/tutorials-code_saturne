@@ -134,7 +134,7 @@ buoyancy from temperature and humidity. The run advances to a near-steady state
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 The mesh is generated internally. The run writes `CASE/RESU/<id>/` with the

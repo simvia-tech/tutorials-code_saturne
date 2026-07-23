@@ -138,7 +138,7 @@ code_saturne gui CASE/DATA/setup.xml &
 ```bash
 cd CASE
 code_saturne run                 # serial
-code_saturne run --nprocs 4      # parallel
+code_saturne run --n 4      # parallel
 ```
 
 The mesh is generated internally, so no mesh import is needed. Each run writes a

@@ -120,7 +120,7 @@ conservative tracer, $k_d = 2\times10^{-4}$ for the sorbing one).
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 The mesh is generated internally. The run writes `CASE/RESU/<id>/` with the

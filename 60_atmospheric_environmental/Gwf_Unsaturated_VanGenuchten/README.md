@@ -122,7 +122,7 @@ conductivity, so the last approach to equilibrium is slow).
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 The mesh is generated internally. The run writes `CASE/RESU/<id>/` with the

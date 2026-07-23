@@ -131,7 +131,7 @@ The GUI opens the pre-configured `setup.xml`; launch with the **Run** button (se
 ```bash
 cd CASE
 code_saturne run                 # serial
-code_saturne run --nprocs 4      # parallel
+code_saturne run --n 4      # parallel
 ```
 
 Each run writes a timestamped `CASE/RESU/<id>/` with `run_solver.log`, `monitoring/probes_*.csv`, the EnSight fields in `postprocessing/`, and the `cl_profile.dat` written by the user routine.

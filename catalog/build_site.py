@@ -157,7 +157,7 @@ HEADER_PARTIAL = r"""<header class="md-header" data-md-component="header">
     {% if config.repo_url %}
       <div class="md-header__source">{% include "partials/source.html" %}</div>
     {% endif %}
-    <span class="cs-mnt"><span>maintained by</span>
+    <span class="cs-mnt">
       <a href="https://simvia.tech/fr" target="_blank" rel="noopener"><img src="{{ 'assets/simvia.svg' | url }}" alt="Simvia, groupe EDF"></a>
     </span>
   </nav>
@@ -226,8 +226,8 @@ def main():
 .cs-hnav{display:flex;gap:.1rem;align-items:center;margin-left:auto}
 .cs-hnav a{font-size:.72rem;color:var(--md-default-fg-color--light);padding:.4rem .6rem;border-radius:.35rem;white-space:nowrap}
 .cs-hnav a:hover{color:var(--md-primary-fg-color);background:var(--cs-soft)}
-.cs-mnt{display:flex;align-items:center;gap:.4rem;font-size:.62rem;color:var(--md-default-fg-color--light);margin:0 .3rem 0 .5rem}
-.cs-mnt img{height:1.2rem;display:block}
+.cs-mnt{display:flex;align-items:center;gap:.4rem;color:var(--md-default-fg-color--light);margin:0 .3rem 0 .5rem}
+.cs-mnt img{height:1.9rem;display:block}
 @media (max-width:76.1875em){.cs-hnav{display:none}.cs-mnt{display:none}}
 /* headings in serif, like the home */
 .md-typeset h1,.md-typeset h2,.md-typeset h3{font-family:Charter,"Iowan Old Style",Georgia,serif}

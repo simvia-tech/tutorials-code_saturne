@@ -154,7 +154,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 8 MPI ranks)
-code_saturne run --nprocs 8
+code_saturne run --n 8
 ```
 This small 2D case runs comfortably in serial, parallel execution is optional.
 

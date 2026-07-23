@@ -131,7 +131,7 @@ advances to a steady state ($2000$ steps).
 
 ```bash
 cd CASE
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 The mesh is generated internally and the meteo file is read at start-up. The run

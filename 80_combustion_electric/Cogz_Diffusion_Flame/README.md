@@ -123,7 +123,7 @@ run advances to a near-steady state ($2500$ time steps, $\Delta t = 2\times
 cd CASE
 # with the Simvia 9.0.0 Docker image (see the version note above):
 docker run --rm -v "$(pwd)":/home/code_saturne \
-       simvia/code_saturne:9.0.0 run --nprocs 4
+       simvia/code_saturne:9.0.0 run --n 4
 ```
 
 Each run writes a timestamped `CASE/RESU/<id>/` with `run_solver.log` and the

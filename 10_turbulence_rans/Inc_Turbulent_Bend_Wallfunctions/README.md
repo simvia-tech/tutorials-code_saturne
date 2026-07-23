@@ -125,10 +125,10 @@ The commands below start from the tutorial directory. Run each case (parallel re
 
 ```bash
 cd CASE_kwSST
-code_saturne run --nprocs 4
+code_saturne run --n 4
 
 cd ../CASE_RSM
-code_saturne run --nprocs 4
+code_saturne run --n 4
 ```
 
 To switch model in the GUI instead, open either `setup.xml` and change the model under **Thermophysical models → Turbulence**. Convergence is reached when the residuals plateau (a few hundred iterations); the monitoring probe and `residuals.csv` track it.

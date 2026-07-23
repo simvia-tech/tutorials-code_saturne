@@ -150,7 +150,7 @@ cd CASE
 code_saturne run
 
 # parallel (e.g. 2 MPI ranks)
-code_saturne run --nprocs 2
+code_saturne run --n 2
 ```
 
 Each run creates a time-stamped directory `CASE/RESU/<YYYYMMDD-HHMM>/` containing:

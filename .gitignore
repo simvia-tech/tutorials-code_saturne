@@ -1,0 +1,54 @@
+# -------------------------------------------------
+# Résultats code_saturne (à ignorer partout)
+# -------------------------------------------------
+**/RESU/**
+**/RESU_COUPLING/**
+
+# -------------------------------------------------
+# code_saturne (fichiers générés)
+# -------------------------------------------------
+# Lien vers l'exécutable créé dans DATA/
+**/DATA/code_saturne
+*.cfg
+*.cid
+*.stdout
+*.stderr
+*.log
+**/.cache/
+**/.config/
+# -------------------------------------------------
+# VTK / ParaView / Ensight (post-traitement)
+# -------------------------------------------------
+*.vtu
+*.pvtu
+*.pvd
+*.vtk
+*.vtm
+*.vtmb
+*.case
+
+# -------------------------------------------------
+# Python
+# -------------------------------------------------
+__pycache__/
+*.pyc
+*.npz
+
+# -------------------------------------------------
+# Divers
+# -------------------------------------------------
+.vscode/
+**/validation/**
+
+*.csv
+*.py
+
+# Website (GitHub Pages) build: keep the source/scripts, ignore generated output
+!catalog/*.py
+catalog/_site_src/
+catalog/_blurbs.json
+catalog/tutorials.json
+catalog/catalog_artifact.html
+# Logo source files (keep only catalog/assets/*.svg in the public repo)
+/SIMVIA_EDF-GROUP_RVB.ai
+/simvia.png

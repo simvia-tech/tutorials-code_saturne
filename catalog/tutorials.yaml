@@ -1,0 +1,522 @@
+# Tutorial catalog metadata (source of truth for the GitHub Pages faceted search).
+# Schema: topic | module | regime | physics[] | cs_version | difficulty | tags[]
+# Controlled vocab:
+#   module : base turb les cfbl vof cogz ctwr atmo gwf elec lagr rayt cdo meshing
+#   regime : laminar RANS LES inviscid compressible multiphase reactive porous n/a
+#   physics: heat-transfer buoyancy radiation combustion cavitation surface-tension
+#            phase-change evaporation coriolis rotation groundwater species-transport
+#            shock-waves electric-joule humid-air particle-transport porous-media   (may be empty)
+#   difficulty: beginner intermediate advanced
+# NOTE: a few regimes flagged with "# ?" below are best-guesses to confirm.
+
+tutorials:
+
+# ---- 00_foundations ----
+- path: 00_foundations/Inc_Fan_Duct
+  title: Fan in a Duct (Actuator Disk with a Fan Curve)
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [fan, actuator-disk, fan-curve, momentum-source, internal-flow]
+
+- path: 00_foundations/Inc_Head_Loss_Zone
+  title: Head-Loss Zone in a Duct
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [head-loss, pressure-drop, momentum-sink, internal-flow]
+
+- path: 00_foundations/Inc_Inviscid_Hydrofoil
+  title: Inviscid Hydrofoil
+  topic: Foundations
+  module: base
+  regime: inviscid
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [hydrofoil, euler, naca0012, lift, external-flow]
+
+- path: 00_foundations/Inc_Laminar_Step
+  title: Laminar Backward-facing Step
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [backward-facing-step, reattachment, separation, internal-flow, gartling]
+
+- path: 00_foundations/Inc_Packed_Bed
+  title: Packed Bed in a Duct
+  topic: Foundations
+  module: base
+  regime: porous
+  physics: [porous-media]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [packed-bed, ergun, pressure-drop]
+
+- path: 00_foundations/Inc_Porous_Plug
+  title: Porous Plug in a Duct
+  topic: Foundations
+  module: base
+  regime: porous
+  physics: [porous-media]
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [resistance, pressure-drop]
+
+- path: 00_foundations/Inc_Species_Transport
+  title: Turbulent Species Transport in a Mixing Channel
+  topic: Foundations
+  module: base
+  regime: RANS
+  physics: [species-transport]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [mixing, passive-scalar, concentration, k-omega-sst]
+
+- path: 00_foundations/Inc_Streamwise_Periodic
+  title: Streamwise Periodic Flow in a Pin-Fin Array
+  topic: Foundations
+  module: base
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [streamwise-periodic, pin-fin, momentum-source]
+
+- path: 00_foundations/Inc_Von_Karman
+  title: Unsteady Laminar Vortex Shedding (von Karman Street)
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [vortex-shedding, von-karman, cylinder, unsteady, strouhal]
+
+# ---- 05_preprocessing ----
+- path: 05_preprocessing/Pre_Boundary_Layer
+  title: Boundary-Layer Insertion (Prism Layers at the Walls)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [boundary-layer-insertion, prism-layers, mesh]
+
+- path: 05_preprocessing/Pre_Cell_Removal
+  title: Cell Removal (Carving an Obstacle Out of the Mesh)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [cell-removal, mesh-carving, obstacle]
+
+- path: 05_preprocessing/Pre_Extrude_Outlet
+  title: Outlet Extrusion (Extending a Domain Without Remeshing)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [extrusion, outlet-extension, mesh]
+
+- path: 05_preprocessing/Pre_Face_Joining
+  title: Face Joining (Non-Conforming Mesh Assembly)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [face-joining, non-conforming, mesh-assembly]
+
+- path: 05_preprocessing/Pre_Mesh_Replication
+  title: Mesh Replication (One Pattern, Read N Times)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [mesh-replication, pattern, tiling]
+
+- path: 05_preprocessing/Pre_Thin_Wall
+  title: Thin Wall Insertion (Zero-Thickness Baffle)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [thin-wall, baffle, zero-thickness]
+
+- path: 05_preprocessing/Pre_Zone_Refinement
+  title: Zone Refinement (Local Mesh Subdivision)
+  topic: Preprocessing
+  module: meshing
+  regime: n/a
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [zone-refinement, mesh-subdivision, local-refinement]
+
+# ---- 10_turbulence_rans ----
+- path: 10_turbulence_rans/Inc_LES_Channel
+  title: Large-Eddy Simulation of a Turbulent Channel (WALE)
+  topic: Turbulence
+  module: les
+  regime: LES
+  physics: []
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [channel, wale, dns-validated, re-tau-180, turbulence-statistics]
+
+- path: 10_turbulence_rans/Inc_Turbulent_Bend_Wallfunctions
+  title: Turbulent Bend with Wall Functions (RANS Model Comparison)
+  topic: Turbulence
+  module: turb
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [bend, wall-functions, sst, ebrsm, secondary-flow]
+
+- path: 10_turbulence_rans/Inc_Turbulent_Channel
+  title: Turbulent Channel Flow (Periodic, Law of the Wall)
+  topic: Turbulence
+  module: turb
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [channel, periodic, law-of-the-wall, momentum-source]
+
+- path: 10_turbulence_rans/Inc_Turbulent_Plate
+  title: Turbulent Flat Plate (Zero Pressure Gradient)
+  topic: Turbulence
+  module: turb
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [flat-plate, spalart-allmaras, law-of-the-wall, skin-friction, nasa-tmr]
+
+# ---- 20_thermal ----
+- path: 20_thermal/Th_Buoyant_Cavity
+  title: Buoyancy-Driven Laminar Cavity
+  topic: Thermal & Radiation
+  module: base
+  regime: laminar
+  physics: [buoyancy, heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [natural-convection, cavity, rayleigh, sockol]
+
+- path: 20_thermal/Th_Radiative_Slab
+  title: Radiative Slab (Gray Participating Medium, DOM vs P-1)
+  topic: Thermal & Radiation
+  module: rayt
+  regime: laminar
+  physics: [radiation, heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [radiation, dom, p1, participating-medium, gray-gas]
+
+- path: 20_thermal/Th_Stefan_Melting
+  title: Stefan Melting Front (CDO Solidification Module)
+  topic: Thermal & Radiation
+  module: cdo
+  regime: laminar
+  physics: [phase-change, heat-transfer]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [stefan, melting, solidification, cdo, phase-change-front]
+
+# ---- 30_compressible ----
+- path: 30_compressible/Comp_Sedov_Blast_Wave
+  title: Sedov Blast Wave (cylindrical)
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [shock-waves]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [sedov, blast-wave, euler, self-similar]
+
+- path: 30_compressible/Comp_Sod_Tube
+  title: Sod Shock Tube
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [shock-waves]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [sod, shock-tube, riemann, euler]
+
+- path: 30_compressible/Comp_Supersonic_Ramp
+  title: Supersonic Compression Ramp at Mach 2
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [shock-waves]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [supersonic, oblique-shock, ramp, mach-2]
+
+# ---- 40_turbomachinery ----
+- path: 40_turbomachinery/Tbm_Mixer_Vessel_2D
+  title: 2D Mixer Vessel (Frozen Rotor)
+  topic: Turbomachinery
+  module: base
+  regime: RANS
+  physics: [rotation]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [mrf, frozen-rotor, mixer, stirred-vessel]
+
+- path: 40_turbomachinery/Tbm_Mixer_Vessel_2D_Transient
+  title: 2D Mixer Vessel (Transient Rotor / Sliding Mesh)
+  topic: Turbomachinery
+  module: base
+  regime: laminar   # ? transient run has turb=off
+  physics: [rotation]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [sliding-mesh, transient-rotor, mixer, rotor-stator]
+
+# ---- 50_vof ----
+- path: 50_vof/Vof_Cavitating_Throttle
+  title: Cavitating Throttle (VOF Cavitation Model)
+  topic: Multiphase (VOF)
+  module: vof
+  regime: multiphase
+  physics: [cavitation]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [cavitation, throttle, vof, merkle]
+
+- path: 50_vof/Vof_Kelvin_Helmholtz
+  title: Kelvin-Helmholtz Instability (VOF)
+  topic: Multiphase (VOF)
+  module: vof
+  regime: multiphase
+  physics: [surface-tension]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [kelvin-helmholtz, shear-instability, two-phase, free-surface]
+
+- path: 50_vof/Vof_Oscillating_Drop
+  title: Oscillating Drop (VOF Surface Tension)
+  topic: Multiphase (VOF)
+  module: vof
+  regime: multiphase
+  physics: [surface-tension]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [oscillating-drop, capillary, two-phase, lamb]
+
+- path: 50_vof/Vof_Rayleigh_Collapse
+  title: Rayleigh Bubble Collapse (VOF Cavitation Model)
+  topic: Multiphase (VOF)
+  module: vof
+  regime: multiphase
+  physics: [cavitation]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [rayleigh-collapse, bubble, cavitation, two-phase]
+
+- path: 50_vof/Vof_Rayleigh_Taylor
+  title: Rayleigh-Taylor Instability (VOF)
+  topic: Multiphase (VOF)
+  module: vof
+  regime: multiphase
+  physics: [surface-tension, buoyancy]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [rayleigh-taylor, two-phase, free-surface, instability]
+
+# ---- 60_atmospheric_environmental ----
+- path: 60_atmospheric_environmental/Atmo_Ekman_Layer
+  title: The Ekman Layer (Wind Veering under Coriolis)
+  topic: Atmospheric & Environmental
+  module: atmo
+  regime: RANS
+  physics: [coriolis]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [ekman, wind-veering, coriolis, abl, geostrophic]
+
+- path: 60_atmospheric_environmental/Atmo_Humid_Cloud
+  title: Humid Atmosphere (Cloud Formation from a Meteo Profile)
+  topic: Atmospheric & Environmental
+  module: atmo
+  regime: RANS
+  physics: [humid-air, buoyancy]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [humid-atmosphere, cloud, meteo-profile, condensation]
+
+- path: 60_atmospheric_environmental/Atmo_Meteo_Profile
+  title: Reading a Meteo File (Atmospheric Flow from a Vertical Profile)
+  topic: Atmospheric & Environmental
+  module: atmo
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [meteo-file, vertical-profile, abl]
+
+- path: 60_atmospheric_environmental/Atmo_Neutral_BoundaryLayer
+  title: Neutral Atmospheric Boundary Layer (the Log Law)
+  topic: Atmospheric & Environmental
+  module: atmo
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [neutral-abl, log-law, roughness]
+
+- path: 60_atmospheric_environmental/Ctwr_Counterflow_Tower
+  title: Counter-current Cooling Tower (Evaporative Cooling)
+  topic: Atmospheric & Environmental
+  module: ctwr
+  regime: RANS
+  physics: [evaporation, humid-air, heat-transfer]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [cooling-tower, counter-current, poppe, packing]
+
+- path: 60_atmospheric_environmental/Ctwr_Crossflow_Rain
+  title: Cross-flow Cooling Tower with Rain
+  topic: Atmospheric & Environmental
+  module: ctwr
+  regime: RANS
+  physics: [evaporation, humid-air]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [cooling-tower, cross-flow, rain, droplets, leakage]
+
+- path: 60_atmospheric_environmental/Gwf_Darcy_Tracer
+  title: Groundwater Flow and Tracer Transport in a Saturated Soil (Darcy, CDO)
+  topic: Atmospheric & Environmental
+  module: gwf
+  regime: porous
+  physics: [species-transport, groundwater]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [darcy, tracer, cdo, saturated-soil, ogata-banks]
+
+- path: 60_atmospheric_environmental/Gwf_Radioactive_Chain
+  title: Radioactive Decay Chain in a Groundwater Flow (CDO)
+  topic: Atmospheric & Environmental
+  module: gwf
+  regime: porous
+  physics: [species-transport, groundwater]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [radioactive-decay, bateman, cdo, tracer-chain]
+
+- path: 60_atmospheric_environmental/Gwf_Sorption_Retardation
+  title: Sorption Retardation of a Groundwater Tracer (CDO)
+  topic: Atmospheric & Environmental
+  module: gwf
+  regime: porous
+  physics: [species-transport, groundwater]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [sorption, retardation, ogata-banks, cdo]
+
+- path: 60_atmospheric_environmental/Gwf_Unsaturated_VanGenuchten
+  title: Unsaturated Flow with the Van Genuchten Model (CDO)
+  topic: Atmospheric & Environmental
+  module: gwf
+  regime: porous
+  physics: [groundwater]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [unsaturated, van-genuchten, richards, retention-curve, cdo]
+
+# ---- 70_lagrangian ----
+- path: 70_lagrangian/Eul_Drift_Settling
+  title: Settling Clouds with Drift Scalars (Eulerian)
+  topic: Particles & Dispersion
+  module: base
+  regime: multiphase
+  physics: [particle-transport]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [drift-scalar, settling, sedimentation, eulerian]
+
+- path: 70_lagrangian/Lag_Settling_Particle
+  title: Settling Particles (Lagrangian Module)
+  topic: Particles & Dispersion
+  module: lagr
+  regime: RANS   # ? carrier has k-epsilon-PL set
+  physics: [particle-transport]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [lagrangian, settling, particle-tracking, stokes]
+
+# ---- 80_combustion_electric ----
+- path: 80_combustion_electric/Cogz_Diffusion_Flame
+  title: Gas Diffusion Flame (cogz, 3-point chemistry)
+  topic: Reactive & Electric
+  module: cogz
+  regime: reactive
+  physics: [combustion, radiation]
+  cs_version: "9.0.0"
+  difficulty: advanced
+  tags: [diffusion-flame, 3-point-chemistry, propane, non-premixed]
+
+- path: 80_combustion_electric/Cogz_Premixed_Flame
+  title: Turbulent Premixed Flame (cogz, Eddy Break-Up)
+  topic: Reactive & Electric
+  module: cogz
+  regime: reactive
+  physics: [combustion]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [premixed, ebu, v-flame, propane, progress-variable]
+
+- path: 80_combustion_electric/Elec_Imposed_Power
+  title: Imposed Power (Electric Potential Scaling)
+  topic: Reactive & Electric
+  module: elec
+  regime: laminar
+  physics: [electric-joule, heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [joule, imposed-power, potential-scaling]
+
+- path: 80_combustion_electric/Elec_Joule_Bar
+  title: Joule Heating of a Conducting Bar
+  topic: Reactive & Electric
+  module: elec
+  regime: laminar
+  physics: [electric-joule, heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [joule-heating, conducting-bar]
+
+- path: 80_combustion_electric/Elec_Two_Materials
+  title: Two-Material Bar (Voltage Divider)
+  topic: Reactive & Electric
+  module: elec
+  regime: laminar
+  physics: [electric-joule]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [voltage-divider, two-material, conductivity]

@@ -1,0 +1,49 @@
+name: Deploy tutorials site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/README.md"
+      - "**/FIGURES/**"
+      - "catalog/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true            # figures are tracked with Git LFS
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r catalog/requirements.txt
+      - name: Assemble MkDocs sources from the tutorials
+        run: python catalog/build_site.py catalog/_site_src
+      - name: Build the site
+        run: mkdocs build --strict --site-dir "$GITHUB_WORKSPACE/_public" -f catalog/_site_src/mkdocs.yml
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

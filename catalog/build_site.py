@@ -69,7 +69,7 @@ HOME_TEMPLATE = r"""{% extends "base.html" %}
 {% block content %}
 {% raw %}
 <div class="cs-hero">
-  <h1>code_saturne tutorials</h1>
+  <h1>code<span class="cs-us">_</span>saturne tutorials</h1>
   <p>A growing collection of step-by-step CFD tutorials for
   <a href="https://code-saturne.org/">code_saturne</a>. This site is still under
   construction: the aim is for each tutorial to showcase a specific code_saturne
@@ -270,6 +270,8 @@ def main():
 /* home hero (centered) */
 .cs-hero{max-width:52rem;margin:0 auto;padding:9vh 1rem 6rem;text-align:center;display:flex;flex-direction:column;align-items:center}
 .cs-hero h1{font-family:Charter,"Iowan Old Style",Georgia,serif;font-size:2.6rem;font-weight:600;letter-spacing:-.02em;margin:0 0 .7rem}
+/* Charter's underscore glyph is very wide; shrink it so "code_saturne" reads tight */
+.cs-hero h1 .cs-us{display:inline-block;transform:scaleX(.5);margin:0 -.13em}
 .cs-hero p{color:var(--md-default-fg-color--light);max-width:42rem;margin:0 0 1.7rem;font-size:.95rem}
 .cs-herosearch{display:flex;align-items:center;gap:.7rem;width:min(38rem,92vw);border:1.5px solid var(--md-default-fg-color--lightest);border-radius:.85rem;padding:.95rem 1.15rem;color:var(--md-default-fg-color--light);cursor:text;box-shadow:0 .4rem 1.4rem rgba(53,91,178,.10);transition:border-color .15s}
 .cs-herosearch:hover{border-color:var(--md-primary-fg-color)}

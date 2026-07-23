@@ -176,7 +176,7 @@ fundamental combustion regimes: **non-premixed** (diffusion) and **premixed**.
 - N. Peters. *Turbulent Combustion*, Cambridge University Press, 2000.
 - D. B. Spalding. *Mixing and chemical reaction in steady confined turbulent
   flames*, Proc. Combust. Inst. 13, 649-657, 1971 (Eddy Break-Up).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

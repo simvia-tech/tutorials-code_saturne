@@ -25,7 +25,7 @@ After completing this tutorial you will be able to:
 | Case | [Inc_Turbulent_Plate](../../10_turbulence_rans/Inc_Turbulent_Plate) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -243,7 +243,7 @@ This tutorial set up an incompressible, turbulent, streamwise periodic flow with
 
 - S.V. Patankar, C.H. Liu, and E.M. Sparrow. Fully developed flow and heat transfer in ducts having streamwise-periodic variations of cross-sectional area, [Journal of Heat Transfer, 99(2):180-186, 1977.](https://doi.org/10.1115/1.3450666)
 - Steven B. Beale. On the implementation of stream-wise periodic boundary conditions. [ASME 2005 Summer Heat Transfer Conference, pages 771-777, 2005.](https://doi.org/10.1115/HT2005-72271)
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

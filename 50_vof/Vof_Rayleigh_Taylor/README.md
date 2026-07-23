@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Case | [Vof_Kelvin_Helmholtz](../Vof_Kelvin_Helmholtz) (details of the VOF model) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -154,7 +154,7 @@ This tutorial set up a Rayleigh-Taylor instability with the VOF model of code_sa
 
 - Lord Rayleigh. Investigation of the character of the equilibrium of an incompressible heavy fluid of variable density, Proc. London Math. Soc., 14:170-177, 1883.
 - G.I. Taylor. The instability of liquid surfaces when accelerated in a direction perpendicular to their planes, [Proc. R. Soc. Lond. A, 201:192-196, 1950.](https://doi.org/10.1098/rspa.1950.0052)
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

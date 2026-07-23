@@ -33,7 +33,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Inc_Turbulent_Channel](../../10_turbulence_rans/Inc_Turbulent_Channel) (periodic, source-driven wall turbulence), [Inc_Streamwise_Periodic](../../00_foundations/Inc_Streamwise_Periodic) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -158,7 +158,7 @@ atmosphere.
 
 - J. R. Garratt. The Atmospheric Boundary Layer, Cambridge University Press, 1992.
 - R. B. Stull. An Introduction to Boundary Layer Meteorology, Kluwer, 1988.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

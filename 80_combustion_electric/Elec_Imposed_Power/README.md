@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Case | [Elec_Joule_Bar](../Elec_Joule_Bar) (the same bar with imposed potentials, and the user-file requirements of the Joule variant) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -146,7 +146,7 @@ This tutorial drove the Joule bar by imposed power: the electrode potentials bec
 
 ## References
 
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

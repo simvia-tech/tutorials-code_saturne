@@ -32,7 +32,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Gwf_Darcy_Tracer](../Gwf_Darcy_Tracer) (the saturated Darcy + tracer base case, read it first) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -176,7 +176,7 @@ by a factor that a groundwater model captures through a single soil parameter.
 
 - A. Ogata, R. B. Banks. A solution of the differential equation of longitudinal dispersion in porous media, U.S. Geological Survey Professional Paper 411-A, 1961.
 - C. W. Fetter. Contaminant Hydrogeology, 2nd ed., Prentice Hall, 1999.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Case | [Vof_Cavitating_Throttle](../Vof_Cavitating_Throttle) (cavitation model basics and its mandatory user file) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -162,7 +162,7 @@ This tutorial set up the collapse of a spherical vapor bubble with the cavitatio
 
 - Lord Rayleigh. On the pressure developed in a liquid during the collapse of a spherical cavity, [Phil. Mag., 34:94-98, 1917.](https://doi.org/10.1080/14786440808635681)
 - J.P. Franc, J.M. Michel. Fundamentals of Cavitation, Kluwer, 2004.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

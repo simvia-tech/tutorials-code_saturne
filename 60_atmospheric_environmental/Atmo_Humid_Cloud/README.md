@@ -31,7 +31,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Atmo_Meteo_Profile](../Atmo_Meteo_Profile) (meteo-file workflow), [Atmo_Neutral_BoundaryLayer](../Atmo_Neutral_BoundaryLayer) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -184,7 +184,7 @@ boundary-layer studies.
 
 - J. R. Garratt. The Atmospheric Boundary Layer, Cambridge University Press, 1992.
 - R. B. Stull. An Introduction to Boundary Layer Meteorology, Kluwer, 1988.
-- [code_saturne atmospheric flows documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne atmospheric flows documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

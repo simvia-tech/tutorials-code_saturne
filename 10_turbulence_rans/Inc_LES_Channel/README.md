@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Inc_Turbulent_Channel](../Inc_Turbulent_Channel) (the RANS counterpart, same driving), [Inc_Streamwise_Periodic](../../00_foundations/Inc_Streamwise_Periodic) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -178,7 +178,7 @@ beyond this case: LES resolves the turbulence RANS only models, at the price of 
 
 - R. D. Moser, J. Kim, N. N. Mansour. Direct numerical simulation of turbulent channel flow up to $Re_\tau = 590$, Physics of Fluids 11, 943-945, 1999.
 - F. Nicoud, F. Ducros. Subgrid-scale stress modelling based on the square of the velocity gradient tensor, Flow, Turbulence and Combustion 62, 183-200, 1999.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

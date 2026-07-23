@@ -33,7 +33,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Gwf_Darcy_Tracer](../Gwf_Darcy_Tracer) (the saturated base case, read it first) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -175,7 +175,7 @@ provides them through the Van Genuchten-Mualem soil model, set up with a single
 
 - M. Th. van Genuchten. A closed-form equation for predicting the hydraulic conductivity of unsaturated soils, Soil Science Society of America Journal 44, 892-898, 1980.
 - Y. Mualem. A new model for predicting the hydraulic conductivity of unsaturated porous media, Water Resources Research 12, 513-522, 1976.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

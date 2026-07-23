@@ -32,7 +32,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Atmo_Humid_Cloud](../Atmo_Humid_Cloud) (humid air, saturation), any inlet/outlet case |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -183,7 +183,7 @@ zone, the basis for modelling industrial wet cooling towers.
 
 - M. Poppe, H. Rögener. Berechnung von Rückkühlwerken, VDI-Wärmeatlas, 1991.
 - J. C. Kloppers, D. G. Kröger. A critical investigation into the heat and mass transfer analysis of counterflow wet-cooling towers, Int. J. Heat Mass Transfer 48, 765-777, 2005.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -23,7 +23,7 @@ After completing this tutorial you will be able to:
 | Background | Gas dynamics (oblique shocks); the [Comp_Sod_Tube](../Comp_Sod_Tube) tutorial is the natural first step |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -170,7 +170,7 @@ This tutorial computed the $M_1 = 2$ flow over a $10°$ compression ramp with th
 
 - J.D. Anderson. Modern Compressible Flow: With Historical Perspective, 3rd edition, McGraw-Hill, 2003 (chapter 4, oblique shocks).
 - [NACA Report 1135, Equations, Tables and Charts for Compressible Flow, 1953.](https://ntrs.nasa.gov/citations/19930091059)
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

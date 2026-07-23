@@ -23,7 +23,7 @@ After completing this tutorial you will be able to:
 | Background | Basic notions of hydrodynamic stability (shear instabilities) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -160,7 +160,7 @@ This tutorial set up a two-phase Kelvin-Helmholtz instability with the VOF model
 
 - H. von Helmholtz. On discontinuous movements of fluids, Phil. Mag., 36:337-346, 1868.
 - Lord Kelvin (W. Thomson). Hydrokinetic solutions and observations, Phil. Mag., 42:362-377, 1871.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Inc_Head_Loss_Zone](../Inc_Head_Loss_Zone) (the screen), [Inc_Streamwise_Periodic](../Inc_Streamwise_Periodic) (periodicity) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -111,7 +111,7 @@ This tutorial placed a virtual fan in a periodic duct loop, entirely from the GU
 
 ## References
 
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

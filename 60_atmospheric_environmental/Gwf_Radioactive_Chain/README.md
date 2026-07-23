@@ -34,7 +34,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Gwf_Darcy_Tracer](../Gwf_Darcy_Tracer) (saturated Darcy + tracer base case), [Gwf_Sorption_Retardation](../Gwf_Sorption_Retardation) (a second tracer feature) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -175,7 +175,7 @@ the groundwater module transports and reacts them together.
 
 - H. Bateman. The solution of a system of differential equations occurring in the theory of radioactive transformations, Proc. Cambridge Philos. Soc. 15, 423-427, 1910.
 - M. Th. van Genuchten. Convective-dispersive transport of solutes involved in sequential first-order decay reactions, Computers & Geosciences 11, 129-147, 1985.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

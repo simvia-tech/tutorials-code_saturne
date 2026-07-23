@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Case | [Vof_Kelvin_Helmholtz](../Vof_Kelvin_Helmholtz) (basics of the VOF model) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -187,7 +187,7 @@ This tutorial computed a cavitating throttle with the VOF cavitation model (Merk
 
 - E. Winklhofer, E. Kull, E. Kelz, A. Morozov. Comprehensive hydraulic and flow field documentation in model throttle experiments under cavitation conditions, ILASS-Europe, 2001.
 - C.L. Merkle, J. Feng, P.E.O. Buelow. Computational modeling of the dynamics of sheet cavitation, 3rd Int. Symp. on Cavitation, 1998.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Case | [Lag_Settling_Particle](../Lag_Settling_Particle) (the Lagrangian half of the pair, and the physics of the drag laws) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -167,7 +167,7 @@ This tutorial set up Eulerian settling clouds with the drift scalars of code_sat
 ## References
 
 - L. Schiller, A. Naumann. Über die grundlegenden Berechnungen bei der Schwerkraftaufbereitung, Z. Ver. Dtsch. Ing., 77:318-320, 1933.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

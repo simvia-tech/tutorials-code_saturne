@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Background | Basic incompressible solver usage (see [Inc_Laminar_Step](../Inc_Laminar_Step)) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -179,7 +179,7 @@ This tutorial ran a time-accurate unsteady incompressible simulation of the lami
 ## References
 
 - C. H. K. Williamson. Defining a universal and continuous Strouhal-Reynolds number relationship for the laminar vortex shedding of a circular cylinder, Physics of Fluids 31, 2742-2744, 1988.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

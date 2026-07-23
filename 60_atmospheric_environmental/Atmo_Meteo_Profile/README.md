@@ -30,7 +30,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Atmo_Neutral_BoundaryLayer](../Atmo_Neutral_BoundaryLayer) (neutral surface layer, rough wall, log law) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -168,7 +168,7 @@ the same workflow.
 ## References
 
 - J. R. Garratt. The Atmospheric Boundary Layer, Cambridge University Press, 1992.
-- [code_saturne atmospheric flows documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne atmospheric flows documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

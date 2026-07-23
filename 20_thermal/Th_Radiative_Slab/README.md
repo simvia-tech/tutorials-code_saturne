@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Tutorial | [Th_Buoyant_Cavity](../Th_Buoyant_Cavity) (thermal scalar basics) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -149,7 +149,7 @@ This tutorial activated the radiative transfer module on the one configuration w
 
 - M.A. Heaslet, R.F. Warming. Radiative transport and wall temperature slip in an absorbing planar medium, Int. J. Heat Mass Transfer, 8, 979-994, 1965.
 - M.F. Modest. Radiative Heat Transfer, 3rd ed., Academic Press, 2013 (chapter 14: exact solutions for one-dimensional gray media).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -184,7 +184,7 @@ composition and mixture fraction.
 - N. Peters. *Turbulent Combustion*, Cambridge University Press, 2000.
 - S. B. Pope. *Turbulent Flows*, Cambridge University Press, 2000 (mixture
   fraction and non-premixed combustion).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

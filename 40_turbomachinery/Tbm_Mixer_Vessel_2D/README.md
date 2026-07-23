@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Background | RANS turbulence modelling basics; a first incompressible tutorial such as [Inc_Inviscid_Hydrofoil](../../00_foundations/Inc_Inviscid_Hydrofoil) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -191,7 +191,7 @@ This tutorial computed a baffled stirred tank with the frozen rotor model of cod
 
 ## References
 
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 - E.L. Paul, V.A. Atiemo-Obeng, S.M. Kresta (eds). Handbook of Industrial Mixing: Science and Practice, Wiley, 2004.
 
 ## Authors

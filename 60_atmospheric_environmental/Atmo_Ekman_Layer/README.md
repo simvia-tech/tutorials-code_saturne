@@ -31,7 +31,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Atmo_Neutral_BoundaryLayer](../Atmo_Neutral_BoundaryLayer) (neutral surface layer, rough wall) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -170,7 +170,7 @@ the wind turning with height in the real atmosphere.
 
 - V. W. Ekman. On the influence of the Earth's rotation on ocean currents, Arkiv för Matematik, Astronomi och Fysik 2, 1-53, 1905.
 - J. R. Garratt. The Atmospheric Boundary Layer, Cambridge University Press, 1992.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Tutorial | [Inc_Turbulent_Plate](../Inc_Turbulent_Plate) (RANS basics and wall functions) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -168,7 +168,7 @@ This tutorial ran the Sudo 90 degree bend with two RANS closures (k-$\omega$ SST
 ## References
 
 - K. Sudo, M. Sumida, H. Hibara. Experimental investigation on turbulent flow in a circular-sectioned 90-degree bend, Experiments in Fluids 25, 42-49, 1998.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

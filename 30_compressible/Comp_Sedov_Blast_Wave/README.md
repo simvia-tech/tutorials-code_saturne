@@ -23,7 +23,7 @@ After completing this tutorial you will be able to:
 | Background | Gas dynamics; the [Comp_Sod_Tube](../Comp_Sod_Tube) tutorial is the natural first step |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -178,7 +178,7 @@ This tutorial set up a cylindrical Sedov blast wave with the compressible module
 
 - L.I. Sedov. Similarity and Dimensional Methods in Mechanics, Academic Press, 1959.
 - G.I. Taylor. The formation of a blast wave by a very intense explosion, [Proc. R. Soc. Lond. A, 201:159-174, 1950.](https://doi.org/10.1098/rspa.1950.0049)
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

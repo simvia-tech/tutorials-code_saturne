@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Background | Particle drag basics (Stokes law, particle relaxation time) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -161,7 +161,7 @@ This tutorial set up the Lagrangian module of code_saturne on its simplest possi
 
 - L. Schiller, A. Naumann. Über die grundlegenden Berechnungen bei der Schwerkraftaufbereitung, Z. Ver. Dtsch. Ing., 77:318-320, 1933.
 - R. Clift, J.R. Grace, M.E. Weber. Bubbles, Drops and Particles, Academic Press, 1978.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

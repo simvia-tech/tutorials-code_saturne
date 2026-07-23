@@ -22,7 +22,7 @@ After completing this tutorial you will be able to:
 | Background | Basic notions of incompressible aerodynamics and potential (inviscid) flow theory |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -229,7 +229,7 @@ for more complex incompressible CFD simulations.
 ## References
 
 - A viscous/inviscid interactive approach and its application to hydrofoils and propellers with non−zero trailing edge thickness Resource, [Inviscid flow over an Hydrofoil](https://www.mit.edu/~panyulin/publication_files/Pan_MSTHS.pdf)
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

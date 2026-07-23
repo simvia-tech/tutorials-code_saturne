@@ -27,7 +27,7 @@ After completing this tutorial you will be able to:
 | Background | Basic notions of RANS turbulence modelling and boundary-layer theory |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -265,7 +265,7 @@ wall-bounded RANS simulations.
 
 - NASA Langley Turbulence Modeling Resource, [2D Zero Pressure Gradient Flat Plate](https://tmbwg.github.io/turbmodels/flatplate.html)
 - P. R. Spalart and S. R. Allmaras, *A One-Equation Turbulence Model for Aerodynamic Flows*, AIAA Paper 92-0439, 1992.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

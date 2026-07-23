@@ -23,7 +23,7 @@ After completing this tutorial you will be able to:
 | Tutorial | [Pre_Boundary_Layer](../Pre_Boundary_Layer) (the `cs_user_mesh_modify` entry point) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -98,7 +98,7 @@ This tutorial refined a selected zone of an existing mesh at run time: one `cs_u
 
 ## References
 
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

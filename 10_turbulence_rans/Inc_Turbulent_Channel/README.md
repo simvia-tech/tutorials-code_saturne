@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Inc_Streamwise_Periodic](../../00_foundations/Inc_Streamwise_Periodic) (periodicity + source term), [Inc_Turbulent_Plate](../Inc_Turbulent_Plate) (RANS near walls) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -173,7 +173,7 @@ fully-developed internal flow.
 ## References
 
 - R. D. Moser, J. Kim, N. N. Mansour. Direct numerical simulation of turbulent channel flow up to $Re_\tau = 590$, Physics of Fluids 11, 943-945, 1999.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -24,7 +24,7 @@ After completing this tutorial you will be able to:
 | Background | Basic notions of natural convection and laminar low Mach number flow theory |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -254,7 +254,7 @@ This tutorial set up a steady, laminar, buoyancy-driven cavity flow with a large
 ## References
 
 - Peter M. Sockol. Multigrid solution of the Navier-Stokes equations at low speeds with large temperature variations. Journal of Computational Physics, 192(2):570-592, 2003, [Buoyancy Driven Flow](https://www.sciencedirect.com/science/article/abs/pii/S0021999103004091)
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

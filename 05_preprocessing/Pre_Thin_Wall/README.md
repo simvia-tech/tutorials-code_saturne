@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Tutorial | [Pre_Face_Joining](../Pre_Face_Joining) (the 05_preprocessing workflow) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -110,7 +110,7 @@ This tutorial inserted a zero-thickness baffle on interior faces from the GUI: o
 
 ## References
 
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

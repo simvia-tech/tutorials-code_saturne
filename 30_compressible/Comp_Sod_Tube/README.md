@@ -23,7 +23,7 @@ After completing this tutorial you will be able to:
 | Background | Basic notions of gas dynamics (shock, contact, rarefaction) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -174,7 +174,7 @@ This tutorial set up the Sod shock tube with the compressible module of code_sat
 
 - G.A. Sod. A survey of several finite difference methods for systems of nonlinear hyperbolic conservation laws, [Journal of Computational Physics, 27(1):1-31, 1978.](https://doi.org/10.1016/0021-9991(78)90023-2)
 - E.F. Toro. Riemann Solvers and Numerical Methods for Fluid Dynamics, 3rd edition, Springer, 2009 (chapters 4-5).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

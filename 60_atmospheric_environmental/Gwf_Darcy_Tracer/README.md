@@ -33,7 +33,7 @@ After completing this tutorial you will be able to:
 | Tutorials | [Inc_Species_Transport](../../00_foundations/Inc_Species_Transport) (scalar transport), [Inc_Porous_Plug](../../40_turbomachinery/Inc_Porous_Plug) (porous media, for contrast) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -206,7 +206,7 @@ a different workflow from the finite-volume Navier-Stokes cases.
 
 - A. Ogata, R. B. Banks. A solution of the differential equation of longitudinal dispersion in porous media, U.S. Geological Survey Professional Paper 411-A, 1961.
 - J. Bear. Dynamics of Fluids in Porous Media, Elsevier, 1972.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

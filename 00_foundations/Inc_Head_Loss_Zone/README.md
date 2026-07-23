@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Background | None: this is one of the simplest possible cases |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -150,7 +150,7 @@ This tutorial set up a head-loss zone in a duct: a volume zone selected by a geo
 ## References
 
 - I.E. Idelchik. Handbook of Hydraulic Resistance, 4th edition, Begell House, 2007 (the classic source of $K$ values).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

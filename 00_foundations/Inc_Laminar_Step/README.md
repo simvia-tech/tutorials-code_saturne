@@ -24,7 +24,7 @@ After completing this tutorial you will be able to:
 | Background | Basic notions of RANS turbulence modelling and boundary-layer theory |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -211,7 +211,7 @@ complex incompressible CFD simulations.
 
 - A test problem for outflow boundary conditions—flow over a backward-facing step Resource, [Flow over a backward-facing step](https://onlinelibrary.wiley.com/doi/10.1002/fld.1650110704)
 - Gartling D.K., A test problem for outflow boundary conditions – flow over a backward- facing step, International Journal of Numerical Methods in Fluids, 11, 953-967, 1990.
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

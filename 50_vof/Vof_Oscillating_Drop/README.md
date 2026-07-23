@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Tutorial | [Vof_Rayleigh_Taylor](../Vof_Rayleigh_Taylor) (the VOF model and its MEG interface initialization) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -105,7 +105,7 @@ This tutorial switched on the surface tension of the VOF model, the one ingredie
 ## References
 
 - Lord Rayleigh. On the capillary phenomena of jets, Proc. R. Soc. London, 29, 71-97, 1879 (the drop oscillation frequency).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

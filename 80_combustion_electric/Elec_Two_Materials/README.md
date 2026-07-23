@@ -21,7 +21,7 @@ After completing this tutorial you will be able to:
 | Case | [Elec_Joule_Bar](../Elec_Joule_Bar) (the single-material bar, and the three user-file requirements of the Joule variant) |
 
 If code_saturne is not yet installed, build it from the
-[official homepage](https://www.code-saturne.org/cms/web/Download), pull a
+[official homepage](https://code-saturne.org/), pull a
 ready-to-use Singularity image from the
 [Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
 or pull the
@@ -136,7 +136,7 @@ This tutorial turned the electrical conductivity into a field: two materials in 
 ## References
 
 - S.V. Patankar. Numerical Heat Transfer and Fluid Flow, Hemisphere, 1980 (section 4.2-3: the harmonic mean for discontinuous conductivities).
-- [code_saturne documentation](https://www.code-saturne.org/cms/web/documentation)
+- [code_saturne documentation](https://code-saturne.org/doc/)
 
 ## Authors
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for modelling a **real porous medium** in **code_saturne**, by combining the two features introduced separately in [Inc_Head_Loss_Zone](../Inc_Head_Loss_Zone) and [Inc_Porous_Plug](../Inc_Porous_Plug): a **porosity zone** for the kinematics (the flow accelerates in the reduced section) and a **head-loss zone** for the distributed friction of the solid matrix, with the coefficient calibrated from the **Ergun correlation** for a bed of spheres. This is the standard industrial recipe for packed beds, filters and tube bundles. The whole setup is done in the GUI: no mesh file, no user routine.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

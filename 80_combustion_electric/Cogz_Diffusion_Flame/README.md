@@ -7,7 +7,7 @@ A step-by-step tutorial on the **gas combustion module** (`cogz`) of
 meet in stoichiometric proportion, no ignition source needed.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

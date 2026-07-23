@@ -3,7 +3,7 @@
 A step-by-step tutorial for a **fully-developed turbulent channel** in **code_saturne**: an incompressible RANS flow between two parallel walls, made streamwise-periodic and **driven by a constant momentum source term** instead of an inlet/outlet. The tutorial's purpose is that **periodic + source-term workflow** and its canonical validation: a wall-resolved computation that recovers the **law of the wall** ($u^+$ versus $y^+$) at $Re_\tau = 395$.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

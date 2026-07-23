@@ -7,7 +7,7 @@ This module lives in the **CDO framework** of code_saturne and has **no GUI page
 CDO (**Compatible Discrete Operators**) is the second discretization engine of code_saturne, next to the historical cell-centered finite-volume solver used everywhere else in this collection: a mimetic framework where unknowns may live on vertices, faces or cells, and where the discrete gradient/divergence operators reproduce the algebraic properties of the continuous ones exactly: robust on polyhedral or low-quality meshes, and the foundation of the code's most recent modules (solidification, groundwater flows, Maxwell). A run can be CDO-only, as here, or combine CDO and finite-volume equations.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

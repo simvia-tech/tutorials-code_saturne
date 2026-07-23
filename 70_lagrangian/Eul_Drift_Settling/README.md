@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **drift-flux scalars** of **code_saturne**: three concentration fields, representing the same glass bead classes as the discrete particles of [Lag_Settling_Particle](../Lag_Settling_Particle), settle as Eulerian clouds in a box of quiescent water. The two cases form a deliberate pair: the **same physics** treated by the two approaches available in code_saturne, discrete particles (Lagrangian) versus concentration fields with a drift velocity (Eulerian). The cloud centroids fall at exactly the terminal velocities of the discrete beads.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

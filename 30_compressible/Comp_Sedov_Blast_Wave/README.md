@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating a **Sedov blast wave** with the **compressible module** of **code_saturne**: a finite amount of energy released at a point in a uniform gas at rest drives a self-similar shock wave. The computed shock trajectory is validated against the **Sedov similarity law** $R(t) \propto t^{1/2}$, and the total energy conservation is verified.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -9,7 +9,7 @@ appears. The showcased feature is the humid model and its saturation adjustment,
 demonstrated on a moist meteo profile that forms a **cloud layer** aloft.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the steady, incompressible, turbulent flow through a **streamwise periodic** unit cell of a pin-fin heat exchanger, using **code_saturne**. Instead of meshing a long array of pins with an inlet and an outlet, a single periodic cell is computed: the flow is driven by a prescribed pressure drop, and a user source term keeps the temperature field periodic despite the heated walls.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

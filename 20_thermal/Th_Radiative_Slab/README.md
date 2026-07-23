@@ -3,7 +3,7 @@
 A step-by-step tutorial for the **radiative transfer module** of **code_saturne**: a gray absorbing-emitting medium between a hot and a cold black plate, at radiative equilibrium. The exact solution of this classic configuration (the Milne problem of a slab) is known to four digits, which makes it the ideal ground to compare the two radiation models offered by the GUI, the **Discrete Ordinates Method (DOM)** and the spherical-harmonics **P-1** approximation, and to see a phenomenon pure conduction can never produce: the **temperature slip** at the walls. The whole setup is built in the GUI; the tutorial ships two cases differing by one single option, the radiation model.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the steady, laminar, buoyancy-driven flow of air in a closed square cavity with a large temperature difference, using **code_saturne**. The case follows the benchmark of Sockol (2003) and is a good entry point to natural convection with variable density.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

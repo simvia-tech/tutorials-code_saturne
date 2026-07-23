@@ -3,7 +3,7 @@
 A step-by-step tutorial for using a **head-loss zone** in **code_saturne**: a volume region that mimics the pressure drop of a flow-through device (screen, filter, grille, heat-exchanger bundle, porous baffle) without meshing it. A uniform stream crosses a 0.2 m thick "porous screen" in a duct, and the computed pressure drop matches the prescribed one exactly. The whole setup is done in the GUI: no mesh file, no user routine.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

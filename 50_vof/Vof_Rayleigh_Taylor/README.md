@@ -3,7 +3,7 @@
 A step-by-step tutorial for simulating the **Rayleigh-Taylor instability** with the **VOF (Volume of Fluid) model** of **code_saturne**: a heavy fluid rests on top of a light fluid under gravity, and any perturbation of the interface grows into the characteristic falling spikes and rising bubbles. Together with [Vof_Kelvin_Helmholtz](../Vof_Kelvin_Helmholtz), it is a compact demonstration of a two-phase VOF setup.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
-[tutoriel-code_saturne](https://gitlab.com/Simvia/common-tools/tutoriel-code_saturne) collection.
+[tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 

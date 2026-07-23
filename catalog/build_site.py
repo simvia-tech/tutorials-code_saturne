@@ -54,6 +54,11 @@ HOME_TEMPLATE = r"""{% extends "base.html" %}
     <span class="cs-addf"><button id="cs-addbtn" type="button">&#65291; Filter</button><div class="cs-pop" id="cs-pop" hidden></div></span>
   </div></div>
 
+  <div class="cs-clone">
+    <span>Get the collection:</span>
+    <code>git clone https://github.com/simvia-tech/tutorials-code_saturne.git</code>
+  </div>
+
   <div class="cs-hero-mnt">Maintained by
     <a href="https://simvia.tech/fr" target="_blank" rel="noopener"><img src="assets/simvia.svg" alt="Simvia, groupe EDF"></a>
   </div>
@@ -235,6 +240,11 @@ def main():
 .cs-herosearch:hover{border-color:var(--md-primary-fg-color)}
 .cs-hero-mnt{margin-top:1.6rem;display:flex;align-items:center;gap:.5rem;color:var(--md-default-fg-color--light);font-size:.8rem}
 .cs-hero-mnt img{height:1.5rem;display:block}
+.cs-clone{margin-top:1.6rem;text-align:center;color:var(--md-default-fg-color--light);font-size:.8rem}
+.cs-clone>span{display:block}
+.cs-clone code{display:inline-block;margin-top:.45rem;background:#eef3f9;border:1px solid #e3e9f1;border-radius:.4rem;padding:.4rem .7rem;font-family:var(--md-code-font,monospace);font-size:.78rem;color:var(--md-primary-fg-color)}
+.cs-clone-note{margin-top:.6rem;font-size:.68rem;color:var(--md-default-fg-color--lighter)}
+.cs-clone-note code{margin:0;padding:.05rem .3rem;font-size:.68rem}
 /* home faceted search + result cards */
 .cs-search{width:min(40rem,92vw);margin:.3rem auto 0}
 .cs-search__box{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem;border:1.5px solid var(--md-default-fg-color--lightest);border-radius:.85rem;padding:.7rem .8rem;box-shadow:0 .4rem 1.4rem rgba(53,91,178,.10)}

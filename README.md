@@ -69,7 +69,6 @@ mkdocs serve -f _site_src/mkdocs.yml
 
 ## License
 
-Distributed under the GNU General Public License v2.0 (see [LICENSE](LICENSE)),
-the same license as code_saturne.
+Distributed under the GNU General Public License v3.0 (see [LICENSE](LICENSE)).
 
 Maintained by [Simvia](https://simvia.tech/fr).

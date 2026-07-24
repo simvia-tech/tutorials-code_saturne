@@ -197,8 +197,7 @@ references to missing figures.
 ## License
 
 By contributing, you agree that your contribution is distributed under the
-**GNU General Public License v2.0** (see [LICENSE](LICENSE)), the same license
-as code_saturne.
+**GNU General Public License v3.0** (see [LICENSE](LICENSE)).
 
 ## Contact
 

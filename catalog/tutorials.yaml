@@ -318,6 +318,16 @@ tutorials:
   difficulty: advanced
   tags: [cavitation, throttle, vof, merkle]
 
+- path: 50_vof/Vof_Dam_Break
+  title: Dam Break with Obstacle (VOF)
+  topic: Multiphase (VOF)
+  module: vof
+  regime: multiphase
+  physics: [surface-tension]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [dam-break, free-surface, two-phase, obstacle, surface-tension]
+
 - path: 50_vof/Vof_Kelvin_Helmholtz
   title: Kelvin-Helmholtz Instability (VOF)
   topic: Multiphase (VOF)

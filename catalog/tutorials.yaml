@@ -122,6 +122,16 @@ tutorials:
   difficulty: intermediate
   tags: [time-table, transient-bc, inlet, csv, poiseuille]
 
+- path: 00_foundations/Inc_Time_Averages
+  title: Time Averages (Mean Fields of an Unsteady Wake)
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [time-averages, moments, vortex-shedding, square-cylinder, strouhal]
+
 - path: 00_foundations/Inc_Von_Karman
   title: Unsteady Laminar Vortex Shedding (von Karman Street)
   topic: Foundations

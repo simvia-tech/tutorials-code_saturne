@@ -3,11 +3,6 @@ name: Deploy tutorials site to GitHub Pages
 on:
   push:
     branches: [main]
-    paths:
-      - "**/README.md"
-      - "**/FIGURES/**"
-      - "catalog/**"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -24,8 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true            # figures are tracked with Git LFS
+      - name: Fetch LFS objects needed by the site (figures only, not meshes)
+        run: git lfs pull --include="**/FIGURES/**"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

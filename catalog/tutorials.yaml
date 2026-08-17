@@ -265,6 +265,16 @@ tutorials:
   tags: [backward-facing-step, separation, reattachment, sst, skin-friction]
 
 # ---- 20_thermal ----
+- path: 20_thermal/Th_Balance_By_Zone
+  title: Balances by Zone (Energy Budget of a Heated Channel)
+  topic: Thermal & Radiation
+  module: base
+  regime: laminar
+  physics: [heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [balance-by-zone, energy-budget, pressure-drop, extra-operations, ntu]
+
 - path: 20_thermal/Th_Buoyant_Cavity
   title: Buoyancy-Driven Laminar Cavity
   topic: Thermal & Radiation

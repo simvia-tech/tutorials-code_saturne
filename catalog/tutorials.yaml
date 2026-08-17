@@ -12,6 +12,16 @@
 tutorials:
 
 # ---- 00_foundations ----
+- path: 00_foundations/Inc_Checkpoint_Restart
+  title: Checkpoint and Restart (Splitting a Transient Calculation)
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [checkpoint, restart, workflow, transient, time-table]
+
 - path: 00_foundations/Inc_Fan_Duct
   title: Fan in a Duct (Actuator Disk with a Fan Curve)
   topic: Foundations

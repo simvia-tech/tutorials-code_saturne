@@ -1,4 +1,4 @@
-# VOF Dam Break 
+# Dam Break with a Bottom Obstacle (VOF)
 
 This tutorial simulates the gravity-driven collapse of a water column inside a two-dimensional tank. The liquid front propagates across the dry section of the tank, impacts a rectangular obstacle, rises along its upstream face, and subsequently overtops it. The case is designed as a compact demonstration of free-surface flow modelling with the homogeneous Volume-of-Fluid (VOF) model in code_saturne.
 
@@ -11,21 +11,19 @@ Maintained by [Simvia](https://Simvia.tech/fr), part of the
 
 After completing this tutorial, the user should be able to:
 
-1. activate the homogeneous VOF model for an incompressible water-air flow.
-2. initialize two phases in different volume zones using the `void_fraction` field;
-3. define phase-dependent density and dynamic viscosity;
-4. include gravity and surface-tension effects;
-5. configure wall, symmetry, and atmospheric-opening boundary conditions;
-6. use a user boundary-condition function for a mixed inflow/outflow opening;
-7. run a transient free-surface calculation with a fixed time step;
-8. visualize the interface from the VOF field and assess the main stages of the dam-break motion.
+1. Activate the homogeneous VOF model for an incompressible water-air flow.
+2. Initialize two phases in different volume zones using the `void_fraction` field.
+3. Define phase-dependent density and dynamic viscosity.
+4. Include gravity and surface-tension effects.
+5. Run a transient free-surface calculation with a fixed time step.
+6. Visualize the interface from the VOF field and assess the main stages of the dam-break motion.
 
 ## Prerequisites
 
 | Requirement | Detail |
 |---|---|
 | code_saturne | **v9.1** |
-| Background | Basic notions of multiphase modelling using vof |
+| Background | Basic notions of multiphase modelling with the VOF method |
 
 If code_saturne is not yet installed, build it from the
 [official homepage](https://code-saturne.org/), pull a
@@ -39,14 +37,11 @@ or pull the
 ```
 Vof_Dam_Break/
 ├── CASE/
-│   ├── DATA/
-│   │   ├── run.cfg
-│   │   └── setup.xml
-│   └── SRC/
-│       └── cs_user_boundary_conditions.cpp
+│   └── DATA/
+│       └── setup.xml
 ├── MESH/
 │   └── damBreak_with_groups.med
-├── FIGURES/
+├── FIGURES/                   # figures used in this README
 └── README.md
 ```
 
@@ -62,8 +57,8 @@ $$
 
 where, in this case:
 
-- $\alpha=0$ represents water;
-- $\alpha=1$ represents air;
+- $\alpha=0$ represents water.
+- $\alpha=1$ represents air.
 - $0<\alpha<1$ identifies cells crossed by the numerically captured interface.
 
 The phase indicator is transported in conservative form. In the VOF formulation, the transport equation may be written as
@@ -110,64 +105,44 @@ The turbulence model is disabled. The calculation is therefore performed as a la
 
 The two phases are initialized at rest. The motion is generated entirely by gravity after the idealized instantaneous removal of the gate retaining the water column.
 
-| Parameter | Water | Air | Unit |
-|---|---:|---:|---|
-| Density $\rho$ | 1000 | 1 | $\mathrm{kg\,m^{-3}}$ |
-| Dynamic viscosity $\mu$ | $1.0\times10^{-3}$ | $1.48\times10^{-5}$ | $\mathrm{Pa\,s}$ |
+| Parameter | Water | Air | Unit | Source in `setup.xml` |
+|---|---:|---:|---|---|
+| Density $\rho$ | 1000 | 1 | $\mathrm{kg\,m^{-3}}$ | `density/value_0`, `value_1` |
+| Dynamic viscosity $\mu$ | $1.0\times10^{-3}$ | $1.48\times10^{-5}$ | $\mathrm{Pa\,s}$ | `molecular_viscosity/value_0`, `value_1` |
 
 Additional physical parameters are:
 
-| Parameter | Value | Unit |
-|---|---:|---|
-| Surface tension $\sigma$ | 0.07 | $\mathrm{N\,m^{-1}}$ |
-| Gravity | $(0,-9.81,0)$ | $\mathrm{m\,s^{-2}}$ |
-| Initial velocity | $(0,0,0)$ | $\mathrm{m\,s^{-1}}$ |
-| Reference pressure | 101325 | Pa |
-| Reference temperature | 293.15 | K |
-
-Using the initial water height $H_0=0.292\ \mathrm{m}$, the gravity velocity scale is
-
-$$
-U_g=\sqrt{gH_0}\approx1.69\ \mathrm{m\,s^{-1}}.
-$$
-
-This value is useful for estimating the characteristic time scale and for assessing temporal and spatial resolution.
+| Parameter | Value | Unit | Source in `setup.xml` |
+|---|---:|---|---|
+| Surface tension $\sigma$ | 0.07 | $\mathrm{N\,m^{-1}}$ | `surface_tension` |
+| Gravity | $(0,-9.81,0)$ | $\mathrm{m\,s^{-2}}$ | `gravity/gravity_y` |
+| Initial velocity | $(0,0,0)$ | $\mathrm{m\,s^{-1}}$ | `velocity/initialization` |
+| Reference pressure | 101325 | Pa | `reference_pressure` |
+| Reference temperature | 293.15 | K | `reference_temperature` |
 
 ## Geometry and boundary conditions
 
 ### Geometry
 
-The computational domain is a square tank containing a rectangular obstacle attached to the bottom wall.
+The domain is a square tank, $0.584\times0.584\ \mathrm{m}$, one cell thick in the
+spanwise direction. A rectangular obstacle ($0.024\ \mathrm{m}$ wide,
+$0.048\ \mathrm{m}$ tall) sits on the floor with its leading edge at
+$x=0.292\ \mathrm{m}$. The initial water column occupies the bottom-left corner,
+$0.1461\ \mathrm{m}$ wide and $0.292\ \mathrm{m}$ tall; the rest of the tank is
+air (see Figure 1 for the mesh and boundary layout).
 
-| Geometrical quantity | Value |
-|---|---:|
-| Tank length | 0.584 m |
-| Tank height | 0.584 m |
-| Quasi-2D thickness | 0.0146 m |
-| Initial water-column width | 0.1461 m |
-| Initial water-column height | 0.292 m |
-| Distance from the initial column to the obstacle | 0.1459 m |
-| Obstacle width | 0.024 m |
-| Obstacle height | 0.048 m |
-| Obstacle leading-edge position | $x=0.292\ \mathrm{m}$ |
-
-The initial water region is defined in `setup.xml` by
-
-```text
-0 <= x <= 0.1461 m
-0 <= y <= 0.2920 m
-```
-
-The entire domain is initialized with $\alpha=1$, after which the water-column zone is assigned $\alpha=0$.
+The two phases are set in `setup.xml` by initializing the whole domain with
+$\alpha=1$ (air), then the water-column zone
+($0\le x\le0.1461$, $0\le y\le0.292$) with $\alpha=0$ (water).
 
 ### Mesh
 
 The MED mesh is a structured five-block mesh extruded through one cell in the spanwise direction. It contains:
 
-- 2268 hexahedral cells;
-- 4746 vertices;
-- one cell across the quasi-2D thickness;
-- local refinement around the bottom obstacle and the lower part of the tank.
+- 2268 hexahedral cells.
+- 4746 vertices.
+- One cell across the quasi-2D thickness.
+- Local refinement around the bottom obstacle and the lower part of the tank.
 
 The front and back planes are symmetry boundaries, so the solution is effectively two-dimensional.
 
@@ -186,16 +161,14 @@ The front and back planes are symmetry boundaries, so the solution is effectivel
 | `leftWall` | Wall | No-slip velocity |
 | `rightWall` | Wall | No-slip velocity |
 | `lowerWall` | Wall | No-slip velocity; includes the tank floor and obstacle |
-| `atmosphere` | Imposed-pressure outlet | Relative pressure $p=0\ \mathrm{Pa}$ |
+| `atmosphere` | Outlet | Free outlet at the tank top |
 | `front` | Symmetry | Quasi-2D plane |
 | `back` | Symmetry | Quasi-2D plane |
 
-The atmospheric opening must permit both outflow and possible local inflow. The file `cs_user_boundary_conditions.cpp` applies the following velocity treatment on the zone named `atmosphere`:
-
-- for predicted outflow, a homogeneous Neumann condition is imposed on velocity;
-- for predicted inflow, the normal velocity uses a Neumann condition and the tangential components are set to zero.
-
-The sign of the predicted normal flux is evaluated from the previous-time-step cell velocity and the outward boundary-face normal. The zone name `atmosphere` must therefore remain unchanged unless the user function is updated accordingly.
+The top of the tank (`atmosphere`) is a standard **outlet** (imposed reference
+pressure, zero-gradient velocity) through which air leaves as the water sloshes
+up. It is not a rigorously open in/outflow boundary, but the net flux through the
+top stays small, so a plain outlet is adequate here and needs no user routine.
 
 ## Numerical setup
 
@@ -211,11 +184,6 @@ The main numerical settings stored in `CASE/DATA/setup.xml` are summarized below
 | Final simulated time | 0.75 s |
 | Turbulence model | Off |
 | VOF model | Homogeneous mixture, no mass transfer |
-| Void-fraction RHS reconstruction | 1 sweep |
-| Velocity RHS reconstruction | 1 sweep |
-| Pressure RHS reconstruction | 2 sweeps |
-| Post-processing format | EnSight Gold, separate meshes |
-| Output period | 0.01 s |
 
 Three probes are also defined at the mid-thickness plane:
 
@@ -272,67 +240,43 @@ Each run creates a time-stamped directory `CASE/RESU/<YYYYMMDD-HHMM>/` containin
 
 ## Results and verification
 
-The following snapshots show the computed `void_fraction` field. Blue regions correspond to water $(\alpha\approx0)$, red regions correspond to air $(\alpha\approx1)$, and the intermediate colors show the numerically captured interface.
+### Interface evolution
 
-### Interface at $t=0.25\ \mathrm{s}$
-
-<p align="center">
-  <img src="FIGURES/t=0.25s_cs.png"
-       alt="void fraction at 0.25s"
-       width="900"/>
-  <br>
-  <em>Figure 2: Development of phase fractions at t= 0.25s </em>
-</p>
-
-At $t=0.25\ \mathrm{s}$, the released water column has propagated along the bottom of the tank and reached the obstacle. The liquid is redirected upward along the upstream face, producing a narrow rising jet. The curved interface and the beginning of the overturning motion are characteristic of this stage of the benchmark.
-
-### Interface at $t=0.50\ \mathrm{s}$
+The `void_fraction` field is post-processed at four instants. Water is dark,
+air is light, and the intermediate shades show the numerically captured
+interface. The obstacle (grey) is at $x/a=2$, using the initial column width
+$a=0.1461\ \mathrm{m}$ as length scale.
 
 <p align="center">
-  <img src="FIGURES/t=0.5s_cs.png"
-       alt="void fraction at 0.50s"
-       width="900"/>
+  <img src="FIGURES/interface_evolution.png"
+       alt="Water interface at t = 0.10, 0.25, 0.40 and 0.60 s."
+       width="1000"/>
   <br>
-  <em>Figure 3: Development of phase fractions at t= 0.50s </em>
+  <em>Figure 2: Interface evolution. The column collapses and the surge front
+  advances along the floor (0.10 s), impacts the obstacle and forms a rising jet
+  (0.25 s), overtops it (0.40 s), and surges downstream while entrapping an air
+  pocket under the overturning sheet (0.60 s).</em>
 </p>
 
-At $t=0.50\ \mathrm{s}$, the water has overtopped the obstacle and entered the downstream part of the tank. The interface displays strong deformation, and an air region is enclosed beneath the overturning liquid sheet downstream of the obstacle. These features demonstrate that the case captures the main gravity-driven propagation, impact, jet formation, overtopping, and air-entrapment mechanisms expected in the dam-break-with-obstacle problem.
+The snapshots reproduce the expected sequence for a dam break interacting with a
+bottom obstacle: gravity-driven collapse, propagation of the surge front along
+the floor, impact on the obstacle and jet formation, overtopping, and air
+entrapment under the overturning sheet. The verification here is **qualitative**:
+the purpose of this tutorial is to show a complete, reproducible VOF *set-up*
+(model, phases, initialization, boundary conditions), not to provide a quantitative
+benchmark.
 
-The present verification is **qualitative**. The snapshots reproduce the expected sequence of interface configurations, but the case does not yet include a quantitative comparison of wave-front position, obstacle pressure, or liquid-volume conservation against reference data.
+## Summary
 
-Recommended verification quantities for further development are:
-
-1. the water-front position as a function of time;
-2. the maximum rise of the jet on the obstacle;
-3. pressure histories on the upstream obstacle face;
-4. the total liquid volume, $V_w(t)=\int_{\Omega}(1-\alpha)\,\mathrm{d}\Omega$;
-5. sensitivity to mesh resolution and time-step size;
-6. minimum and maximum values of `void_fraction` to confirm boundedness.
-
-## Summary and limitations
-
-This tutorial demonstrates a complete gravity-driven, free-surface calculation with code_saturne using:
-
-- the homogeneous VOF model;
-- water-air variable mixture properties;
-- surface tension and gravity;
-- volume-zone initialization of the phase field;
-- a pressure opening with a user-defined mixed velocity treatment;
-- a quasi-two-dimensional structured mesh;
-- transient EnSight output for interface visualization.
-
-The supplied results reproduce the principal qualitative stages of a dam break interacting with a bottom obstacle. However, the following limitations should be kept in mind:
-
-- the mesh is intentionally coarse and contains only 2268 cells;
-- the spanwise direction contains one cell, so three-dimensional effects are excluded;
-- the turbulence model is disabled;
-- the retaining gate is not modelled explicitly and is removed instantaneously at $t=0$;
-- no dedicated dynamic contact-angle model is specified;
-- no dedicated hydrostatic-pressure initialization is supplied;
-- the current verification is visual rather than quantitative;
-- mesh and time-step convergence studies remain necessary before using the case for predictive engineering analysis.
-
-The case is therefore best considered a reproducible introductory VOF tutorial and a basis for subsequent validation and refinement studies.
+This tutorial set up a gravity-driven dam break with a bottom obstacle using the
+homogeneous VOF model of code_saturne: water-air mixture properties, void-fraction
+initialization of the water column with the flow at rest, surface tension and
+gravity, and a free outlet at the tank top. The interface evolution
+reproduces the expected stages (collapse, floor surge, obstacle impact, jet,
+overtopping and air entrapment). It is meant as a reproducible VOF set-up example
+rather than a validated benchmark: the mesh is intentionally coarse, the flow is
+treated as quasi-2D, and the verification is qualitative. It is a good starting
+point for more advanced free-surface simulations.
 
 ## References
 

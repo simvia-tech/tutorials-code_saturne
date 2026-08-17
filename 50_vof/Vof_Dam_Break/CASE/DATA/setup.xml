@@ -57,10 +57,8 @@
     <boundary label="leftWall" name="3" nature="wall">leftWall</boundary>
     <boundary label="lowerWall" name="4" nature="wall">lowerWall</boundary>
     <boundary label="rightWall" name="5" nature="wall">rightWall</boundary>
-    <boundary label="atmosphere" name="6" nature="imposed_p_outlet">atmosphere</boundary>
-    <imposed_p_outlet label="atmosphere" field_id="none">
-      <dirichlet name="pressure">0</dirichlet>
-    </imposed_p_outlet>
+    <boundary label="atmosphere" name="6" nature="outlet">atmosphere</boundary>
+    <outlet label="atmosphere" field_id="none"/>
     <symmetry label="back" field_id="none"/>
     <symmetry label="front" field_id="none"/>
     <wall label="lowerWall" field_id="none">

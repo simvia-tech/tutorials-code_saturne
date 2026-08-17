@@ -92,6 +92,16 @@ tutorials:
   difficulty: intermediate
   tags: [streamwise-periodic, pin-fin, momentum-source]
 
+- path: 00_foundations/Inc_Time_Table_Inlet
+  title: Time-Table Inlet (Transient Boundary Condition from a CSV File)
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [time-table, transient-bc, inlet, csv, poiseuille]
+
 - path: 00_foundations/Inc_Von_Karman
   title: Unsteady Laminar Vortex Shedding (von Karman Street)
   topic: Foundations

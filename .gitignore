@@ -42,6 +42,8 @@ __pycache__/
 
 *.csv
 *.py
+# ... but case input data shipped with a tutorial (e.g. time tables) is kept
+!**/CASE/DATA/*.csv
 
 # Website (GitHub Pages) build: keep the source/scripts, ignore generated output
 !catalog/*.py

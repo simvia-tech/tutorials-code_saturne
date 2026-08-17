@@ -52,6 +52,16 @@ tutorials:
   difficulty: beginner
   tags: [backward-facing-step, reattachment, separation, internal-flow, gartling]
 
+- path: 00_foundations/Inc_Notebook_Parameters
+  title: Notebook Parameters (Parametric Sweep from the Command Line)
+  topic: Foundations
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [notebook, parametric-study, command-line, sweep, poiseuille]
+
 - path: 00_foundations/Inc_Packed_Bed
   title: Packed Bed in a Duct
   topic: Foundations

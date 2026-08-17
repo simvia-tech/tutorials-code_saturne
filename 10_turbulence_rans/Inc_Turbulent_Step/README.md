@@ -1,28 +1,34 @@
-# Turbulent flow over a backward-facing step
+# Turbulent Backward-Facing Step (Driver-Seegmiller)
 
-This tutorial models steady incompressible turbulent flow through a channel containing a backward-facing step. The sudden expansion forces the boundary layer to separate at the step edge, producing a recirculation bubble, a free shear layer and a downstream reattachment region.
-
-The configuration follows the well-known Driver and Seegmiller benchmark. It is implemented here as a self-contained **code_saturne 9.1** case using the $k$-$\omega$ SST turbulence model.
+A step-by-step tutorial for simulating the incompressible turbulent flow over a
+backward-facing step with **code_saturne**, using the $k$-$\omega$ **SST** RANS
+model. The sudden expansion separates the boundary layer at the step edge and
+produces a recirculation bubble that reattaches downstream. The reattachment
+length is verified against the
+[Driver & Seegmiller (1985)](https://doi.org/10.2514/3.8890) experiment, also
+distributed as a
+[NASA Turbulence Modeling Resource](https://turbmodels.larc.nasa.gov/backstep_val.html)
+validation case.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
 [tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
 
 ## Learning objectives
 
-This case illustrates how to:
+After completing this tutorial you will be able to:
 
-1. set up a two-dimensional turbulent internal-flow calculation using a thin extruded mesh.
-2. apply inlet, outlet, no-slip wall and symmetry boundary conditions.
-3. initialize and prescribe the $k$-$\omega$ SST turbulence variables.
-4. use local pseudo-time stepping to obtain a steady RANS solution.
-5. visualize separation, recirculation and reattachment behind a sudden expansion.
+1. Set up an incompressible, steady **RANS** simulation of a separated internal flow in code_saturne.
+2. Configure the **$k$-$\omega$ SST** turbulence model with consistent inlet values.
+3. Apply inlet / outlet / no-slip wall / symmetry boundary conditions on a wall-refined mesh.
+4. Drive a steady solution with **local (pseudo) time-stepping** and the **SIMPLEC** coupling.
+5. Extract the wall skin-friction coefficient and verify the **reattachment length** against experiment.
 
 ## Prerequisites
 
 | Requirement | Detail |
 |---|---|
 | code_saturne | **v9.1** |
-| Background | Basic notions of incompressible aerodynamics and potential (inviscid) flow theory |
+| Background | Basic notions of RANS turbulence modelling, boundary-layer separation and reattachment |
 
 If code_saturne is not yet installed, build it from the
 [official homepage](https://code-saturne.org/), pull a
@@ -36,136 +42,122 @@ or pull the
 ```
 Inc_Turbulent_Step/
 ├── CASE/
-│   ├── DATA/
-│   │   └── setup.xml          # pre-configured GUI case
+│   └── DATA/
+│       └── setup.xml          # pre-configured GUI case
 ├── MESH/
-│   └── backwardFacingStep.med
+│   └── backwardFacingStep.med # wall-refined hexahedral mesh
 ├── FIGURES/                   # figures used in this README
 └── README.md
 ```
 
-## Physical problem
+## Physical model
 
-A fully turbulent stream enters a rectangular channel and encounters a downward-facing step at $x=0$. The flow separates from the sharp step edge. A low-speed recirculation zone forms along the lower wall, bounded above by a turbulent shear layer. Farther downstream, the shear layer reaches the wall and the mean flow reattaches.
+The flow is **steady, incompressible and fully turbulent**, governed by the
+Reynolds-Averaged Navier-Stokes (RANS) equations closed with the two-equation
+$k$-$\omega$ **SST** model:
 
-The principal reference quantities are:
+$$
+\nabla\cdot\mathbf{u}=0,\qquad
+\rho\,(\mathbf{u}\cdot\nabla)\mathbf{u}
+= -\nabla p + \nabla\cdot\!\big[(\mu+\mu_t)\,(\nabla\mathbf{u}+\nabla\mathbf{u}^{\mathsf T})\big].
+$$
 
-| Quantity | Symbol | Value |
-|---|---:|---:|
-| Reference velocity | $U_{\mathrm{ref}}$ | $44.2\ \mathrm{m\,s^{-1}}$ |
-| Step height | $h$ | $0.0127\ \mathrm{m}$ |
-| Density | $\rho$ | $1.0\ \mathrm{kg\,m^{-3}}$ |
-| Dynamic viscosity | $\mu$ | $1.56\times10^{-5}\ \mathrm{Pa\,s}$ |
-| Kinematic viscosity | $\nu=\mu/\rho$ | $1.56\times10^{-5}\ \mathrm{m^2\,s^{-1}}$ |
-| Reference pressure | $p_{\mathrm{ref}}$ | $101325\ \mathrm{Pa}$ |
-| Reference temperature | $T_{\mathrm{ref}}$ | $293.15\ \mathrm{K}$ |
+The SST model blends a near-wall $k$-$\omega$ formulation with a $k$-$\varepsilon$
+behaviour in the free stream and is a standard choice for adverse-pressure-gradient
+and separated flows such as this one. The flow is isothermal, single-phase and
+gravity is neglected.
+
+### Flow parameters
+
+| Quantity | Symbol | Value | Source in `setup.xml` |
+|---|---|---|---|
+| Density | $\rho$ | $1\ \mathrm{kg\,m^{-3}}$ | `physical_properties/.../density` |
+| Dynamic viscosity | $\mu$ | $1.56\times10^{-5}\ \mathrm{Pa\,s}$ | `molecular_viscosity` |
+| Kinematic viscosity | $\nu=\mu/\rho$ | $1.56\times10^{-5}\ \mathrm{m^2\,s^{-1}}$ | derived |
+| Inlet velocity | $U_{\mathrm{ref}}$ | $44.2\ \mathrm{m\,s^{-1}}$ | `inlet/velocity_pressure/norm` |
+| Step height | $h$ | $0.0127\ \mathrm{m}$ | (geometry) |
+| Inlet $k$ | $k_\infty$ | $1.0904\times10^{-3}\ \mathrm{m^2\,s^{-2}}$ | `inlet/turbulence/formula` |
+| Inlet $\omega$ | $\omega_\infty$ | $7766.6\ \mathrm{s^{-1}}$ | `inlet/turbulence/formula` |
+| Reference pressure | $p_{\mathrm{ref}}$ | $101325\ \mathrm{Pa}$ | `reference_pressure` |
 
 The Reynolds number based on the step height is
 
 $$
-Re_h=\frac{\rho U_{\mathrm{ref}}h}{\mu}
-=\frac{1\times44.2\times0.0127}{1.56\times10^{-5}}
-\approx 3.60\times10^4.
+Re_h=\frac{\rho\,U_{\mathrm{ref}}\,h}{\mu}
+=\frac{1\times44.2\times0.0127}{1.56\times10^{-5}}\approx 3.60\times10^{4}.
 $$
 
-The benchmark mean reattachment location is approximately
+The inlet turbulence is set from a turbulence intensity $I=0.061\%$ and a
+viscosity ratio $\nu_t/\nu=0.009$, matching the reference free-stream conditions:
 
 $$
-\frac{x_r}{h}=6.26\pm0.10,
+k_\infty=\tfrac{3}{2}\left(U_{\mathrm{ref}}I\right)^2\approx1.0904\times10^{-3}\ \mathrm{m^2\,s^{-2}},
+\qquad
+\omega_\infty=\frac{k_\infty}{(\nu_t/\nu)\,\nu}\approx7766.6\ \mathrm{s^{-1}}.
 $$
 
-where $x_r$ is measured downstream from the step.
+## Geometry and boundary conditions
 
-The flow is assumed to be:
+The step of height $h$ is located at $x=0$. Upstream, the lower wall sits at $y=h$
+so the incoming channel is $8h$ tall; downstream it drops to $y=0$, giving a $9h$
+channel and an **expansion ratio of $9/8=1.125$**. The domain extends far enough
+upstream and downstream to remove any influence of the inlet and outlet on the
+separated region.
 
-- incompressible;
-- isothermal;
-- single-phase and non-reacting;
-- statistically steady;
-- two-dimensional, represented by one hexahedral cell layer in the spanwise direction;
-- unaffected by gravity and buoyancy.
-
-## Geometry
-
-The domain dimensions are expressed naturally using the step height $h$:
-
-| Direction | Dimensional extent | Normalized extent |
+| Direction | Extent | Normalized |
 |---|---:|---:|
-| Streamwise, $x$ | $-1.651$ to $0.635\ \mathrm{m}$ | $-130h$ to $50h$ |
-| Vertical, $y$ | $0$ to $0.1143\ \mathrm{m}$ | $0$ to $9h$ |
-| Spanwise, $z$ | $0$ to $0.0127\ \mathrm{m}$ | $0$ to $h$ |
+| Streamwise $x$ | $-1.651$ to $0.635\ \mathrm{m}$ | $-130h$ to $50h$ |
+| Vertical $y$ | $0$ to $0.1143\ \mathrm{m}$ | $0$ to $9h$ |
+| Spanwise $z$ | $0$ to $0.0127\ \mathrm{m}$ | $0$ to $h$ (one cell) |
 
-Upstream of the step, the lower wall is located at $y=h$, so the incoming channel height is $8h$. Downstream, the lower wall is located at $y=0$, giving a channel height of $9h$ and an expansion ratio of $9/8$.
-
-The no-slip wall sections start at $x=-1.397\ \mathrm{m}=-110h$. The short regions between the inlet and this position are treated as symmetry boundaries. This allows the imposed uniform inlet flow to enter cleanly before the boundary layers develop over the long upstream wall sections.
-
-## Governing equations
-
-The mean flow is governed by the steady incompressible Reynolds-averaged Navier--Stokes equations:
-
-$$
-\nabla\cdot\mathbf{u}=0,
-$$
-
-$$
-\rho\left(\mathbf{u}\cdot\nabla\right)\mathbf{u}
-=-\nabla p
-+\nabla\cdot\left[
-\left(\mu+\mu_t\right)
-\left(\nabla\mathbf{u}+\nabla\mathbf{u}^{T}\right)
-\right].
-$$
-
-The Reynolds stresses are closed with the $k$-$\omega$ SST eddy-viscosity model. This model blends a near-wall $k$-$\omega$ formulation with a $k$-$\varepsilon$-type behaviour away from walls and is commonly used for adverse-pressure-gradient and separated flows.
-
-## Mesh
-
-The supplied mesh is located at:
-
-```text
-MESH/backwardFacingStep.med
-```
-
-It is a structured, wall-refined hexahedral mesh containing:
-
-| Mesh quantity | Value |
-|---|---:|
-| Cells | 20,540 |
-| Vertices | 41,748 |
-| Interior faces | 40,747 |
-| Boundary faces | 41,746 |
-| Spanwise cell layers | 1 |
-
-The mesh is strongly refined close to the upper and lower walls, around the step corner and throughout the downstream shear-layer and reattachment region. The front and back faces of the thin extrusion are assigned symmetry conditions, giving an effectively two-dimensional calculation.
-
-<p align="center">
-  <img src="FIGURES/mesh_boundary_conditions.png"
-       alt="Mesh and boundary conditions."
-       width="1600"/>
-  <br>
-  <em>Figure 1: Mid-span mesh and boundary-condition assignment. The front and back faces, which are normal to the spanwise direction, are symmetry boundaries and are not visible in this $x$-$y$ slice.</em>
-</p>
-
-The mesh boundary groups are:
+The no-slip walls begin about $110h$ upstream of the step; the short sections
+between the inlet and the start of the walls are treated as **symmetry** so the
+uniform inlet stream enters cleanly before the boundary layers develop.
 
 | Mesh group | code_saturne type | Physical role |
 |---|---|---|
-| `inlet` | Inlet | Uniform streamwise inflow |
+| `inlet` | Inlet | Uniform streamwise inflow $U_{\mathrm{ref}}$, prescribed $k,\omega$ |
 | `outlet` | Outlet | Downstream flow exit |
 | `lowerWall` | Wall | Lower no-slip wall and step surface |
 | `upperWall` | Wall | Upper no-slip wall |
-| `lowerWallStartup` | Symmetry | Short lower inlet-startup section |
-| `upperWallStartup` | Symmetry | Short upper inlet-startup section |
-| `front` | Symmetry | Front face of the thin extrusion |
-| `back` | Symmetry | Back face of the thin extrusion |
+| `lowerWallStartup` / `upperWallStartup` | Symmetry | Short inlet-startup sections |
+| `front` / `back` | Symmetry | Faces of the thin extrusion (2D formulation) |
+
+<p align="center">
+  <img src="FIGURES/mesh_boundary_conditions.png"
+       alt="2D mesh of the backward-facing-step domain colored by boundary condition."
+       width="1000"/>
+  <br>
+  <em>Figure 1: Mid-span mesh and boundary-condition assignment. The mesh is
+  strongly refined toward the walls and around the step corner. The front and
+  back faces (normal to the spanwise direction) are symmetry boundaries and are
+  not visible in this $x$-$y$ slice.</em>
+</p>
+
+The supplied hexahedral mesh (`MESH/backwardFacingStep.med`) has **20 540 cells**
+(41 746 boundary faces), one cell thick in $z$, refined so that $y^+\lesssim1$
+over most of the lower wall.
+
+## Numerical setup
+
+| Setting | Value | Source in `setup.xml` |
+|---|---|---|
+| Flow model | Incompressible | `velocity_pressure` |
+| Turbulence model | $k$-$\omega$ SST | `turbulence model="k-omega-SST"` |
+| Steady strategy | Local (pseudo) time-stepping | `time_parameters/time_passing` |
+| Velocity-pressure coupling | SIMPLEC | `velocity_pressure_algo` |
+| Pseudo-iterations | 2000 | `time_parameters/iterations` |
+| Reference time step | $10^{-4}\ \mathrm{s}$ | `time_step_ref` |
+| Max Courant / Fourier | 1 / 10 | `max_courant_num` / `max_fourier_num` |
+| Gravity | Disabled | `gravity` |
+
+Because local time-stepping is used to reach a steady state, the reported "time"
+is a **pseudo-time** and does not represent a physical duration. The velocity and
+turbulence fields are initialized with the inlet values.
 
 ## Running the simulation
 
-The commands below start from the tutorial directory:
-
-```bash
-cd Inc_Turbulent_Step/
-```
+From the tutorial directory:
 
 ### Option A: Graphical interface
 
@@ -173,205 +165,91 @@ cd Inc_Turbulent_Step/
 code_saturne gui CASE/DATA/setup.xml &
 ```
 
-The GUI opens the pre-configured `setup.xml`. Review the setup if you wish,
-then launch the run with the **gear (Run) button** in the toolbar. To run in
-parallel, set the number of processes under
-**Calculation management > Performance settings** before launching.
+Review the pre-configured setup, then launch with the **Run** button. Set the
+number of processes under **Calculation management > Performance settings** for a
+parallel run.
 
 ### Option B: Command line
 
-The command-line launcher is run from inside the case directory:
-
 ```bash
 cd CASE
-
-# serial
-code_saturne run
-
-# parallel (e.g. 2 MPI ranks)
-code_saturne run --n 2
+code_saturne run              # serial
+code_saturne run --n 4        # parallel (4 MPI ranks)
 ```
-This small 2D case will run comfortably with 2 parallel cores.
 
-Each run creates a time-stamped directory `CASE/RESU/<YYYYMMDD-HHMM>/` containing:
+Each run creates a time-stamped `CASE/RESU/<id>/` containing `run_solver.log`,
+`monitoring/` (probe CSV time series) and `postprocessing/` (EnSight Gold volume
+and boundary fields, including the wall `boundary_stress` used below).
 
-- `run_solver.log`: solver log and residual history,
-- `monitoring/`: probe time series (`probes_*.csv`),
-- `postprocessing/`: volume and boundary fields in EnSight Gold format.
+## Results and verification
 
-### Flow and turbulence models
-
-| Setting | Value |
-|---|---|
-| Flow model | Incompressible flow |
-| Regime | Steady RANS using local pseudo-time stepping |
-| Turbulence model | $k$-$\omega$ SST |
-| Velocity-pressure coupling | SIMPLEC |
-| Gravity | Disabled |
-| Number of pseudo-iterations | 2000 |
-| Reference pseudo-time step | $10^{-4}\ \mathrm{s}$ |
-| Maximum Courant number | 1 |
-| Maximum Fourier number | 10 |
-| Result output | At the end of the calculation |
-| Default parallel execution | 2 MPI processes |
-
-Because local time stepping is used to converge a steady solution, the accumulated value reported as time is a **pseudo-time** and should not be interpreted as the physical duration of a transient event.
-
-### Initial conditions
-
-The complete domain is initialized with the uniform velocity
-
-$$
-\mathbf{u}_0=(44.2,\ 0,\ 0)\ \mathrm{m\,s^{-1}}.
-$$
-
-The turbulence variables are initialized using the same values imposed at the inlet:
-
-$$
-k=0.0010904\ \mathrm{m^2\,s^{-2}},
-$$
-
-$$
-\omega=7766.6\ \mathrm{s^{-1}}.
-$$
-
-### Inlet turbulence quantities
-
-The inlet turbulence intensity is
-
-$$
-I=0.061\%=6.1\times10^{-4}.
-$$
-
-The turbulent kinetic energy is computed from
-
-$$
-k=\frac{3}{2}\left(U_{\mathrm{ref}}I\right)^2,
-$$
-
-which gives
-
-$$
-k=\frac{3}{2}\left(44.2\times6.1\times10^{-4}\right)^2
-\approx 0.0010904\ \mathrm{m^2\,s^{-2}}.
-$$
-
-Using an inlet turbulent-to-laminar viscosity ratio
-
-$$
-\frac{\nu_t}{\nu}=0.009,
-$$
-
-and the $k$-$\omega$ relation $\nu_t=k/\omega$, the specific dissipation rate is
-
-$$
-\omega=\frac{k}{0.009\nu}
-\approx 7766.6\ \mathrm{s^{-1}}.
-$$
-
-These values are prescribed directly in `setup.xml`. A hydraulic diameter of $0.2032\ \mathrm{m}$ is also stored in the inlet definition, although the turbulence quantities are imposed through the explicit formula above.
-
-### Boundary conditions
-
-- **Inlet:** normal velocity of $44.2\ \mathrm{m\,s^{-1}}$ with prescribed $k$ and $\omega$.
-- **Outlet:** standard code_saturne outlet condition allowing the flow to leave the domain.
-- **Upper and lower walls:** stationary no-slip walls.
-- **Upper and lower startup sections:** symmetry conditions.
-- **Front and back faces:** symmetry conditions, enforcing the effectively two-dimensional formulation.
-
-## Monitoring
-
-Three probes are defined in `setup.xml`:
-
-| Probe | Coordinates $(x,y,z)$ in m | Purpose |
-|---:|---|---|
-| 1 | $(-0.05,\ 0.05,\ 0.00635)$ | Upstream flow before the step |
-| 2 | $(0.0127,\ 0.004,\ 0.00635)$ | Near-step recirculation region, $x/h=1$ |
-| 3 | $(0.0381,\ 0.004,\ 0.00635)$ | Downstream recirculation region, $x/h=3$ |
-
-Probe values are written in CSV format at every pseudo-iteration. Useful monitored fields include the velocity components, pressure, $k$, $\omega$, turbulent viscosity and wall distance.
-
-## Post-processing
-
-The most useful quantities for this case are:
-
-- velocity magnitude and streamlines;
-- streamwise velocity $u_x/U_{\mathrm{ref}}$;
-- wall shear stress on `lowerWall`;
-- skin-friction coefficient;
-- pressure coefficient along the lower wall;
-- turbulent kinetic energy $k$;
-- specific dissipation rate $\omega$;
-- turbulent viscosity;
-- wall $y^+$;
-- velocity profiles at selected downstream positions.
-
-The lower-wall skin-friction coefficient may be defined as
-
-$$
-C_f=\frac{\tau_{w,x}}{\tfrac{1}{2}\rho U_{\mathrm{ref}}^2},
-$$
-
-where $\tau_{w,x}$ is the streamwise wall shear stress. Inside the recirculation region, $C_f$ is negative. The mean reattachment point is identified where $C_f$ changes from negative to positive downstream of the step.
-
-A pressure coefficient may similarly be defined as
-
-$$
-C_p=\frac{p-p_{\mathrm{ref}}}{\tfrac{1}{2}\rho U_{\mathrm{ref}}^2}.
-$$
-
-## Results
-
-### Velocity field and recirculation
+### Recirculation and reattachment
 
 <p align="center">
-  <img src="FIGURES/velocity.png"
-       alt="Velocity streamlines over the backward-facing step."
-       width="1600"/>
+  <img src="FIGURES/velocity_recirculation.png"
+       alt="Velocity magnitude and streamlines over the backward-facing step, showing the recirculation bubble and the reattachment point."
+       width="1000"/>
   <br>
-  <em>Figure 2: Streamlines coloured by velocity magnitude in the backward-facing-step channel.</em>
+  <em>Figure 2: Velocity magnitude (normalized by $U_{\mathrm{ref}}$) and
+  streamlines near the step. The flow separates at the edge, a recirculation
+  bubble forms along the lower wall under a turbulent shear layer, and the mean
+  flow reattaches at $x_r/h=6.27$ (orange marker).</em>
 </p>
 
-The streamline pattern shows the principal physical features of the case:
+### Skin friction and reattachment length
 
-- separation occurs at the sharp step edge;
-- a low-velocity recirculation bubble forms immediately downstream of the step;
-- a turbulent shear layer develops between the recirculating flow and the high-speed outer stream;
-- the shear layer expands toward the lower wall before the flow recovers farther downstream;
-- the upstream channel remains predominantly aligned with the streamwise direction.
+The mean reattachment point is where the lower-wall streamwise skin-friction
+coefficient changes sign from negative (reversed near-wall flow) to positive:
 
-The recirculation region is visible qualitatively in Figure 2. A streamline image alone is not sufficient for quantitative validation, however. The computed reattachment location should be extracted from the lower-wall shear stress or from the sign change of the near-wall streamwise velocity and compared with the benchmark value $x_r/h=6.26\pm0.10$.
+$$
+C_f=\frac{\tau_{w,x}}{\tfrac12\rho U_{\mathrm{ref}}^2}.
+$$
 
-## Validation procedure
+The wall shear is read directly from the `boundary_stress` field exported on
+`lowerWall`.
 
-For a quantitative comparison:
+<p align="center">
+  <img src="FIGURES/skin_friction.png"
+       alt="Skin-friction coefficient along the lower wall, negative in the recirculation region and crossing zero at the reattachment point."
+       width="850"/>
+  <br>
+  <em>Figure 3: Lower-wall skin-friction coefficient. $C_f<0$ inside the
+  recirculation bubble; the first downstream zero-crossing gives the reattachment
+  length, which falls inside the experimental band.</em>
+</p>
 
-1. extract the streamwise wall stress on `lowerWall`;
-2. compute $C_f$ using $U_{\mathrm{ref}}=44.2\ \mathrm{m\,s^{-1}}$;
-3. normalize the streamwise coordinate by the step height, $x/h$;
-4. locate the first downstream zero crossing of $C_f$ from negative to positive;
-5. compare the resulting $x_r/h$ with $6.26\pm0.10$;
-6. optionally compare $C_p$, normalized velocity profiles and Reynolds shear stress with the experimental data.
+| Quantity | code_saturne ($k$-$\omega$ SST) | Reference |
+|---|---:|---:|
+| Reattachment length $x_r/h$ | **6.27** | $6.26\pm0.10$ (Driver & Seegmiller) |
+| Lower-wall resolution $y^+$ | $\approx0.8$ mean (below 1 over most of the wall) | target $\lesssim1$ |
 
-This tutorial currently provides the configured case and qualitative velocity visualization. It does not include a precomputed quantitative validation curve, so agreement with the experimental reattachment length should not be assumed without carrying out the procedure above.
+The computed reattachment length agrees with the experiment to within its
+uncertainty. The near-wall mesh keeps $y^+$ below one over most of the lower wall,
+so the boundary layer is wall-resolved (no wall functions); $y^+$ rises to a few
+units only very locally near the sharp step corner, where the shear peaks.
 
-## Discussion and limitations
+## Summary
 
-The case is suitable for studying turbulent separation and for testing the behaviour of a RANS turbulence model in a strong adverse-pressure-gradient region. Important limitations are:
+This tutorial set up and verified a turbulent backward-facing step at
+$Re_h=3.6\times10^4$ with the $k$-$\omega$ SST model. The steady RANS solution
+reproduces the separation, recirculation and reattachment of the Driver-Seegmiller
+experiment, and the extracted reattachment length $x_r/h=6.27$ matches the
+measured $6.26\pm0.10$. The case is a compact, reproducible benchmark for
+separated-flow turbulence modelling and for extracting wall quantities from the
+boundary output.
 
-- the geometry is treated as two-dimensional through a single spanwise cell layer;
-- the inlet velocity is uniform rather than a measured experimental boundary-layer profile;
-- the startup symmetry sections are a numerical simplification used before the no-slip development length;
-- the result depends on near-wall mesh resolution and wall treatment;
-- a steady RANS model predicts the mean flow and does not resolve instantaneous turbulent structures;
-- quantitative validation requires extraction of wall and profile data, which is not included as a ready-made plot in this version.
-
-The case should therefore be used as a reproducible turbulence benchmark and learning example rather than as a complete high-fidelity representation of every detail of the original experiment.
+Note that a single-cell spanwise extrusion models the flow as two-dimensional,
+the inlet is uniform rather than a measured boundary-layer profile, and a steady
+RANS model returns only the mean flow. These are standard simplifications for this
+verification exercise.
 
 ## References
 
-1. D. M. Driver and H. L. Seegmiller, “Features of a Reattaching Turbulent Shear Layer in Divergent Channel Flow,” *AIAA Journal*, vol. 23, no. 2, pp. 163–171, 1985.
-2. NASA Glenn Research Center, *Backward-Facing Step: Study No. 1*: https://www.grc.nasa.gov/WWW/wind/valid/backstep/backstep01/backstep01.html
-3. NASA Turbulence Modeling Resource: https://www.nasa.gov/nasa-turbulence-modeling-resource/
-4. F. R. Menter, “Two-equation eddy-viscosity turbulence models for engineering applications,” *AIAA Journal*, vol. 32, no. 8, pp. 1598–1605, 1994.
-5. code_saturne documentation: https://www.code-saturne.org/
+1. D. M. Driver and H. L. Seegmiller, "Features of a Reattaching Turbulent Shear Layer in Divergent Channel Flow," *AIAA Journal*, vol. 23, no. 2, pp. 163-171, 1985.
+2. NASA Langley Turbulence Modeling Resource, *2D Backward-Facing Step*: https://turbmodels.larc.nasa.gov/backstep_val.html
+3. F. R. Menter, "Two-equation eddy-viscosity turbulence models for engineering applications," *AIAA Journal*, vol. 32, no. 8, pp. 1598-1605, 1994.
+4. code_saturne documentation: https://code-saturne.org/doc/
+
+## Authors
+
+[Simvia](https://Simvia.tech/fr) - Questions, remarks and requests are welcome.

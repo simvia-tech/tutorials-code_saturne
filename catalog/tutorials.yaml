@@ -214,6 +214,16 @@ tutorials:
   difficulty: intermediate
   tags: [flat-plate, spalart-allmaras, law-of-the-wall, skin-friction, nasa-tmr]
 
+- path: 10_turbulence_rans/Inc_Turbulent_Step
+  title: Turbulent Backward-Facing Step (Driver-Seegmiller)
+  topic: Turbulence
+  module: turb
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [backward-facing-step, separation, reattachment, sst, skin-friction]
+
 # ---- 20_thermal ----
 - path: 20_thermal/Th_Buoyant_Cavity
   title: Buoyancy-Driven Laminar Cavity

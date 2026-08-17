@@ -225,6 +225,16 @@ tutorials:
   difficulty: intermediate
   tags: [natural-convection, cavity, rayleigh, sockol]
 
+- path: 20_thermal/Th_Conjugate_Heat_Transfer
+  title: Steady Conjugate Heat Transfer (CHT)
+  topic: Thermal & Radiation
+  module: base
+  regime: laminar
+  physics: [heat-transfer]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [conjugate-heat-transfer, internal-coupling, fluid-solid, cylinders, conduction-convection]
+
 - path: 20_thermal/Th_Radiative_Slab
   title: Radiative Slab (Gray Participating Medium, DOM vs P-1)
   topic: Thermal & Radiation

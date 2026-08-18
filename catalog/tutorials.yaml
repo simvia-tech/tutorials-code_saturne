@@ -640,3 +640,14 @@ tutorials:
   cs_version: "9.1"
   difficulty: intermediate
   tags: [voltage-divider, two-material, conductivity]
+
+# ---- 90_mesh_methods ----
+- path: 90_mesh_methods/Ale_Piston_Duct
+  title: ALE Piston in a Duct (Moving Mesh)
+  topic: Mesh Methods (IBM / ALE / AMR)
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [ale, moving-mesh, piston, mesh-viscosity, exact-solution]

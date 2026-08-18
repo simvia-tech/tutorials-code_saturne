@@ -651,3 +651,13 @@ tutorials:
   cs_version: "9.1"
   difficulty: advanced
   tags: [ale, moving-mesh, piston, mesh-viscosity, exact-solution]
+
+- path: 90_mesh_methods/Amr_Vortex_Wake
+  title: Adaptive Mesh Refinement Following a Vortex Wake
+  topic: Mesh Methods (IBM / ALE / AMR)
+  module: meshing
+  regime: laminar
+  physics: []
+  cs_version: "9.2"
+  difficulty: advanced
+  tags: [amr, adaptive-refinement, q-criterion, vortex-street, cell-removal]

@@ -21,7 +21,7 @@ VOCAB = {
     "physics": {"heat-transfer","buoyancy","radiation","combustion","cavitation","surface-tension",
                 "phase-change","evaporation","coriolis","rotation","groundwater","species-transport",
                 "shock-waves","electric-joule","humid-air","particle-transport","porous-media"},
-    "cs_version": {"9.1","9.0.0"},
+    "cs_version": {"9.2","9.1","9.0.0"},
     "difficulty": {"beginner","intermediate","advanced"},
 }
 

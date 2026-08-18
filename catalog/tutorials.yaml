@@ -224,6 +224,16 @@ tutorials:
   difficulty: advanced
   tags: [channel, wale, dns-validated, re-tau-180, turbulence-statistics]
 
+- path: 10_turbulence_rans/Inc_Mapped_Inlet
+  title: Mapped Inlet (Recycling a Downstream Profile)
+  topic: Turbulence
+  module: turb
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [mapped-inlet, recycling, developed-inflow, channel, law-of-the-wall]
+
 - path: 10_turbulence_rans/Inc_Turbulent_Bend_Wallfunctions
   title: Turbulent Bend with Wall Functions (RANS Model Comparison)
   topic: Turbulence

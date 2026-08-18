@@ -14,7 +14,8 @@ ROOT = os.path.dirname(HERE)
 VOCAB = {
     "topic": {"Foundations","Preprocessing","Turbulence","Thermal & Radiation",
               "Compressible","Turbomachinery","Multiphase (VOF)",
-              "Atmospheric & Environmental","Particles & Dispersion","Reactive & Electric"},
+              "Atmospheric & Environmental","Particles & Dispersion","Reactive & Electric",
+              "Mesh Methods (IBM / ALE / AMR)"},
     "module": {"base","turb","les","cfbl","vof","cogz","ctwr","atmo","gwf","elec","lagr","rayt","cdo","meshing"},
     "regime": {"laminar","RANS","LES","inviscid","compressible","multiphase","reactive","porous","n/a"},
     "physics": {"heat-transfer","buoyancy","radiation","combustion","cavitation","surface-tension",

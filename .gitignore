@@ -45,9 +45,17 @@ __pycache__/
 # ... but case input data shipped with a tutorial (e.g. time tables) is kept
 !**/CASE/DATA/*.csv
 
+# -------------------------------------------------
+# Working artifacts, never shipped
+# -------------------------------------------------
+# Superpowers / spec-driven-development scratch space (specs, plans, progress)
+.superpowers/
+docs/superpowers/
+
 # Website (GitHub Pages) build: keep the source/scripts, ignore generated output
 !catalog/*.py
 catalog/_site_src/
+/_site_src/
 catalog/_blurbs.json
 catalog/tutorials.json
 catalog/catalog_artifact.html

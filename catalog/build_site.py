@@ -16,7 +16,8 @@ OUT  = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(ROOT,
 
 TOPIC_ORDER = ["Foundations","Preprocessing","Turbulence","Thermal & Radiation","Compressible",
                "Turbomachinery","Multiphase (VOF)","Atmospheric & Environmental",
-               "Particles & Dispersion","Reactive & Electric"]
+               "Particles & Dispersion","Reactive & Electric",
+               "Mesh Methods (IBM / ALE / AMR)"]
 GITHUB_URL = "https://github.com/simvia-tech/tutorials-code_saturne"
 SITE_URL   = "https://simvia-tech.github.io/tutorials-code_saturne/"
 
@@ -126,7 +127,7 @@ HOME_TEMPLATE = r"""{% extends "main.html" %}
 
 <script>
 const TUTORIALS=__DATA__;
-const TC={"Foundations":"#4a6fa5","Preprocessing":"#7a8699","Turbulence":"#2f8f8a","Thermal & Radiation":"#c1663a","Compressible":"#6b5b95","Turbomachinery":"#3f5bb0","Multiphase (VOF)":"#2b7fb8","Atmospheric & Environmental":"#4f8a4f","Particles & Dispersion":"#8a6d3b","Reactive & Electric":"#b5473f"};
+const TC={"Foundations":"#4a6fa5","Preprocessing":"#7a8699","Turbulence":"#2f8f8a","Thermal & Radiation":"#c1663a","Compressible":"#6b5b95","Turbomachinery":"#3f5bb0","Multiphase (VOF)":"#2b7fb8","Atmospheric & Environmental":"#4f8a4f","Particles & Dispersion":"#8a6d3b","Reactive & Electric":"#b5473f","Mesh Methods (IBM / ALE / AMR)":"#0f8ea8"};
 const FACETS=[["module","Module"],["regime","Regime"],["physics","Physics"],["difficulty","Difficulty"],["cs_version","Version"]];
 const A={module:new Set(),regime:new Set(),physics:new Set(),difficulty:new Set(),cs_version:new Set()};
 let Q="";
@@ -161,7 +162,8 @@ NAV_PARTIAL = r"""{% set cs_colors = {
   "Foundations":"#4a6fa5","Preprocessing":"#7a8699","Turbulence":"#2f8f8a",
   "Thermal & Radiation":"#c1663a","Compressible":"#6b5b95","Turbomachinery":"#3f5bb0",
   "Multiphase (VOF)":"#2b7fb8","Atmospheric & Environmental":"#4f8a4f",
-  "Particles & Dispersion":"#8a6d3b","Reactive & Electric":"#b5473f"} %}
+  "Particles & Dispersion":"#8a6d3b","Reactive & Electric":"#b5473f",
+  "Mesh Methods (IBM / ALE / AMR)":"#0f8ea8"} %}
 <nav class="cs-tree" aria-label="{{ lang.t('nav') }}">
   <div class="cs-navlbl">Tutorials</div>
   {% for item in nav %}

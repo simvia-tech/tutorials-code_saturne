@@ -18,6 +18,12 @@ TOPIC_ORDER = ["Foundations","Preprocessing","Turbulence","Thermal & Radiation",
                "Turbomachinery","Multiphase (VOF)","Atmospheric & Environmental",
                "Particles & Dispersion","Reactive & Electric"]
 GITHUB_URL = "https://github.com/simvia-tech/tutorials-code_saturne"
+SITE_URL   = "https://simvia-tech.github.io/tutorials-code_saturne/"
+
+# Google Search Console ownership token (the content= value of the
+# "google-site-verification" meta tag it offers). Empty means no tag is
+# emitted; paste the token here to have it deployed with the site.
+GOOGLE_SITE_VERIFICATION = "S47-g-vo256yUfL1JVRJv5nEE10K9eBMoxrAUWVjjuU"
 
 # GitHub mark (octicons), inlined so the per-tutorial "browse on GitHub" link
 # needs no icon extension.
@@ -69,7 +75,7 @@ FOOTER_PARTIAL = r"""<footer class="md-footer">
 # code_saturne social card. home.html extends this so the home gets them too.
 MAIN_TEMPLATE = r"""{% extends "base.html" %}
 {% block extrahead %}
-  {% set og_image = config.site_url ~ 'assets/og-card.png' %}
+  __GSV__{% set og_image = config.site_url ~ 'assets/og-card.png' %}
   {% set og_title = config.site_name if (not page or page.is_homepage) else (page.title ~ ' - ' ~ config.site_name) %}
   {% set og_desc = page.meta.description if (page and page.meta.description) else config.site_description %}
   <meta property="og:type" content="website">
@@ -239,6 +245,12 @@ def main():
         src=os.path.join(HERE,"assets",f)
         if os.path.exists(src): shutil.copy(src, os.path.join(docs,"assets",f))
 
+    # robots.txt: allow everything and point crawlers at the sitemap that
+    # MkDocs generates from site_url
+    open(os.path.join(docs,"robots.txt"),"w").write(
+        "User-agent: *\nAllow: /\n\n"
+        f"Sitemap: {SITE_URL}sitemap.xml\n")
+
     # per-tutorial pages (docs/<topic_dir>/<Case>/index.md + FIGURES)
     nav_by_topic = {t:[] for t in TOPIC_ORDER}
     for t in tuts:
@@ -375,13 +387,16 @@ def main():
 
     # custom header partial: same top bar as the home (logo + links + GitHub + Simvia)
     os.makedirs(os.path.join(ovr,"partials"), exist_ok=True)
-    open(os.path.join(ovr,"main.html"),"w",encoding="utf-8").write(MAIN_TEMPLATE)
+    gsv = (f'<meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">\n  '
+           if GOOGLE_SITE_VERIFICATION else "")
+    open(os.path.join(ovr,"main.html"),"w",encoding="utf-8").write(
+        MAIN_TEMPLATE.replace("__GSV__", gsv))
     open(os.path.join(ovr,"partials","header.html"),"w",encoding="utf-8").write(HEADER_PARTIAL)
     open(os.path.join(ovr,"partials","nav.html"),"w",encoding="utf-8").write(NAV_PARTIAL)
     open(os.path.join(ovr,"partials","footer.html"),"w",encoding="utf-8").write(FOOTER_PARTIAL)
 
     cfg = f"""site_name: code_saturne tutorials
-site_url: https://simvia-tech.github.io/tutorials-code_saturne/
+site_url: {SITE_URL}
 site_description: Verified step-by-step CFD tutorials for code_saturne, maintained by Simvia.
 repo_url: {GITHUB_URL}
 repo_name: tutorials

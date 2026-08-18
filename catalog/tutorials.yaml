@@ -224,6 +224,16 @@ tutorials:
   difficulty: advanced
   tags: [channel, wale, dns-validated, re-tau-180, turbulence-statistics]
 
+- path: 10_turbulence_rans/Inc_LES_Synthetic_Inflow
+  title: Synthetic Turbulence at an LES Inlet (SEM)
+  topic: Turbulence
+  module: les
+  regime: LES
+  physics: []
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [les-inflow, synthetic-eddy-method, sem, inlet-turbulence, channel]
+
 - path: 10_turbulence_rans/Inc_Mapped_Inlet
   title: Mapped Inlet (Recycling a Downstream Profile)
   topic: Turbulence

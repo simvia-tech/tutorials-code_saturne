@@ -244,6 +244,16 @@ tutorials:
   difficulty: advanced
   tags: [mapped-inlet, recycling, developed-inflow, channel, law-of-the-wall]
 
+- path: 10_turbulence_rans/Inc_Rough_Wall_Channel
+  title: Rough Walls (Sand-Grain Roughness and the Roughness Function)
+  topic: Turbulence
+  module: turb
+  regime: RANS
+  physics: []
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [rough-wall, wall-functions, roughness-function, nikuradse, colebrook, channel]
+
 - path: 10_turbulence_rans/Inc_Turbulent_Bend_Wallfunctions
   title: Turbulent Bend with Wall Functions (RANS Model Comparison)
   topic: Turbulence

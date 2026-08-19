@@ -335,7 +335,7 @@ def main():
 .cs-pv{display:flex;flex-wrap:wrap;gap:.3rem}
 .cs-vchip{border:1px solid var(--md-default-fg-color--lightest);background:#fff;color:var(--md-default-fg-color--light);border-radius:1rem;padding:.15rem .5rem;font-size:.7rem;cursor:pointer}
 .cs-vchip:hover{border-color:var(--md-primary-fg-color)}.cs-vchip[aria-pressed=true]{background:var(--md-primary-fg-color);border-color:var(--md-primary-fg-color);color:#fff}
-.cs-results{width:min(60rem,94vw);margin:2rem auto 0;text-align:left}
+.cs-results{width:min(60rem,100%);margin:2rem auto 0;text-align:left}
 .cs-rcount{font-size:.72rem;color:var(--md-default-fg-color--light);margin-bottom:.7rem}
 .cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.7rem}
 .cs-card{display:flex;flex-direction:column;gap:.4rem;border:1px solid var(--md-default-fg-color--lightest);border-radius:.6rem;padding:.8rem .85rem;background:#fff;box-shadow:0 1px 2px rgba(18,35,59,.05);transition:border-color .12s,transform .12s}

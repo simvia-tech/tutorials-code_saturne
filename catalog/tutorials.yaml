@@ -22,16 +22,6 @@ tutorials:
   difficulty: beginner
   tags: [checkpoint, restart, workflow, transient, time-table]
 
-- path: 00_foundations/Inc_Fan_Duct
-  title: Fan in a Duct (Actuator Disk with a Fan Curve)
-  topic: Foundations
-  module: base
-  regime: laminar
-  physics: []
-  cs_version: "9.1"
-  difficulty: intermediate
-  tags: [fan, actuator-disk, fan-curve, momentum-source, internal-flow]
-
 - path: 00_foundations/Inc_Head_Loss_Zone
   title: Head-Loss Zone in a Duct
   topic: Foundations
@@ -387,6 +377,16 @@ tutorials:
   tags: [supersonic, oblique-shock, ramp, mach-2]
 
 # ---- 40_turbomachinery ----
+- path: 40_turbomachinery/Tbm_Fan_Duct
+  title: Fan in a Duct (Actuator Disk with a Fan Curve)
+  topic: Turbomachinery
+  module: base
+  regime: laminar
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [fan, actuator-disk, fan-curve, momentum-source, internal-flow]
+
 - path: 40_turbomachinery/Tbm_Mixer_Vessel_2D
   title: 2D Mixer Vessel (Frozen Rotor)
   topic: Turbomachinery

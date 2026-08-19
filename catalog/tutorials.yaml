@@ -346,6 +346,17 @@ tutorials:
   tags: [stefan, melting, solidification, cdo, phase-change-front]
 
 # ---- 30_compressible ----
+- path: 30_compressible/Comp_Laval_Nozzle
+  title: Laval Nozzle with a Normal Shock
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [shock-waves]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [nozzle, laval, quasi-1d, normal-shock, subsonic-outlet, choked-flow,
+         mesh-deformation, cartesian-mesh, mesh]
+
 - path: 30_compressible/Comp_Sedov_Blast_Wave
   title: Sedov Blast Wave (cylindrical)
   topic: Compressible
@@ -650,7 +661,8 @@ tutorials:
   physics: []
   cs_version: "9.1"
   difficulty: advanced
-  tags: [ale, moving-mesh, piston, mesh-viscosity, exact-solution]
+  tags: [ale, moving-mesh, mesh-deformation, mesh, piston, mesh-viscosity,
+         exact-solution]
 
 - path: 90_mesh_methods/Amr_Vortex_Wake
   title: Adaptive Mesh Refinement Following a Vortex Wake
@@ -660,4 +672,4 @@ tutorials:
   physics: []
   cs_version: "9.2"
   difficulty: advanced
-  tags: [amr, adaptive-refinement, q-criterion, vortex-street, cell-removal]
+  tags: [amr, adaptive-refinement, mesh, q-criterion, vortex-street, cell-removal]

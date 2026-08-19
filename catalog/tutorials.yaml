@@ -613,6 +613,17 @@ tutorials:
   tags: [lagrangian, deposition, stokes-number, pipe-bend, erosion, fouling,
          particle-wall-interaction, frozen-field, restart]
 
+- path: 70_lagrangian/Lag_Twoway_Sand
+  title: Two-Way Coupling (a Sheet of Sand Moves the Air)
+  topic: Particles & Dispersion
+  module: lagr
+  regime: RANS
+  physics: [particle-transport]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [lagrangian, two-way-coupling, momentum-source, mass-loading,
+         settling, plume, transient]
+
 - path: 70_lagrangian/Lag_Settling_Particle
   title: Settling Particles (Lagrangian Module)
   topic: Particles & Dispersion

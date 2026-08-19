@@ -18,7 +18,7 @@ After completing this tutorial you will be able to:
 | Requirement | Detail |
 |---|---|
 | code_saturne | **v9.1** |
-| Tutorials | [Inc_Head_Loss_Zone](../Inc_Head_Loss_Zone) (the screen), [Inc_Streamwise_Periodic](../Inc_Streamwise_Periodic) (periodicity) |
+| Tutorials | [Inc_Head_Loss_Zone](../../00_foundations/Inc_Head_Loss_Zone) (the screen), [Inc_Streamwise_Periodic](../../00_foundations/Inc_Streamwise_Periodic) (periodicity) |
 
 If code_saturne is not yet installed, build it from the
 [official homepage](https://code-saturne.org/), pull a
@@ -30,7 +30,7 @@ or pull the
 ## Case files
 
 ```
-Inc_Fan_Duct/
+Tbm_Fan_Duct/
 ├── CASE/
 │   └── DATA/setup.xml     # fan, screen, periodic loop: all GUI
 ├── FIGURES/               # figures used in this README
@@ -44,7 +44,7 @@ Inc_Fan_Duct/
 A $1$ m duct of square section ($0.1 \times 0.1$ m, air, laminar) is closed into a **periodic loop**: no inlet, no outlet, so no boundary condition enters the balance. The loop carries two elements:
 
 - the **fan** ($x = 0.45$ to $0.55$ m), used in pressure-jump mode (blades and hub radii at zero: uniform axial push, the ideal actuator);
-- the **screen**, a head-loss zone: it stands for whatever a real fan must overcome (filter, coil, grilles, or a whole duct network aggregated into one coefficient) and gives the circuit its load curve $\Delta p = \frac{1}{2}\rho\,\zeta\,(Q/A)^2$. Its coefficient comes from the GUI head-loss zone exactly as in [Inc_Head_Loss_Zone](../Inc_Head_Loss_Zone): $K_{xx} = 100\ \mathrm{m^{-1}}$ is a resistance *per metre* of zone, so the screen of thickness $L = 0.1$ m totals $\zeta = K_{xx} L = 10$: at the operating point, $\Delta p = \frac{1}{2} \times 1.2 \times 10 \times 1.768^2 = 18.75$ Pa.
+- the **screen**, a head-loss zone: it stands for whatever a real fan must overcome (filter, coil, grilles, or a whole duct network aggregated into one coefficient) and gives the circuit its load curve $\Delta p = \frac{1}{2}\rho\,\zeta\,(Q/A)^2$. Its coefficient comes from the GUI head-loss zone exactly as in [Inc_Head_Loss_Zone](../../00_foundations/Inc_Head_Loss_Zone): $K_{xx} = 100\ \mathrm{m^{-1}}$ is a resistance *per metre* of zone, so the screen of thickness $L = 0.1$ m totals $\zeta = K_{xx} L = 10$: at the operating point, $\Delta p = \frac{1}{2} \times 1.2 \times 10 \times 1.768^2 = 18.75$ Pa.
 
 <p align="center">
   <img src="FIGURES/fan_domain.png"
@@ -79,7 +79,7 @@ $$
 ## Running the simulation
 
 ```bash
-cd Inc_Fan_Duct/CASE
+cd Tbm_Fan_Duct/CASE
 code_saturne run --id fan
 ```
 

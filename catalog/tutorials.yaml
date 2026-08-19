@@ -398,6 +398,17 @@ tutorials:
   difficulty: intermediate
   tags: [fan, actuator-disk, fan-curve, momentum-source, internal-flow]
 
+- path: 40_turbomachinery/Tbm_Taylor_Couette
+  title: Taylor-Couette Flow in a Rotating Frame
+  topic: Turbomachinery
+  module: base
+  regime: laminar
+  physics: [rotation]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [rotating-frame, coriolis, taylor-couette, exact-solution,
+         frame-invariance, rotating-wall, torque]
+
 - path: 40_turbomachinery/Tbm_Mixer_Vessel_2D
   title: 2D Mixer Vessel (Frozen Rotor)
   topic: Turbomachinery

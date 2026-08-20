@@ -10,12 +10,13 @@ mass approaches the mass of fluid around them, because it then changes the very
 flow that carries them.
 
 This case is built to make the difference plain. Sand grains are released from a
-patch at the top of a closed box of still air, and the case is run twice, changing
-only the coupling. Nothing else could set the air in motion: no inlet, no outlet,
-no moving wall. So in one-way coupling the air stays exactly at rest, whatever the
-sand does above it. In two-way coupling the drag reaction drives a downward plume,
-and the grains, now falling through descending air, reach the floor faster than
-they would in still air.
+patch at the top of a box of still air, and the case is run twice, changing only
+the coupling. Nothing else could set the air in motion: the box is walled on every
+side, with no inlet, no outlet and no moving wall for the fluid. So in one-way
+coupling the air stays exactly at rest, whatever the sand does above it. In
+two-way coupling the drag reaction drives a downward plume, and the grains, now
+falling through descending air, reach the floor faster than they would in still
+air.
 
 The case is an illustration of the two options and of what changes between them.
 It is not a validation, and no result here is compared with reference data.
@@ -83,8 +84,8 @@ in still air. It is the same file as in the settling tutorial.
 
 ## Physical model
 
-Air at rest in a closed box, sand grains released from a patch at the top and
-collected by the floor.
+Air at rest in a box closed to the air, sand grains released from a patch at the
+top and leaving through the floor.
 
 | Quantity | Value |
 |---|---:|
@@ -111,22 +112,24 @@ plume. With a hundred times fewer grains the two runs would be indistinguishable
 
 <p align="center">
   <img src="FIGURES/curtain_setup.png"
-       alt="Closed box, release patch at the top, floor collecting the grains."
+       alt="Box walled for the air, release patch at the top, grains leaving at the floor."
        width="420"/>
   <br>
   <em>Figure 1: The grains are released together from the patch, fall under gravity,
-  and are collected by the floor.</em>
+  and leave through the floor.</em>
 </p>
 
 | Boundary | Fluid | Particles |
 |---|---|---|
 | release patch (top, centre) | wall | release |
 | rest of the top, side walls | walls | rebound |
-| floor | wall | deposit, the grains stay where they land |
+| floor | wall | outlet, the grains leave the computation |
 | spanwise planes | symmetry | particle symmetry |
 
-The box is closed for both phases: nothing can drive the air, and no boundary lets
-a grain through. Whatever motion appears has one possible origin.
+Every boundary is a wall for the air, so nothing can drive it and whatever motion
+appears has one possible origin. The grains, on the other hand, leave through the
+floor once they have crossed the box: they stop feeding momentum to the air at that
+point, and the flow they created outlives them.
 
 ## Numerical setup
 
@@ -137,7 +140,7 @@ a grain through. Whatever motion appears has one possible origin.
 | Time step | $2\times10^{-4}$ s, constant |
 | Iterations | $3000$ |
 
-The run is long enough for the grains to cross the box and land.
+The run is long enough for every grain to cross the box and leave.
 
 ## Running the simulation
 
@@ -173,7 +176,7 @@ noticeably faster than they did alone, because they are riding the plume they
 created. The sheet shows it too: it bows downwards at its centre, where the plume
 is strongest, instead of staying flat.
 
-The air also keeps turning over the box after the last grains have landed. Momentum
+The air also keeps turning over the box after the last grain has left. Momentum
 handed to the air stays there until viscosity and the walls take it back, which is
 something a one-way computation cannot represent at all.
 

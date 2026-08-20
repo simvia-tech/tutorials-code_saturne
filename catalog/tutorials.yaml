@@ -645,6 +645,17 @@ tutorials:
   difficulty: intermediate
   tags: [lagrangian, settling, particle-tracking, stokes]
 
+- path: 70_lagrangian/Lag_Parcel_Weighting
+  title: Statistical Weight (Imposing a Real Dust Flow)
+  topic: Particles & Dispersion
+  module: lagr
+  regime: RANS
+  physics: [particle-transport]
+  cs_version: "9.1"
+  difficulty: beginner
+  tags: [lagrangian, statistical-weight, mass-flow-rate, injection, dust,
+         particle-tracking]
+
 # ---- 80_combustion_electric ----
 - path: 80_combustion_electric/Cogz_Diffusion_Flame
   title: Gas Diffusion Flame (cogz, 3-point chemistry)

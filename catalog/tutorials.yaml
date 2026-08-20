@@ -678,7 +678,7 @@ tutorials:
   tags: [premixed, ebu, v-flame, propane, progress-variable]
 
 - path: 80_combustion_electric/Elec_Imposed_Power
-  title: Imposed Power (Electric Potential Scaling)
+  title: Joule Heating at Imposed Power
   topic: Reactive & Electric
   module: elec
   regime: laminar
@@ -688,7 +688,7 @@ tutorials:
   tags: [joule, imposed-power, potential-scaling]
 
 - path: 80_combustion_electric/Elec_Joule_Bar
-  title: Joule Heating of a Conducting Bar
+  title: Joule Heating at Imposed Voltage
   topic: Reactive & Electric
   module: elec
   regime: laminar

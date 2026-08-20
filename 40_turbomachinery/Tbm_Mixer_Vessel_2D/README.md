@@ -1,4 +1,4 @@
-# 2D Mixer Vessel (Frozen Rotor)
+# 2D Mixer Vessel: Frozen Rotor
 
 A step-by-step tutorial for simulating a **baffled stirred tank** with the **turbomachinery module** of **code_saturne**: a four-blade impeller rotating at 1000 rpm inside a cylindrical vessel equipped with four baffles, computed with the **frozen rotor** approach. The case is a compact demonstration of the turbomachinery workflow: a rotor zone defined by a geometric criterion, blades and baffles created as **thin walls**, and monitoring probes to assess convergence.
 

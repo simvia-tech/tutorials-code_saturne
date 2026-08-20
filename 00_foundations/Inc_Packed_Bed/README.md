@@ -1,4 +1,4 @@
-# Packed Bed in a Duct
+# Packed Bed: Porosity and Head Loss
 
 A step-by-step tutorial for modelling a **real porous medium** in **code_saturne**, by combining the two features introduced separately in [Inc_Head_Loss_Zone](../Inc_Head_Loss_Zone) and [Inc_Porous_Plug](../Inc_Porous_Plug): a **porosity zone** for the kinematics (the flow accelerates in the reduced section) and a **head-loss zone** for the distributed friction of the solid matrix, with the coefficient calibrated from the **Ergun correlation** for a bed of spheres. This is the standard industrial recipe for packed beds, filters and tube bundles. The whole setup is done in the GUI: no mesh file, no user routine.
 

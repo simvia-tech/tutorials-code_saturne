@@ -1,4 +1,4 @@
-# Porous Plug in a Duct
+# Porous Plug: Porosity Only
 
 A step-by-step tutorial for using a **porosity zone** in **code_saturne**: a volume region where only a fraction $\varepsilon$ of the space is open to the flow, as in a packed bed, a tube bundle or a debris screen. A uniform stream crosses a 0.2 m plug of porosity $\varepsilon = 0.5$, and the velocity inside doubles, exactly as mass conservation dictates. The case is the mirror of [Inc_Head_Loss_Zone](../Inc_Head_Loss_Zone): **porosity rescales the flow geometry seen by all the conservation equations without adding any source term, whereas a head loss adds an explicit friction source term to the momentum equation**; a real porous medium generally needs both. The whole setup is done in the GUI: no mesh file, no user routine.
 

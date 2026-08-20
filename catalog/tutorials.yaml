@@ -656,6 +656,17 @@ tutorials:
   tags: [lagrangian, statistical-weight, mass-flow-rate, injection, dust,
          particle-tracking]
 
+- path: 70_lagrangian/Lag_Heated_Particle
+  title: "Particle Temperature: Cold Grains in a Hot Stream"
+  topic: Particles & Dispersion
+  module: lagr
+  regime: RANS
+  physics: [particle-transport, heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [lagrangian, particle-heat-transfer, thermal-relaxation, nusselt,
+         particle-tracking]
+
 # ---- 80_combustion_electric ----
 - path: 80_combustion_electric/Cogz_Diffusion_Flame
   title: Gas Diffusion Flame (cogz, 3-point chemistry)

@@ -63,7 +63,7 @@ tutorials:
   tags: [notebook, parametric-study, command-line, sweep, poiseuille]
 
 - path: 00_foundations/Inc_Packed_Bed
-  title: Packed Bed in a Duct
+  title: "Packed Bed: Porosity and Head Loss"
   topic: Foundations
   module: base
   regime: porous
@@ -73,14 +73,14 @@ tutorials:
   tags: [packed-bed, ergun, pressure-drop]
 
 - path: 00_foundations/Inc_Porous_Plug
-  title: Porous Plug in a Duct
+  title: "Porous Plug: Porosity Only"
   topic: Foundations
   module: base
   regime: porous
   physics: [porous-media]
   cs_version: "9.1"
   difficulty: beginner
-  tags: [resistance, pressure-drop]
+  tags: [porosity, volume-zone, mass-conservation]
 
 - path: 00_foundations/Inc_Species_Transport
   title: Turbulent Species Transport in a Mixing Channel
@@ -410,7 +410,7 @@ tutorials:
          frame-invariance, rotating-wall, torque]
 
 - path: 40_turbomachinery/Tbm_Mixer_Vessel_2D
-  title: 2D Mixer Vessel (Frozen Rotor)
+  title: "2D Mixer Vessel: Frozen Rotor"
   topic: Turbomachinery
   module: base
   regime: RANS
@@ -420,7 +420,7 @@ tutorials:
   tags: [mrf, frozen-rotor, mixer, stirred-vessel]
 
 - path: 40_turbomachinery/Tbm_Mixer_Vessel_2D_Transient
-  title: 2D Mixer Vessel (Transient Rotor / Sliding Mesh)
+  title: "2D Mixer Vessel: Sliding Mesh"
   topic: Turbomachinery
   module: base
   regime: laminar   # ? transient run has turb=off

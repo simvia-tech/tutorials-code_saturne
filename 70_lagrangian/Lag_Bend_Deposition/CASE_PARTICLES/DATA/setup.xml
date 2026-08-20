@@ -165,6 +165,7 @@ dir_z = 0;</direction_formula>
     </start_restart>
   </calculation_management>
   <lagrangian model="one_way">
+    <carrier_field_stationary status="on"/>
     <particles_models model="off"/>
     <statistics>
       <volume status="off"/>

@@ -15,8 +15,8 @@ Stokes number, and the case shows how the deposition pattern changes from
 
 It is a **demonstration**, not a validation: nothing here is compared with
 reference data, and the numbers depend on a modelling choice that is stated
-plainly below. What the case does show is the workflow, the options that matter,
-and two traps that would quietly cost you the result.
+plainly below. What the case does show is the workflow and the options that
+matter.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
 [tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
@@ -27,7 +27,7 @@ After completing this tutorial you will be able to:
 
 1. Add **Lagrangian tracking** on top of an existing RANS computation, by restarting on a **frozen carrier field**.
 2. Define **particle classes**, release them from a boundary zone, and set the **particle-wall interaction** on every boundary.
-3. Know the difference between the two deposition conditions, and why one of them destroys the very information you are after.
+3. Know the difference between the two deposition conditions, and why only one of them leaves a map to read.
 4. Read a **deposition map** out of the results, in pipe coordinates.
 
 ## Prerequisites
@@ -221,9 +221,9 @@ streamlines and hit.
 
 | $Stk$ | Deposited | In the bend | Upstream tangent | Downstream tangent |
 |---:|---:|---:|---:|---:|
-| $0.02$ | $46\%$ | $25\%$ | $25\%$ | $51\%$ |
-| $0.20$ | $88\%$ | $49\%$ | $21\%$ | $30\%$ |
-| $1.00$ | $99\%$ | $74\%$ | $21\%$ | $5\%$ |
+| $0.02$ | $44\%$ | $25\%$ | $28\%$ | $48\%$ |
+| $0.20$ | $88\%$ | $49\%$ | $22\%$ | $30\%$ |
+| $1.00$ | $99\%$ | $75\%$ | $21\%$ | $5\%$ |
 
 Read the columns rather than the first number. The deposited fraction is high
 throughout because the wall is perfectly sticky; what changes with the Stokes
@@ -231,13 +231,12 @@ number is **where** the droplets are caught. Between $Stk = 0.02$ and $Stk = 1$
 the share caught in the bend triples while the share reaching the downstream
 tangent falls by a factor of ten.
 
-## Three things worth knowing
+## Two things worth knowing
 
 | Point | Why it matters |
 |---|---|
 | There are two deposition conditions | `deposit1` removes the droplet from the computation, `deposit2` fixes it on the wall and keeps it. Only the second leaves a map to look at: with the first, the deposits vanish as they are created |
-| The wall statistics are not the map | The module can accumulate per-face statistics (deposited mass flux, impact angle, impact velocity) and they are written per class. In this configuration they held only the events of the last time step, so the map here is built from the deposited droplets themselves |
-| The module needs a turbulence model | It reads the turbulent kinetic energy without checking that the field exists, so a Lagrangian computation on a laminar carrier stops on a memory fault. Not a constraint here, since the carrier is a RANS computation, but it explains why the settling tutorial of this section activates a turbulence model on a fluid at rest |
+| The map here is the droplets, not the wall statistics | The module can also accumulate per-face statistics, and this case switches them on, but the maps above are built from the deposited droplets themselves, which is the direct reading. Statistics are the subject of [Lag_Dispersion_Plume](../Lag_Dispersion_Plume) |
 
 ## Summary
 

@@ -2,27 +2,19 @@
 
 Start with a count, because it decides the method. A $1\ \mu$m grain of density
 $2000$ kg/m³ weighs $1.05\times10^{-15}$ kg, so a duct carrying $0.5$ g of that
-dust per second carries $4.8\times10^{11}$ grains per second and holds close to a
-hundred billion at any instant. That is an ordinary dust loading, $10$ g/m³, and
-no computation will ever integrate $10^{11}$ trajectories a second.
+dust per second, an ordinary $10$ g/m³, carries $4.8\times10^{11}$ grains per
+second. No computation will ever integrate that many trajectories.
 
 It does not have to. A Lagrangian computation tracks a modest number of particles
 and gives each one a **statistical weight**, the number of identical real grains
-it represents. The weight enters the bookkeeping, not the dynamics: a particle of
-weight $10^{6}$ follows exactly the path of one grain of its diameter, and what
-gets multiplied is its contribution to mass flows, to concentrations, and to the
-momentum returned to the fluid. Each tracked particle is therefore a fair sample
-of the population behind it, which is sound as long as the grains ignore one
-another and delicate as soon as they do not.
-
-The weight can be set either way round, and which way round matters. Prescribe it
-directly and you are choosing how many grains each particle stands for; the other
-tutorials of this section do that with a weight of one, so that a tracked particle
-is a single real grain. Prescribe the dust mass flow instead, as this case does,
-and the weight becomes a result: the solver divides the flow you asked for by the
-number of particles you are prepared to track. That second way round is the one an
-installation hands you, since the dust flow is a process datum and the grain count
-is not.
+it stands for. The weight enters the bookkeeping and not the dynamics: the
+particle follows the path of a single grain of its diameter, and what the weight
+multiplies is its contribution to mass flows, to concentrations and to the
+momentum returned to the fluid. It can be prescribed directly, as the other
+tutorials of this section do with a statistical weight, or computed from an imposed
+dust flow, as here: you give the flow and the number of particles you are
+prepared to track, and the solver divides. That is the way round an installation
+hands you, since the dust flow is a process datum and the grain count is not.
 
 This case is a straight duct with dust in it and nothing else, so that the
 division and the two numbers it produces can be read straight from the listing.

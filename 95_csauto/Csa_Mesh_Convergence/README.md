@@ -35,13 +35,41 @@ After completing this tutorial you will be able to:
 | Requirement | Detail |
 |---|---|
 | code_saturne | **v9.1** |
-| csauto | **v0.5.0**, installed as described in its [README](https://github.com/simvia-tech/csauto) |
+| csauto | **v0.5.0** |
 | Docker | the runtime used here, so no local code_saturne build is needed |
 | Tutorials | [Th_Buoyant_Cavity](../../20_thermal/Th_Buoyant_Cavity), the case this campaign varies |
 | Background | Notions of grid convergence and of Richardson extrapolation |
 
+csauto is free software under the GPL and lives at
+[github.com/simvia-tech/csauto](https://github.com/simvia-tech/csauto), with a
+[landing page](https://simvia-tech.github.io/csauto/) and its own
+[documentation](https://github.com/simvia-tech/csauto/tree/main/docs). It needs
+Python 3.11 or later and installs in one line, which clones it to
+`~/.local/share/csauto`, creates a virtual environment and adds the `csauto`
+alias to your shell:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/simvia-tech/csauto/main/install.sh)"
+source ~/.bashrc   # or: source ~/.zshrc
+```
+
+Re-running the same line updates an existing installation. Check what you have
+with:
+
+```bash
+csauto --version
+```
+
 csauto is before its 1.0 release and says so: expect its commands to move a
 little. The version used throughout is **0.5.0**.
+
+If code_saturne is not yet installed, this tutorial needs no local build: the
+Docker image is pulled on the first run. To install it anyway, build it from the
+[official homepage](https://code-saturne.org/), pull a ready-to-use Singularity
+image from the
+[Open Simulation Center](https://open-simulation-center.org/downloads/code_saturne/code_saturne),
+or pull the
+[Simvia Docker image](https://hub.docker.com/r/Simvia/code_saturne).
 
 ## Case files
 
@@ -360,7 +388,7 @@ of each run is worth checking before any of the results are compared.
 
 ## References
 
-1. [csauto](https://github.com/simvia-tech/csauto), the campaign tool used here, and its [documentation](https://simvia-tech.github.io/csauto/)
+1. [csauto](https://github.com/simvia-tech/csauto), the campaign tool used here, and its [documentation](https://github.com/simvia-tech/csauto/tree/main/docs)
 2. P. J. Roache, *Verification and Validation in Computational Science and Engineering*, Hermosa, 1998, for grid convergence and Richardson extrapolation
 3. [code_saturne documentation](https://code-saturne.org/doc/)
 

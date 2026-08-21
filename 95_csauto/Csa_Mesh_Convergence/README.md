@@ -1,4 +1,4 @@
-# Mesh Convergence with csauto: Four Meshes from One Template
+# Mesh Convergence with csauto
 
 A mesh convergence study is the same case run several times on finer and finer
 meshes, until the answer stops moving. The work is not in the physics, it is in

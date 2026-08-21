@@ -742,7 +742,7 @@ tutorials:
 
 # ---- 95_csauto ----
 - path: 95_csauto/Csa_Mesh_Convergence
-  title: "Mesh Convergence with csauto: Four Meshes from One Template"
+  title: Mesh Convergence with csauto
   topic: Campaigns & Automation
   module: base
   regime: laminar

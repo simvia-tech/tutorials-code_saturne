@@ -1,0 +1,15 @@
+# csauto configuration for this tutorial.
+# Picked up automatically by every csauto command run from this directory.
+
+# Run code_saturne inside the Simvia Docker image, so no local build is needed.
+runtime = "docker"
+docker_image = "simvia/code_saturne:9.1.0"
+
+use_slurm = false
+
+# The four meshes are independent: run them all at once.
+max_parallel = 4
+
+# Web dashboard, reachable from this machine only.
+host = "127.0.0.1"
+port = 8000

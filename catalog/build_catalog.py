@@ -15,7 +15,7 @@ VOCAB = {
     "topic": {"Foundations","Preprocessing","Turbulence","Thermal & Radiation",
               "Compressible","Turbomachinery","Multiphase (VOF)",
               "Atmospheric & Environmental","Particles & Dispersion","Reactive & Electric",
-              "Mesh Methods (IBM / ALE / AMR)"},
+              "Mesh Methods (IBM / ALE / AMR)","Campaigns & Automation"},
     "module": {"base","turb","les","cfbl","vof","cogz","ctwr","atmo","gwf","elec","lagr","rayt","cdo","meshing"},
     "regime": {"laminar","RANS","LES","inviscid","compressible","multiphase","reactive","porous","n/a"},
     "physics": {"heat-transfer","buoyancy","radiation","combustion","cavitation","surface-tension",

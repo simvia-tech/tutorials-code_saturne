@@ -1,0 +1,5 @@
+case_id,n,iterations,points
+case_020,20,2000,21
+case_040,40,2000,41
+case_080,80,2000,81
+case_160,160,4000,161

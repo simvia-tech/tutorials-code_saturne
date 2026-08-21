@@ -739,3 +739,15 @@ tutorials:
   cs_version: "9.2"
   difficulty: advanced
   tags: [amr, adaptive-refinement, mesh, q-criterion, vortex-street, cell-removal]
+
+# ---- 95_csauto ----
+- path: 95_csauto/Csa_Mesh_Convergence
+  title: "Mesh Convergence with csauto: Four Meshes from One Template"
+  topic: Campaigns & Automation
+  module: base
+  regime: laminar
+  physics: [heat-transfer, buoyancy]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [csauto, campaign, doe, grid-convergence, cartesian-mesh, cavity,
+         automation]

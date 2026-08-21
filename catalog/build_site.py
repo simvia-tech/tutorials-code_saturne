@@ -17,7 +17,7 @@ OUT  = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(ROOT,
 TOPIC_ORDER = ["Foundations","Preprocessing","Turbulence","Thermal & Radiation","Compressible",
                "Turbomachinery","Multiphase (VOF)","Atmospheric & Environmental",
                "Particles & Dispersion","Reactive & Electric",
-               "Mesh Methods (IBM / ALE / AMR)"]
+               "Mesh Methods (IBM / ALE / AMR)","Campaigns & Automation"]
 GITHUB_URL = "https://github.com/simvia-tech/tutorials-code_saturne"
 SITE_URL   = "https://simvia-tech.github.io/tutorials-code_saturne/"
 

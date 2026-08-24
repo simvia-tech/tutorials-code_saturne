@@ -1,0 +1,79 @@
+name: Mirror the tutorials into saturne-community-tutorials
+
+# Keeps a subdirectory of the community repository as a copy of this one.
+#
+# It is a content mirror, one commit per synchronisation: the destination is
+# shared with other contributors, so `git push --mirror` cannot be used (it
+# deletes every ref the source does not have).
+#
+# Requires a repository secret MIRROR_TOKEN: a fine-grained personal access
+# token with "Contents: read and write" on the destination repository only.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List what would change without writing anything"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+
+env:
+  DEST_REPO: code-saturne/saturne-community-tutorials
+  # Agree this name with the code_saturne team before the first real run.
+  DEST_SUBDIR: simvia
+  DEST_BRANCH: main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          path: source
+
+      - name: Materialise the LFS files, meshes included
+        working-directory: source
+        run: git lfs pull
+
+      - name: Check out the destination
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DEST_REPO }}
+          ref: ${{ env.DEST_BRANCH }}
+          token: ${{ secrets.MIRROR_TOKEN }}
+          path: dest
+
+      - name: Make the destination store meshes in LFS, not as blobs
+        working-directory: dest
+        run: git lfs install --local
+
+      - name: Mirror
+        run: |
+          git -C dest config user.name  "simvia-tutorials-bot"
+          git -C dest config user.email "florian.hermet@simvia.tech"
+          bash source/tools/mirror_to_community.sh \
+            "$GITHUB_WORKSPACE/source" \
+            "$GITHUB_WORKSPACE/dest" \
+            "$DEST_SUBDIR" \
+            ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+
+      - name: Push
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        working-directory: dest
+        run: |
+          if git log --oneline "origin/$DEST_BRANCH..HEAD" | grep -q .; then
+            git lfs push --all origin "$DEST_BRANCH"
+            git push origin "HEAD:$DEST_BRANCH"
+          else
+            echo "nothing to push"
+          fi

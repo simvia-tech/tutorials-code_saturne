@@ -49,11 +49,15 @@ while IFS= read -r f; do
 done < <(git -C "$SRC" lfs ls-files -n 2>/dev/null || true)
 
 # ---------------------------------------------------------------- file list
-# Tracked files only, minus our own CI, which has no business over there.
+# Tracked files only, minus what belongs to this repository alone: our CI, and
+# the machinery that builds our own website and the mirroring script itself,
+# all of which would arrive over there inert and only puzzle a reader.
 list=$(mktemp)
 trap 'rm -f "$list"' EXIT
 git -C "$SRC" ls-files -z \
   | grep -zv '^\.github/' \
+  | grep -zv '^catalog/' \
+  | grep -zv '^tools/' \
   | tr '\0' '\n' > "$list"
 count=$(grep -c . "$list")
 echo "$count tracked files to mirror into '$SUBDIR/'"

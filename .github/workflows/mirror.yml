@@ -6,8 +6,18 @@ name: Mirror the tutorials into saturne-community-tutorials
 # shared with other contributors, so `git push --mirror` cannot be used (it
 # deletes every ref the source does not have).
 #
-# Requires a repository secret MIRROR_TOKEN: a fine-grained personal access
-# token with "Contents: read and write" on the destination repository only.
+# The destination does not use Git LFS. The meshes are materialised here and
+# pushed as ordinary blobs, which costs about 23 MB of pack for 138 MB of
+# ASCII gmsh. Every mesh we ship is under 100 000 cells.
+#
+# Requires a repository secret MIRROR_SSH_KEY: the private half of a deploy key
+# registered on the destination repository with write access.
+#
+# A deploy key rather than a personal access token, on purpose. A token acts as
+# the person who issued it, so anyone able to add a workflow file here could use
+# it to write to every repository that person can reach. A deploy key only ever
+# opens the one repository it is registered on, so the worst a leak can do is
+# vandalise a public directory we hold the reference copy of.
 
 on:
   push:
@@ -28,7 +38,7 @@ concurrency:
 
 env:
   DEST_REPO: code-saturne/saturne-community-tutorials
-  # Agree this name with the code_saturne team before the first real run.
+  # Name agreed with the code_saturne team.
   DEST_SUBDIR: simvia
   DEST_BRANCH: main
 
@@ -50,12 +60,12 @@ jobs:
         with:
           repository: ${{ env.DEST_REPO }}
           ref: ${{ env.DEST_BRANCH }}
-          token: ${{ secrets.MIRROR_TOKEN }}
+          ssh-key: ${{ secrets.MIRROR_SSH_KEY }}
           path: dest
 
-      - name: Make the destination store meshes in LFS, not as blobs
+      - name: Make sure nothing here turns the meshes into LFS pointers
         working-directory: dest
-        run: git lfs install --local
+        run: git lfs uninstall --local || true
 
       - name: Mirror
         run: |
@@ -72,7 +82,6 @@ jobs:
         working-directory: dest
         run: |
           if git log --oneline "origin/$DEST_BRANCH..HEAD" | grep -q .; then
-            git lfs push --all origin "$DEST_BRANCH"
             git push origin "HEAD:$DEST_BRANCH"
           else
             echo "nothing to push"

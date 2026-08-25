@@ -52,10 +52,6 @@ __pycache__/
 # -------------------------------------------------
 # Working artifacts, never shipped
 # -------------------------------------------------
-# Superpowers / spec-driven-development scratch space (specs, plans, progress)
-.superpowers/
-docs/superpowers/
-
 # Website (GitHub Pages) build: keep the source/scripts, ignore generated output
 !catalog/*.py
 catalog/_site_src/

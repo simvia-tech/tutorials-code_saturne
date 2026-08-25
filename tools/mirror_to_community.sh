@@ -105,6 +105,43 @@ if [ -f "$attr" ]; then
   fi
 fi
 
+# ------------------------------------------------- our plumbing, not theirs
+# The tail of .gitignore covers the website build and our logo sources. None
+# of that is copied, so the rules would arrive there with nothing to match,
+# and one of the filenames advertises artwork that has no business being
+# listed in someone else's repository.
+ign="$DEST/$SUBDIR/.gitignore"
+if [ -f "$ign" ]; then
+  sed -i '/^# Working artifacts, never shipped$/,$d' "$ign"
+  sed -i -e '/catalog\//d' -e '/_site_src/d' -e '/SIMVIA/d' -e '/simvia\.png/d' "$ign"
+  # the cut leaves the block's opening rule and blank lines dangling
+  awk '{ l[NR] = $0 }
+       END { n = NR
+             while (n > 0 && (l[n] ~ /^[[:space:]]*$/ || l[n] ~ /^#[[:space:]]*-*[[:space:]]*$/))
+               n--
+             for (i = 1; i <= n; i++) print l[i] }' "$ign" > "$ign.tmp"
+  mv "$ign.tmp" "$ign"
+  if grep -qiE 'catalog/|_site_src|SIMVIA' "$ign"; then
+    echo "our own plumbing survived in $ign" >&2
+    exit 1
+  fi
+fi
+
+# The README's website section explains how to build our own site from
+# catalog/ and .github/, neither of which is copied, so over there it is a
+# recipe for files that do not exist.
+rme="$DEST/$SUBDIR/README.md"
+if [ -f "$rme" ]; then
+  awk '/^## The website$/            { skip = 1 }
+       /^## / && !/^## The website$/ { skip = 0 }
+       !skip                         { print }' "$rme" > "$rme.tmp"
+  mv "$rme.tmp" "$rme"
+  if grep -q 'catalog/' "$rme"; then
+    echo "the website section survived in $rme" >&2
+    exit 1
+  fi
+fi
+
 # ---------------------------------------------------------------- commit
 sha=$(git -C "$SRC" rev-parse --short HEAD)
 url=$(git -C "$SRC" remote get-url github 2>/dev/null \

@@ -1,0 +1,9 @@
+# Website build output. The scripts that produce it are tracked, the output
+# never is. These rules live here rather than in the repository root so that
+# they travel with what they ignore, and so the root .gitignore stays about
+# the tutorials themselves.
+!*.py
+_site_src/
+_blurbs.json
+tutorials.json
+catalog_artifact.html

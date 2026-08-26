@@ -1,0 +1,88 @@
+name: Mirror the tutorials into saturne-community-tutorials
+
+# Keeps a subdirectory of the community repository as a copy of this one.
+#
+# It is a content mirror, one commit per synchronisation: the destination is
+# shared with other contributors, so `git push --mirror` cannot be used (it
+# deletes every ref the source does not have).
+#
+# The destination does not use Git LFS. The meshes are materialised here and
+# pushed as ordinary blobs, which costs about 23 MB of pack for 138 MB of
+# ASCII gmsh. Every mesh we ship is under 100 000 cells.
+#
+# Requires a repository secret MIRROR_SSH_KEY: the private half of a deploy key
+# registered on the destination repository with write access.
+#
+# A deploy key rather than a personal access token, on purpose. A token acts as
+# the person who issued it, so anyone able to add a workflow file here could use
+# it to write to every repository that person can reach. A deploy key only ever
+# opens the one repository it is registered on, so the worst a leak can do is
+# vandalise a public directory we hold the reference copy of.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List what would change without writing anything"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+
+env:
+  DEST_REPO: code-saturne/saturne-community-tutorials
+  # Name agreed with the code_saturne team.
+  DEST_SUBDIR: simvia
+  DEST_BRANCH: main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          path: source
+
+      - name: Materialise the LFS files, meshes included
+        working-directory: source
+        run: git lfs pull
+
+      - name: Check out the destination
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DEST_REPO }}
+          ref: ${{ env.DEST_BRANCH }}
+          ssh-key: ${{ secrets.MIRROR_SSH_KEY }}
+          path: dest
+
+      - name: Make sure nothing here turns the meshes into LFS pointers
+        working-directory: dest
+        run: git lfs uninstall --local || true
+
+      - name: Mirror
+        run: |
+          git -C dest config user.name  "simvia-tutorials-bot"
+          git -C dest config user.email "florian.hermet@simvia.tech"
+          bash source/tools/mirror_to_community.sh \
+            "$GITHUB_WORKSPACE/source" \
+            "$GITHUB_WORKSPACE/dest" \
+            "$DEST_SUBDIR" \
+            ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+
+      - name: Push
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        working-directory: dest
+        run: |
+          if git log --oneline "origin/$DEST_BRANCH..HEAD" | grep -q .; then
+            git push origin "HEAD:$DEST_BRANCH"
+          else
+            echo "nothing to push"
+          fi

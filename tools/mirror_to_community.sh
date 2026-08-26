@@ -106,25 +106,14 @@ if [ -f "$attr" ]; then
 fi
 
 # ------------------------------------------------- our plumbing, not theirs
-# The tail of .gitignore covers the website build and our logo sources. None
-# of that is copied, so the rules would arrive there with nothing to match,
-# and one of the filenames advertises artwork that has no business being
-# listed in someone else's repository.
+# The website build rules live in catalog/.gitignore, which is not copied, so
+# the .gitignore that lands there is already about the tutorials alone. Guard
+# it anyway: a rule about our own machinery drifting back into the root file
+# would be published without anyone noticing.
 ign="$DEST/$SUBDIR/.gitignore"
-if [ -f "$ign" ]; then
-  sed -i '/^# Working artifacts, never shipped$/,$d' "$ign"
-  sed -i -e '/catalog\//d' -e '/_site_src/d' -e '/SIMVIA/d' -e '/simvia\.png/d' "$ign"
-  # the cut leaves the block's opening rule and blank lines dangling
-  awk '{ l[NR] = $0 }
-       END { n = NR
-             while (n > 0 && (l[n] ~ /^[[:space:]]*$/ || l[n] ~ /^#[[:space:]]*-*[[:space:]]*$/))
-               n--
-             for (i = 1; i <= n; i++) print l[i] }' "$ign" > "$ign.tmp"
-  mv "$ign.tmp" "$ign"
-  if grep -qiE 'catalog/|_site_src|SIMVIA' "$ign"; then
-    echo "our own plumbing survived in $ign" >&2
-    exit 1
-  fi
+if [ -f "$ign" ] && grep -qiE 'catalog/|_site_src|SIMVIA' "$ign"; then
+  echo "our own plumbing reached $ign, keep those rules in catalog/" >&2
+  exit 1
 fi
 
 # The README's website section explains how to build our own site from

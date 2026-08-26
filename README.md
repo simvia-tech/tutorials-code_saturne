@@ -63,8 +63,8 @@ To preview locally:
 
 ```bash
 pip install -r catalog/requirements.txt
-python catalog/build_site.py _site_src
-mkdocs serve -f _site_src/mkdocs.yml
+python catalog/build_site.py catalog/_site_src
+mkdocs serve -f catalog/_site_src/mkdocs.yml
 ```
 
 ## License

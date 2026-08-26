@@ -48,17 +48,3 @@ __pycache__/
 !**/CASE/DATA/*.csv
 # ... as is the DOE table of a csauto campaign
 !**/doe.csv
-
-# -------------------------------------------------
-# Working artifacts, never shipped
-# -------------------------------------------------
-# Website (GitHub Pages) build: keep the source/scripts, ignore generated output
-!catalog/*.py
-catalog/_site_src/
-/_site_src/
-catalog/_blurbs.json
-catalog/tutorials.json
-catalog/catalog_artifact.html
-# Logo source files (keep only catalog/assets/*.svg in the public repo)
-/SIMVIA_EDF-GROUP_RVB.ai
-/simvia.png

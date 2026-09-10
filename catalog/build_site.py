@@ -8,7 +8,7 @@ hand-maintained, no hardcoded counts.
 
 Usage: build_site.py [OUT_DIR]   (default: ./_site_src)
 """
-import os, sys, shutil, re, base64, json
+import os, sys, shutil, re, base64, json, html
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -75,9 +75,18 @@ FOOTER_PARTIAL = r"""<footer class="md-footer">
 # main.html: adds Open Graph / Twitter card meta so shared links show the
 # code_saturne social card. home.html extends this so the home gets them too.
 MAIN_TEMPLATE = r"""{% extends "base.html" %}
+{% block htmltitle %}
+  {% if page and page.is_homepage %}
+    <title>code_saturne CFD Tutorials | Simvia</title>
+  {% elif page %}
+    <title>{{ page.meta.title | d(page.title, true) | e }} | code_saturne</title>
+  {% else %}
+    <title>{{ config.site_name | e }}</title>
+  {% endif %}
+{% endblock %}
 {% block extrahead %}
   __GSV__{% set og_image = config.site_url ~ 'assets/og-card.png' %}
-  {% set og_title = config.site_name if (not page or page.is_homepage) else (page.title ~ ' - ' ~ config.site_name) %}
+  {% set og_title = page.meta.title if (page and page.meta.title) else config.site_name %}
   {% set og_desc = page.meta.description if (page and page.meta.description) else config.site_description %}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ config.site_name }}">
@@ -234,6 +243,47 @@ def disp_title(s):                      # drop parenthetical suffix for display
 def yaml_str(s):
     return '"' + s.replace('"','\\"') + '"'
 
+def description_from_markdown(md, max_length=165):
+    """Build a concise plain-text description from a tutorial introduction."""
+    lines = md.splitlines()
+    start = next((i + 1 for i, line in enumerate(lines)
+                  if line.lstrip().startswith("# ")), 0)
+    paragraph = []
+    for line in lines[start:]:
+        stripped = line.strip()
+        if not stripped:
+            if paragraph:
+                break
+            continue
+        if stripped.startswith(("#", "```", "~~~", "<", "!")):
+            if paragraph:
+                break
+            continue
+        paragraph.append(stripped)
+
+    text = " ".join(paragraph)
+    text = re.sub(r"!\[([^]]*)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"\[([^]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"[`*]", "", text)
+    text = re.sub(r"\\[()]", "", text)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", html.unescape(text)).strip()
+
+    if len(text) <= max_length:
+        return text
+    sentence_ends = [m.end() for m in re.finditer(r"[.!?](?:\s|$)", text[:max_length + 1])]
+    if sentence_ends and sentence_ends[-1] >= 100:
+        return text[:sentence_ends[-1]].strip()
+    shortened = text[:max_length - 1].rsplit(" ", 1)[0].rstrip(" ,;:-")
+    return shortened + "…"
+
+def page_frontmatter(title, description):
+    """Return generated MkDocs metadata without altering the source README."""
+    return ("---\n"
+            f"title: {json.dumps(title, ensure_ascii=False)}\n"
+            f"description: {json.dumps(description, ensure_ascii=False)}\n"
+            "---\n\n")
+
 def main():
     tuts = load()
     docs = os.path.join(OUT,"docs")
@@ -262,7 +312,9 @@ def main():
         os.makedirs(page_dir, exist_ok=True)
         rm = os.path.join(ROOT, path, "README.md")
         md = open(rm, encoding="utf-8").read() if os.path.exists(rm) else f"# {t['title']}\n"
+        description = t.get("description") or description_from_markdown(md)
         md = inject_gh_source(md, path)
+        md = page_frontmatter(t.get("seo_title", t["title"]), description) + md
         open(os.path.join(page_dir,"index.md"),"w",encoding="utf-8").write(md)
         fig = os.path.join(ROOT, path, "FIGURES")
         if os.path.isdir(fig):
@@ -271,8 +323,12 @@ def main():
 
     # home is a MkDocs page too (same header + nav templates as the tutorial pages,
     # so the chrome is identical by construction); its content is the centered hero.
+    home_description = (f"Explore {len(tuts)} step-by-step code_saturne CFD tutorials with "
+                        "reproducible cases, physical models, numerical setups and validation results.")
     open(os.path.join(docs,"index.md"),"w",encoding="utf-8").write(
-        "---\ntemplate: home.html\ntitle: Home\nhide:\n  - toc\n---\n\n# code_saturne tutorials\n")
+        "---\ntemplate: home.html\ntitle: code_saturne CFD Tutorials\n"
+        f"description: {json.dumps(home_description)}\n"
+        "hide:\n  - toc\n---\n\n# code_saturne tutorials\n")
     ovr = os.path.join(OUT,"overrides"); os.makedirs(ovr, exist_ok=True)
     data_js = json.dumps([{ "path":t["path"], "title":disp_title(t["title"]), "topic":t["topic"],
         "module":t["module"], "regime":t["regime"], "physics":t.get("physics",[]) or [],

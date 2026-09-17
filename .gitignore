@@ -48,3 +48,12 @@ __pycache__/
 !**/CASE/DATA/*.csv
 # ... as is the DOE table of a csauto campaign
 !**/doe.csv
+# ... and the FMU generator and co-simulation master of an FMI tutorial
+!**/FMU/*.py
+
+# -------------------------------------------------
+# FMU build output of an FMI tutorial (rebuilt by `make` in FMU/)
+# -------------------------------------------------
+**/FMU/binaries/
+**/FMU/code_saturne_fmu_variables.h
+*.fmu

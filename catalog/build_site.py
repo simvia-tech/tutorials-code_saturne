@@ -17,7 +17,7 @@ OUT  = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(ROOT,
 TOPIC_ORDER = ["Foundations","Preprocessing","Turbulence","Thermal & Radiation","Compressible",
                "Turbomachinery","Multiphase (VOF)","Atmospheric & Environmental",
                "Particles & Dispersion","Reactive & Electric",
-               "Mesh Methods (IBM / ALE / AMR)","Campaigns & Automation"]
+               "Mesh Methods (IBM / ALE / AMR)","Coupling & Co-simulation","Campaigns & Automation"]
 GITHUB_URL = "https://github.com/simvia-tech/tutorials-code_saturne"
 SITE_URL   = "https://simvia-tech.github.io/tutorials-code_saturne/"
 
@@ -136,7 +136,7 @@ HOME_TEMPLATE = r"""{% extends "main.html" %}
 
 <script>
 const TUTORIALS=__DATA__;
-const TC={"Foundations":"#4a6fa5","Preprocessing":"#7a8699","Turbulence":"#2f8f8a","Thermal & Radiation":"#c1663a","Compressible":"#6b5b95","Turbomachinery":"#3f5bb0","Multiphase (VOF)":"#2b7fb8","Atmospheric & Environmental":"#4f8a4f","Particles & Dispersion":"#8a6d3b","Reactive & Electric":"#b5473f","Mesh Methods (IBM / ALE / AMR)":"#0f8ea8"};
+const TC={"Foundations":"#4a6fa5","Preprocessing":"#7a8699","Turbulence":"#2f8f8a","Thermal & Radiation":"#c1663a","Compressible":"#6b5b95","Turbomachinery":"#3f5bb0","Multiphase (VOF)":"#2b7fb8","Atmospheric & Environmental":"#4f8a4f","Particles & Dispersion":"#8a6d3b","Reactive & Electric":"#b5473f","Mesh Methods (IBM / ALE / AMR)":"#0f8ea8","Coupling & Co-simulation":"#9c4f96","Campaigns & Automation":"#6d7f2b"};
 const FACETS=[["module","Module"],["regime","Regime"],["physics","Physics"],["difficulty","Difficulty"],["cs_version","Version"]];
 const A={module:new Set(),regime:new Set(),physics:new Set(),difficulty:new Set(),cs_version:new Set()};
 let Q="";

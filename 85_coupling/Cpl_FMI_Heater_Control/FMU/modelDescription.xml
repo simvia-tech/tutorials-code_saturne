@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription fmiVersion="2.0" modelName="code_saturne_heater" guid="166a7f766f594c43b0ae4a51d4fb28e7"
+                     generationTool="code_saturne 9.1 extras/FMI"
+                     generationDateAndTime="2026-09-15T13:32:01Z"
+                     variableNamingConvention="structured" numberOfEventIndicators="0">
+    <!-- modelIdentifier must match the shared library name built by the Makefile -->
+    <CoSimulation modelIdentifier="FMU_CS" needsExecutionTool="false"
+                  canHandleVariableCommunicationStepSize="false" canInterpolateInputs="false"
+                  maxOutputDerivativeOrder="0" canRunAsynchronuously="false"
+                  canBeInstantiatedOnlyOncePerProcess="true" canNotUseMemoryManagementFunctions="false"
+                  canGetAndSetFMUstate="false" canSerializeFMUstate="false"
+                  providesDirectionalDerivative="false"/>
+    <LogCategories>
+        <Category name="logEvents" description="Log all events (during initialization and simulation)"/>
+        <Category name="logStatusWarning" description="Log messages when returning fmi2Warning status from any function"/>
+        <Category name="logStatusError" description="Log messages when returning fmi2Error status from any function."/>
+        <Category name="logStatusFatal" description="Log messages when returning fmi2Fatal status from any function."/>
+        <Category name="logAll" description="Log all messages"/>
+        <Category name="logComm" description="Log communication (low-level)"/>
+        <Category name="logLaunch" description="Log system calls"/>
+        <Category name="logTrace" description="Other trace logs (low-level)"/>
+    </LogCategories>
+    <ModelVariables>
+        <!-- Three string parameters the FMU needs to launch the solver. The master
+             overrides them at instantiation, the defaults are placeholders. -->
+        <ScalarVariable name="run_id" valueReference="3000000" causality="parameter" variability="fixed" initial="exact">
+            <String start="fmi"/>
+        </ScalarVariable>
+        <ScalarVariable name="code_saturne" valueReference="3000001" causality="parameter" variability="fixed" initial="exact">
+            <String start="/path/to/code_saturne/bin/code_saturne"/>
+        </ScalarVariable>
+        <ScalarVariable name="casename" valueReference="3000002" causality="parameter" variability="fixed" initial="exact">
+            <String start="/path/to/Cpl_FMI_Heater_Control/CASE"/>
+        </ScalarVariable>
+        <!-- Every Real below is a notebook variable of the case, under the same name. -->
+        <ScalarVariable name="q_wall" valueReference="0" causality="input" variability="discrete" description="heater flux density [W/m2]">
+            <Real start="1000.0"/>
+        </ScalarVariable>
+        <ScalarVariable name="u_in" valueReference="1" causality="input" variability="discrete" description="inlet velocity [m/s]">
+            <Real start="0.5"/>
+        </ScalarVariable>
+        <ScalarVariable name="t_out" valueReference="2" causality="output" variability="continuous" initial="exact" description="outlet bulk temperature [K]">
+            <Real start="300.0"/>
+        </ScalarVariable>
+    </ModelVariables>
+    <ModelStructure>
+        <Outputs>
+            <Unknown index="6"/>
+        </Outputs>
+    </ModelStructure>
+</fmiModelDescription>

@@ -740,6 +740,18 @@ tutorials:
   difficulty: advanced
   tags: [amr, adaptive-refinement, mesh, q-criterion, vortex-street, cell-removal]
 
+# ---- 85_coupling ----
+- path: 85_coupling/Cpl_FMI_Heater_Control
+  title: "FMI Co-simulation: a Python Controller Drives code_saturne"
+  topic: Coupling & Co-simulation
+  module: base
+  regime: laminar
+  physics: [heat-transfer, control]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [fmi, fmu, co-simulation, fmpy, notebook, control, pid, heated-channel,
+         cartesian-mesh, socket]
+
 # ---- 95_csauto ----
 - path: 95_csauto/Csa_Mesh_Convergence
   title: Mesh Convergence with csauto

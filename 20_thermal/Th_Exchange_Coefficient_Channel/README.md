@@ -45,29 +45,25 @@ Th_Exchange_Coefficient_Channel/
 
 ## Physical model
 
-Air with constant properties ($\rho = 1.2$ kg/m³, $\mu = 1.8 \times 10^{-5}$ Pa.s, $c_p = 1005$ J/kg/K, $\lambda = 0.025$ W/m/K, $Pr = 0.724$) enters the plane channel of gap $2h = 20$ mm with the Poiseuille profile, $U_m = 0.0375$ m/s ($Re_{D_h} = 100$, $Pe = 72$), at $T_{in} = 350$ K. Both walls exchange with an ambient at $T_{ext} = 300$ K through $h_{ext} = 5$ W/m²/K, a Robin condition on the temperature:
+Air with constant properties ($\rho = 1.2$ kg/m³, $\mu = 1.8 \times 10^{-5}$ Pa.s, $c_p = 1005$ J/kg/K, $\lambda = 0.025$ W/m/K) enters the plane channel of gap $2h = 20$ mm with the Poiseuille profile, $U_m = 0.0375$ m/s ($Re_{D_h} = 100$, $Pe = 72$), at $T_{in} = 350$ K. Both walls exchange with an ambient at $T_{ext} = 300$ K through $h_{ext} = 5$ W/m²/K, a **Robin condition** on the temperature:
 
 $$
 q_w = -\lambda\,\partial_n T\big|_w = h_{ext}\,\left(T_w - T_{ext}\right).
 $$
 
-The Dirichlet condition of the Graetz tutorial is its limit $h_{ext} \to \infty$ (the wall is pinned at $T_{ext}$) and the Neumann condition of the uniform-flux tutorial its limit $h_{ext} \to 0$ with $h_{ext} T_{ext}$ kept finite (the flux no longer depends on the wall temperature).
+The isothermal wall of the Graetz tutorial is its limit $h_{ext} \to \infty$, the uniform-flux wall its limit $h_{ext} \to 0$.
 
-**Series resistances.** Per unit wall area, the heat flows from the bulk to the ambient through the internal convection, $q_w = h_{int}(T_b - T_w)$ with $h_{int} = Nu\,\lambda/D_h$, then through the external exchange. The overall coefficient and the energy balance of the two walls give an exponential decay of the bulk temperature:
+The internal convection, $h_{int} = Nu\,\lambda/D_h$, and the external exchange act as two resistances in series. The overall coefficient $U$ and the energy balance of the two walls give an exponential decay of the bulk temperature:
 
 $$
 \frac{1}{U} = \frac{1}{h_{ext}} + \frac{D_h}{Nu\,\lambda},
 \qquad
-\rho c_p U_m h\,\frac{dT_b}{dx} = -U\,(T_b - T_{ext}),
-\qquad
 T_b - T_{ext} = (T_{in} - T_{ext})\,e^{-x/\ell},
-\quad
+\qquad
 \ell = \frac{\rho c_p U_m h}{U}.
 $$
 
-With $h_{ext} = 5$ W/m²/K and $h_{int} \approx 4.9$ W/m²/K the two resistances are of the same order (Biot number $h_{ext} D_h/\lambda = 8$): $U = 2.48$ W/m²/K and $\ell = 182$ mm, so the air loses most of its excess temperature over the $300$ mm of the channel. The ratio $(T_b - T_w)/(T_w - T_{ext}) = h_{ext} D_h/(Nu\,\lambda)$ is the share of the two resistances, $1.015$ once developed.
-
-**Nusselt number.** For a wall with a Robin condition (the "T3" problem of Shah and London) the developed Nusselt number lies between the isothermal value $7.541$ ($h_{ext} \to \infty$) and the uniform-flux value $8.235$ ($h_{ext} \to 0$): $Nu = 7.881$ here, obtained by marching the energy equation with the exchange condition (reference not shipped). As in the two previous tutorials, a two-dimensional reference with axial conduction (1200 × 200 points, not shipped) is the relevant comparison in the entrance region at $Pe = 72$.
+Here the two resistances are of the same order (Biot number $h_{ext} D_h/\lambda = 8$): $U = 2.48$ W/m²/K and $\ell = 182$ mm. The developed Nusselt number of a Robin wall lies between the isothermal ($7.541$) and uniform-flux ($8.235$) values; for this Biot number it is $7.881$ (Graetz-type solution with the exchange condition, not shipped). As in the two previous tutorials, a two-dimensional reference with axial conduction (not shipped) is the relevant comparison in the entrance region at $Pe = 72$.
 
 ## Geometry and boundary conditions
 

@@ -315,6 +315,16 @@ tutorials:
   difficulty: intermediate
   tags: [1d-wall-thermal, wall-conduction, transient, quench, analytical]
 
+- path: 20_thermal/Th_Turbulent_Heated_Channel
+  title: Turbulent Heated Channel with Wall Functions (Nusselt vs Gnielinski)
+  topic: Thermal & Radiation
+  module: turb
+  regime: RANS
+  physics: [heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [turbulent-channel, wall-functions, thermal-wall-function, nusselt, gnielinski, dean, k-epsilon, k-omega-sst, streamwise-periodic, y-plus]
+
 - path: 20_thermal/Th_Uniform_Flux_Channel
   title: Channel Heated at Uniform Wall Flux (Nusselt 8.235)
   topic: Thermal & Radiation

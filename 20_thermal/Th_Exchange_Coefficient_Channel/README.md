@@ -1,6 +1,6 @@
 # Channel Cooled by External Convection (Exchange Coefficient Wall)
 
-The third tutorial of the forced-convection series closes the set of thermal wall conditions: after the imposed temperature ([Graetz entrance](../Th_Graetz_Entrance)) and the imposed flux ([uniform flux channel](../Th_Uniform_Flux_Channel)), the wall now exchanges with an **ambient at a given temperature through an exchange coefficient**, $q_w = h_{ext}\,(T_w - T_{ext})$. This is the condition of the real world: a pipe losing heat to the air of a room, a heat exchanger wall seen from one side, a thermally thin wall with a convective outside. Hot air enters the channel and cools down along it. The wall temperature is not known in advance: it results from the balance between the internal convection and the external exchange, and the bulk temperature decays exponentially with a length set by the **overall heat transfer coefficient**.
+The third tutorial of the forced-convection series closes the set of thermal wall conditions: after the imposed temperature ([Graetz entrance](../Th_Graetz_Entrance)) and the imposed flux ([uniform flux channel](../Th_Uniform_Flux_Channel)), the wall now exchanges with an **ambient at a given temperature through an exchange coefficient**, $q_w = h_{ext}\,(T_w - T_{ext})$. This is the **Robin condition** (also called boundary condition of the third kind, or mixed condition), which relates the flux to the unknown wall temperature instead of fixing one of them. It is the condition of the real world: a pipe losing heat to the air of a room, a heat exchanger wall seen from one side, a thermally thin wall with a convective outside. Hot air enters the channel and cools down along it. The wall temperature is not known in advance: it results from the balance between the internal convection and the external exchange, and the bulk temperature decays exponentially with a length set by the **overall heat transfer coefficient**.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
 [tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
@@ -9,7 +9,7 @@ Maintained by [Simvia](https://Simvia.tech/fr), part of the
 
 After completing this tutorial you will be able to:
 
-1. Set an **exchange-coefficient wall condition** on the temperature scalar from the GUI, and check in the results that the solver's wall flux obeys $q_w = h_{ext}(T_w - T_{ext})$.
+1. Set a **Robin (exchange-coefficient) wall condition** on the temperature scalar from the GUI, and check in the results that the solver's wall flux obeys $q_w = h_{ext}(T_w - T_{ext})$.
 2. Read a cooled duct with the **series resistances** picture: internal convection ($Nu$) and external exchange ($h_{ext}$) add up into an overall coefficient $U$ and an exponential decay length.
 3. Know that the Nusselt number of a wall with external exchange sits **between the isothermal and uniform-flux values**, and depends on the Biot number.
 
@@ -45,11 +45,13 @@ Th_Exchange_Coefficient_Channel/
 
 ## Physical model
 
-Air with constant properties ($\rho = 1.2$ kg/m³, $\mu = 1.8 \times 10^{-5}$ Pa.s, $c_p = 1005$ J/kg/K, $\lambda = 0.025$ W/m/K, $Pr = 0.724$) enters the plane channel of gap $2h = 20$ mm with the Poiseuille profile, $U_m = 0.0375$ m/s ($Re_{D_h} = 100$, $Pe = 72$), at $T_{in} = 350$ K. Both walls exchange with an ambient at $T_{ext} = 300$ K through $h_{ext} = 5$ W/m²/K:
+Air with constant properties ($\rho = 1.2$ kg/m³, $\mu = 1.8 \times 10^{-5}$ Pa.s, $c_p = 1005$ J/kg/K, $\lambda = 0.025$ W/m/K, $Pr = 0.724$) enters the plane channel of gap $2h = 20$ mm with the Poiseuille profile, $U_m = 0.0375$ m/s ($Re_{D_h} = 100$, $Pe = 72$), at $T_{in} = 350$ K. Both walls exchange with an ambient at $T_{ext} = 300$ K through $h_{ext} = 5$ W/m²/K, a Robin condition on the temperature:
 
 $$
 q_w = -\lambda\,\partial_n T\big|_w = h_{ext}\,\left(T_w - T_{ext}\right).
 $$
+
+The Dirichlet condition of the Graetz tutorial is its limit $h_{ext} \to \infty$ (the wall is pinned at $T_{ext}$) and the Neumann condition of the uniform-flux tutorial its limit $h_{ext} \to 0$ with $h_{ext} T_{ext}$ kept finite (the flux no longer depends on the wall temperature).
 
 **Series resistances.** Per unit wall area, the heat flows from the bulk to the ambient through the internal convection, $q_w = h_{int}(T_b - T_w)$ with $h_{int} = Nu\,\lambda/D_h$, then through the external exchange. The overall coefficient and the energy balance of the two walls give an exponential decay of the bulk temperature:
 
@@ -65,7 +67,7 @@ $$
 
 With $h_{ext} = 5$ W/m²/K and $h_{int} \approx 4.9$ W/m²/K the two resistances are of the same order (Biot number $h_{ext} D_h/\lambda = 8$): $U = 2.48$ W/m²/K and $\ell = 182$ mm, so the air loses most of its excess temperature over the $300$ mm of the channel. The ratio $(T_b - T_w)/(T_w - T_{ext}) = h_{ext} D_h/(Nu\,\lambda)$ is the share of the two resistances, $1.015$ once developed.
 
-**Nusselt number.** For a wall with external exchange (the "T3" problem of Shah and London) the developed Nusselt number lies between the isothermal value $7.541$ ($h_{ext} \to \infty$) and the uniform-flux value $8.235$ ($h_{ext} \to 0$): $Nu = 7.881$ here, obtained by marching the energy equation with the exchange condition (reference not shipped). As in the two previous tutorials, a two-dimensional reference with axial conduction (1200 × 200 points, not shipped) is the relevant comparison in the entrance region at $Pe = 72$.
+**Nusselt number.** For a wall with a Robin condition (the "T3" problem of Shah and London) the developed Nusselt number lies between the isothermal value $7.541$ ($h_{ext} \to \infty$) and the uniform-flux value $8.235$ ($h_{ext} \to 0$): $Nu = 7.881$ here, obtained by marching the energy equation with the exchange condition (reference not shipped). As in the two previous tutorials, a two-dimensional reference with axial conduction (1200 × 200 points, not shipped) is the relevant comparison in the entrance region at $Pe = 72$.
 
 ## Geometry and boundary conditions
 
@@ -122,7 +124,7 @@ The run takes about three minutes in serial and writes `run_solver.log`, `nussel
 
 ## Summary
 
-The exchange-coefficient condition of code_saturne is verified face by face against its own definition, and the cooled channel reproduces the series-resistance picture of heat exchanger design: an overall coefficient, an exponential decay of the bulk temperature, a wall temperature halfway between bulk and ambient at a Biot number of $8$, and a developed Nusselt number between the two canonical limits, within $0.1\%$ of the reference. With the Graetz and uniform-flux tutorials, this case completes the three thermal wall conditions on the same channel.
+The Robin condition of code_saturne, set as an exchange coefficient in the GUI, is verified face by face against its own definition, and the cooled channel reproduces the series-resistance picture of heat exchanger design: an overall coefficient, an exponential decay of the bulk temperature, a wall temperature halfway between bulk and ambient at a Biot number of $8$, and a developed Nusselt number between the two canonical limits, within $0.1\%$ of the reference. With the Graetz and uniform-flux tutorials, this case completes the three thermal wall conditions on the same channel.
 
 ## References
 

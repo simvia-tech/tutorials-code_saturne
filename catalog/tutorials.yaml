@@ -333,7 +333,7 @@ tutorials:
   physics: [heat-transfer]
   cs_version: "9.1"
   difficulty: intermediate
-  tags: [exchange-coefficient, robin-condition, external-convection, nusselt, forced-convection, heat-exchanger, overall-heat-transfer-coefficient]
+  tags: [robin-condition, exchange-coefficient, third-kind, external-convection, nusselt, forced-convection, heat-exchanger, overall-heat-transfer-coefficient]
 
 - path: 20_thermal/Th_Graetz_Entrance
   title: Thermal Entrance Between Isothermal Plates (Graetz Problem)

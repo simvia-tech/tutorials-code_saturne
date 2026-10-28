@@ -377,6 +377,17 @@ tutorials:
   difficulty: intermediate
   tags: [sod, shock-tube, riemann, euler]
 
+- path: 30_compressible/Comp_Two_Phase_Flashing
+  title: Depressurization and Flashing of Hot Water (Relaxation Time Scale)
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [phase-change, evaporation]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [two-phase, homogeneous-model, flashing, depressurization, relaxation,
+         metastable, stiffened-gas, steam-water, user-routines]
+
 - path: 30_compressible/Comp_Two_Phase_Shock_Tube
   title: Two-Phase Shock Tube (Compressible Homogeneous Model)
   topic: Compressible

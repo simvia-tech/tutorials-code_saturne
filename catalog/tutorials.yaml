@@ -377,6 +377,17 @@ tutorials:
   difficulty: intermediate
   tags: [sod, shock-tube, riemann, euler]
 
+- path: 30_compressible/Comp_Two_Phase_Shock_Tube
+  title: Two-Phase Shock Tube (Compressible Homogeneous Model)
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [shock-waves, phase-change]
+  cs_version: "9.1"
+  difficulty: advanced
+  tags: [two-phase, homogeneous-model, stiffened-gas, riemann, shock-tube,
+         steam-water, relaxation, user-routines]
+
 - path: 30_compressible/Comp_Supersonic_Ramp
   title: Supersonic Compression Ramp at Mach 2
   topic: Compressible

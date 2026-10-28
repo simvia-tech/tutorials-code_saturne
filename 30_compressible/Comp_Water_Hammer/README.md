@@ -68,7 +68,17 @@ The resulting sound speed is $c = 1501.6$ m/s. These constants reproduce the den
 
 ### The water hammer
 
-A pipe of length $L = 1$ m closed at both ends contains water at $p_0$ and $T_0$ moving at $u_0 = 1$ m/s. At $t = 0$ the fluid is stopped by the right wall and pulled away from the left wall: a compression wave $+\rho c u_0$ leaves the right wall and a rarefaction $-\rho c u_0$ leaves the left wall, both at speed $c$. They cross at mid-tube at $t = L/(2c)$, reverse the velocity to $-u_0$, reflect on the opposite walls, and so on. For $u_0 \ll c$ the linear acoustic solution is exact: at the right wall the pressure is a **square wave** of amplitude $\pm \rho c u_0 = \pm 15.0$ bar and period $2L/c = 1.332$ ms; at mid-tube the pressure stays at $p_0$ and the velocity alternates between $+u_0$ and $-u_0$ every $L/c$.
+A pipe of length $L = 1$ m closed at both ends contains water at $p_0$ and $T_0$ moving at $u_0 = 1$ m/s. Unlike the textbook water hammer, where a valve closes at the end of a pipe fed by a reservoir and a single wave is created, **both ends act at once**: at $t = 0$ the fluid is stopped by the right wall and pulled away from the left wall. A compression wave $+\rho c u_0$ leaves the right wall along the $C^-$ characteristic and a rarefaction $-\rho c u_0$ leaves the left wall along $C^+$, both at speed $c$. They cross at mid-tube at $t = L/(2c)$, where the pressure jumps cancel and the velocity reverses to $-u_0$; each wave then reflects on the opposite wall with the opposite sign, and the whole pattern repeats with the period $2L/c$ (it would be $4L/c$ with a reservoir at one end).
+
+<p align="center">
+  <img src="FIGURES/water_hammer_sketch.png"
+       alt="Sketch of the closed pipe with the initial velocity and the two probes, and the wave diagram in the x-t plane with the compression and rarefaction characteristics, their crossing and their reflections."
+       width="820"/>
+  <br>
+  <em>Figure 1: The initial state (top) and the wave diagram in the $(x, t)$ plane (bottom): the compression created at the right wall and the rarefaction created at the left wall cross at mid-tube, reflect, and restore the initial state after $2L/c$. Shaded regions are at rest, white regions move at $\pm u_0$.</em>
+</p>
+
+For $u_0 \ll c$ the linear acoustic solution is exact: at the right wall the pressure is a **square wave** of amplitude $\pm \rho c u_0 = \pm 15.0$ bar and period $2L/c = 1.332$ ms; at mid-tube the pressure stays at $p_0$ and the velocity alternates between $+u_0$ and $-u_0$ every $L/c$. The density follows the pressure with $\Delta \rho = \Delta p / c^2 = 0.67$ kg/m³: a change of $0.07\%$ only, which is the whole compressibility the wave relies on.
 
 ## Geometry and boundary conditions
 
@@ -110,12 +120,11 @@ The run takes about $30$ s in serial and writes `run_solver.log`, `monitoring/pr
        alt="Pressure at the closed end and velocity at mid-tube versus time: code_saturne against the exact square waves of linear acoustics, with the Joukowsky levels."
        width="900"/>
   <br>
-  <em>Figure 1: Pressure at the end wall (top) and velocity at mid-tube (bottom), code_saturne (solid) against the linear acoustic solution (dashed). The dotted lines are the Joukowsky levels $\pm \rho c u_0$.</em>
+  <em>Figure 2: Pressure at the end wall (top) and velocity at mid-tube (bottom), code_saturne (solid) against the linear acoustic solution (dashed). The dotted lines are the Joukowsky levels $\pm \rho c u_0$.</em>
 </p>
 
-- The first pressure plateau at the wall is $15.02$ bar above $p_0$, the Joukowsky value $\rho c u_0 = 15.016$ bar to $0.05\%$. After seven reflections the plateau is still within $0.5\%$ of it.
+- The first pressure plateau at the wall is $15.02$ bar above $p_0$, the Joukowsky value $\rho c u_0 = 15.016$ bar to $0.05\%$. After seven reflections the plateau is still within $0.5\%$ of it. The density at the wall oscillates between $999.36$ and $1000.80$ kg/m³, as $\Delta p / c^2$ predicts.
 - The velocity at mid-tube reverses at $t = 0.3336$ ms (exact $L/(2c) = 0.3330$ ms): the wave speed is recovered to $0.3\%$. The sign changes of the wall pressure are spaced by $0.666$ ms, exactly $L/c$.
-- The first time step shows a spike of $16\%$ above the plateau at the wall, where the moving fluid is stopped in one step; it lasts a few microseconds and does not propagate.
 - The fronts widen with each reflection: the 10-90% fall time at the wall grows from $42$ µs after the first reflection to $113$ µs after the seventh, the numerical diffusion of the first-order scheme on a discontinuity that is never steepened.
 
 <p align="center">
@@ -123,7 +132,7 @@ The run takes about $30$ s in serial and writes `run_solver.log`, `monitoring/pr
        alt="Pressure and velocity along the tube at t = 8.25 L/c: code_saturne against the exact piecewise-constant profiles."
        width="900"/>
   <br>
-  <em>Figure 2: Pressure and velocity along the tube at $t_{end} = 8.25\,L/c$, code_saturne (solid) against the exact solution (dashed).</em>
+  <em>Figure 3: Pressure and velocity along the tube at $t_{end} = 8.25\,L/c$, code_saturne (solid) against the exact solution (dashed).</em>
 </p>
 
 At $t_{end}$ the two fronts sit at $x = 0.25$ and $0.75$ m: the plateaus ($-15$, $0$ and $+15$ bar; $0$, $u_0$ and $0$) are exact, and each front, which has been reflected eight times, is spread over about $0.18$ m (10 to 90 %). The temperature varies by $\pm 0.19$ K only: the compression of a liquid is almost isothermal, as the stiffened gas law with a large $\Pi$ implies.

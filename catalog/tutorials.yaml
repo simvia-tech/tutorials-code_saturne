@@ -346,6 +346,16 @@ tutorials:
   tags: [stefan, melting, solidification, cdo, phase-change-front]
 
 # ---- 30_compressible ----
+- path: 30_compressible/Comp_Helium_Air_Shock_Tube
+  title: Air-Helium Shock Tube (Ideal Gas Mixture)
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: [shock-waves, species-transport]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [shock-tube, riemann, gas-mix, helium, two-gamma, species, user-routines]
+
 - path: 30_compressible/Comp_Laval_Nozzle
   title: Laval Nozzle with a Normal Shock
   topic: Compressible

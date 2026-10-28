@@ -65,6 +65,14 @@ where $q_w$ is the wall heat flux and $T_b$ the bulk (mixing-cup) temperature.
 
 ## Geometry and boundary conditions
 
+<p align="center">
+  <img src="FIGURES/graetz_sketch.png"
+       alt="Sketch of the plane channel: Poiseuille inlet profile at 300 K, isothermal walls at 350 K, thermal boundary layers growing from the entrance until they merge, dimensions and mesh, definition of the local Nusselt number on the bottom wall."
+       width="900"/>
+  <br>
+  <em>Figure 1: The case. A fully developed laminar flow at $T_{in}$ enters a plane channel whose walls are held at $T_w$ from $x = 0$; the thermal boundary layers grow from the entrance until they merge, after which the Nusselt number is constant.</em>
+</p>
+
 The domain is $0.3 \times 0.02 \times 0.005$ m meshed with $300 \times 60 \times 1$ cells, with a geometric refinement towards the inlet in $x$ (first cell $0.16$ mm, ratio $1.01$) and a parabolic refinement towards the walls in $y$.
 
 | Boundary | Nature | Condition |
@@ -111,7 +119,7 @@ Each run takes about three minutes in serial and writes `run_solver.log`, `nusse
        alt="Local Nusselt number versus dimensionless abscissa for Pe = 72 and Pe = 724, against the Graetz solution and two-dimensional references with axial conduction; bulk temperature versus abscissa."
        width="900"/>
   <br>
-  <em>Figure 1: Local Nusselt number (left, log-log) and bulk temperature (right) along the wall for $Pe = 72$ (blue) and $Pe = 724$ (orange), code_saturne (dots) against the two-dimensional references with axial conduction (solid) and the Graetz solution (dashed).</em>
+  <em>Figure 2: Local Nusselt number (left, log-log) and bulk temperature (right) along the wall for $Pe = 72$ (blue) and $Pe = 724$ (orange), code_saturne (dots) against the two-dimensional references with axial conduction (solid) and the Graetz solution (dashed).</em>
 </p>
 
 | $x^*$ | $Nu$, $Pe = 72$ | 2D reference | Graetz | $Nu$, $Pe = 724$ | 2D reference |

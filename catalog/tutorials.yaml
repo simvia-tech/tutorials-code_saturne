@@ -419,6 +419,16 @@ tutorials:
   difficulty: intermediate
   tags: [supersonic, oblique-shock, ramp, mach-2]
 
+- path: 30_compressible/Comp_Water_Hammer
+  title: Water Hammer in a Closed Pipe (Stiffened Gas)
+  topic: Compressible
+  module: cfbl
+  regime: compressible
+  physics: []
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [water-hammer, joukowsky, stiffened-gas, liquid, acoustic-wave, pressure-surge]
+
 # ---- 40_turbomachinery ----
 - path: 40_turbomachinery/Tbm_Fan_Duct
   title: Fan in a Duct (Actuator Disk with a Fan Curve)

@@ -325,6 +325,16 @@ tutorials:
   difficulty: intermediate
   tags: [uniform-heat-flux, nusselt, thermal-entrance, forced-convection, neumann-wall, energy-balance, peclet]
 
+- path: 20_thermal/Th_Exchange_Coefficient_Channel
+  title: Channel Cooled by External Convection (Exchange Coefficient Wall)
+  topic: Thermal & Radiation
+  module: base
+  regime: laminar
+  physics: [heat-transfer]
+  cs_version: "9.1"
+  difficulty: intermediate
+  tags: [robin-condition, exchange-coefficient, third-kind, external-convection, nusselt, forced-convection, heat-exchanger, overall-heat-transfer-coefficient]
+
 - path: 20_thermal/Th_Graetz_Entrance
   title: Thermal Entrance Between Isothermal Plates (Graetz Problem)
   topic: Thermal & Radiation

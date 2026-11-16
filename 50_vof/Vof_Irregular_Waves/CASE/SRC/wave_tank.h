@@ -29,6 +29,13 @@ constexpr double tank_length = 15.0;  /* and ends at the end wall */
 constexpr double tank_height = 0.8;   /* bottom to lid */
 constexpr double beach_coef  = 8.0;   /* peak damping rate (1/s) */
 
+/* Submerged breakwater (m), carved out of the mesh if "structure" is 1 in
+   the notebook; its sides must lie on cell faces */
+
+constexpr double structure_x0 = 6.0, structure_x1 = 6.9;
+constexpr double structure_height = 0.35;
+constexpr double tank_width = 0.02;   /* thickness of the mesh */
+
 constexpr double gauges[] = {2.0, 5.0, 8.0};  /* wave gauge abscissas */
 constexpr int    n_gauges = sizeof(gauges)/sizeof(gauges[0]);
 

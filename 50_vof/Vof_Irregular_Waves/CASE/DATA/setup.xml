@@ -57,6 +57,7 @@
     <boundary label="bottom" name="3" nature="symmetry">y &lt; 1e-6</boundary>
     <boundary label="lid" name="4" nature="symmetry">y &gt; 0.799999</boundary>
     <boundary label="sides" name="5" nature="symmetry">z &lt; 1e-6 or z &gt; 0.019999</boundary>
+    <boundary label="structure" name="6" nature="wall">structure</boundary>
     <inlet label="wavemaker" field_id="none">
       <velocity_pressure choice="norm" direction="normal">
         <norm>0</norm>
@@ -66,6 +67,9 @@
     <symmetry label="bottom" field_id="none"/>
     <symmetry label="lid" field_id="none"/>
     <symmetry label="sides" field_id="none"/>
+    <wall label="structure" field_id="none">
+      <velocity_pressure choice="off"/>
+    </wall>
   </boundary_conditions>
   <calculation_management>
     <block_io/>
@@ -116,6 +120,7 @@
       <var name="gamma" value="3.3" oturns="No" editable="Yes" restart="Yes" description="JONSWAP peak enhancement factor [-]"/>
       <var name="depth" value="0.5" oturns="No" editable="Yes" restart="Yes" description="still water depth [m]"/>
       <var name="regular" value="0" oturns="No" editable="Yes" restart="Yes" description="1: regular wave (H = Hs, T = Tp), 0: irregular JONSWAP sea state"/>
+      <var name="structure" value="1" oturns="No" editable="Yes" restart="Yes" description="1: submerged breakwater in the tank, 0: empty tank"/>
     </notebook>
     <omega>
       <omega_x>0</omega_x>

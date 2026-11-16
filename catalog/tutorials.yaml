@@ -540,7 +540,7 @@ tutorials:
   physics: []
   cs_version: "9.1"
   difficulty: advanced
-  tags: [vof, free-surface, irregular-waves, jonswap, wave-tank, wavemaker, absorbing-beach, wave-gauges]
+  tags: [vof, free-surface, irregular-waves, jonswap, wave-tank, wavemaker, absorbing-beach, wave-gauges, breakwater, wave-loads]
 
 - path: 50_vof/Vof_Kelvin_Helmholtz
   title: Kelvin-Helmholtz Instability (VOF)

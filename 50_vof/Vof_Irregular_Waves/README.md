@@ -1,6 +1,6 @@
 # Irregular Waves in a Numerical Wave Tank (VOF)
 
-A step-by-step tutorial that turns the VOF model of **code_saturne** into a **numerical wave tank**: a wavemaker generates an irregular sea state with a JONSWAP spectrum, the waves travel along a flume and die in an absorbing beach, and wave gauges record the free surface exactly as in a laboratory. This is the starting point of a hydrodynamic design study (wave loads on a structure, overtopping, transmission behind a breakwater): before any structure is placed in the tank, the incident sea state must be the one that was asked for. The case checks it against linear wave theory, wave by wave and in the frequency domain.
+A step-by-step tutorial that turns the VOF model of **code_saturne** into a **numerical wave tank**: a wavemaker generates an irregular sea state with a JONSWAP spectrum, the waves travel along a flume and die in an absorbing beach, and wave gauges record the free surface exactly as in a laboratory. The tutorial follows the practice of a wave flume. The incident sea state is first calibrated in the **empty tank**, where it is checked against linear wave theory, wave by wave and in the frequency domain. A **submerged breakwater** is then placed in the tank, in the same sea state, to read what a designer is after: the waves transmitted behind the structure and the wave loads on it.
 
 Maintained by [Simvia](https://Simvia.tech/fr), part of the
 [tutoriel-code_saturne](https://github.com/simvia-tech/tutorials-code_saturne) collection.
@@ -13,6 +13,7 @@ After completing this tutorial you will be able to:
 2. Build a **wavemaker** from a time-dependent inlet (velocity and void fraction), and make it conservative so that the tank needs no open boundary.
 3. Absorb the waves with a **momentum sink** (numerical beach) and measure the free surface with **wave gauges**.
 4. Verify an irregular sea state against linear theory: surface elevation, orbital velocity and **wave spectrum**.
+5. Carve a **structure** out of the cartesian mesh and extract the transmitted waves and the **wave loads**.
 
 ## Prerequisites
 
@@ -33,18 +34,19 @@ or pull the
 ```
 Vof_Irregular_Waves/
 ├── CASE/
-│   ├── DATA/setup.xml                     # VOF water-air, mesh, sea state (notebook), probes
+│   ├── DATA/setup.xml                     # VOF water-air, mesh, sea state and switches (notebook), probes
 │   └── SRC/
-│       ├── wave_tank.h                    # sea state: JONSWAP components, tank layout
+│       ├── wave_tank.h                    # sea state: JONSWAP components, tank and breakwater layout
+│       ├── cs_user_mesh.cpp               # the breakwater, carved out of the mesh
 │       ├── cs_user_parameters.cpp         # reference density of the hydrostatic pressure
 │       ├── cs_user_boundary_conditions.cpp # the wavemaker
 │       ├── cs_user_source_terms.cpp       # the absorbing beach
-│       └── cs_user_extra_operations.cpp   # the wave gauges
+│       └── cs_user_extra_operations.cpp   # the wave gauges and the loads on the breakwater
 ├── FIGURES/                               # figures used in this README
 └── README.md
 ```
 
-> Built-in cartesian mesher, no mesh file. The sea state ($H_s$, $T_p$, $\gamma$, water depth) is set in the **notebook** of the GUI; the user routines read it from there.
+> Built-in cartesian mesher, no mesh file. The sea state ($H_s$, $T_p$, $\gamma$, water depth) and two switches (`regular`, `structure`) are set in the **notebook** of the GUI; the user routines read them from there.
 
 ## Physical model
 
@@ -85,11 +87,11 @@ These are the dimensions of a laboratory flume. With Froude similarity at scale 
 ## Geometry and boundary conditions
 
 <p align="center">
-  <img src="FIGURES/wave_tank.png"
-       alt="Side view of the wave tank: wavemaker on the left, three wave gauges, three probes under the middle gauge, absorbing beach on the right, closed lid above the air."
+  <img src="FIGURES/breakwater_tank.png"
+       alt="Side view of the wave tank: wavemaker on the left, three wave gauges, three probes under the middle gauge, submerged breakwater, absorbing beach on the right, closed lid above the air."
        width="900"/>
   <br>
-  <em>Figure 1: the tank, colored by the water fraction of the run. The wavemaker is the left boundary, the absorbing beach fills the last 6 m, and the tank is closed by a lid. Three gauges record the surface elevation; three probes under the middle gauge record the velocity and the pressure.</em>
+  <em>Figure 1: the tank, colored by the water fraction of the run with the breakwater. The wavemaker is the left boundary, the absorbing beach fills the last 6 m, and the tank is closed by a lid. Three gauges record the surface elevation, two seaward of the breakwater and one in its lee; three probes under the middle gauge record the velocity and the pressure.</em>
 </p>
 
 The tank is $15$ m long and $0.8$ m high ($0.5$ m of water under $0.3$ m of air), one cell thick ($0.02$ m). The working section runs from the wavemaker to $x = 9$ m (about three peak wavelengths), the beach from $9$ to $15$ m (about two).
@@ -101,6 +103,7 @@ The tank is $15$ m long and $0.8$ m high ($0.5$ m of water under $0.3$ m of air)
 | `bottom` | $y = 0$ | symmetry (impermeable, slip) |
 | `lid` | $y = 0.8$ m | symmetry (impermeable, slip) |
 | `sides` | $z = 0$ and $0.02$ m | symmetry (two-dimensional flow) |
+| `structure` | group `structure` (faces of the breakwater) | smooth wall; empty when the tank is empty |
 
 In code_saturne a symmetry is an impermeable wall without friction. The slip is deliberate on the bottom: the oscillating boundary layer under the waves is $\sqrt{2\nu/\omega} \approx 0.7$ mm thick, far below the cell size, and plays no role in the propagation over a few wavelengths.
 
@@ -124,6 +127,10 @@ Two corrections make this wavemaker **conservative**, and they are what allows t
 
 With no open boundary left, nothing can blow in or out of the air region, which is the usual weak point of a two-phase wave tank.
 
+### The breakwater
+
+The structure is a rectangular block standing on the bottom between $x = 6$ and $6.9$ m, $0.35$ m high: its crest lies $0.15$ m below the still water level, $2.5\,H_s$. When the notebook switch `structure` is $1$, `cs_user_mesh.cpp` removes the cells of the block from the cartesian mesh and puts the boundary faces created around the hole in a group named `structure`, which the boundary zone of the same name selects. With `structure` at $0$ the mesh is left untouched, the zone has no face (the solver warns that the group does not exist, which is expected) and the tank is empty. The sides of the block must lie on cell faces, which is why its length is $0.9$ m and not $1$ m with $3$ cm cells.
+
 ### The absorbing beach
 
 For $x > 9$ m the momentum equation receives the sink
@@ -141,7 +148,7 @@ The damping rate starts from zero, so that the waves enter the beach without bei
 | Setting | Value |
 |---|---|
 | Model | VOF, homogeneous water-air mixture, no mass transfer |
-| Mesh | $500 \times 80 \times 1 = 40\,000$ hexahedra, $\Delta x = 3$ cm, $\Delta y = 1$ cm |
+| Mesh | $500 \times 80 \times 1 = 40\,000$ hexahedra, $\Delta x = 3$ cm, $\Delta y = 1$ cm ($38\,950$ with the breakwater) |
 | Resolution | $94$ cells per peak wavelength, $6$ cells per $H_s$ |
 | Time step | constant, $\Delta t = 4$ ms ($T_p/375$), $25\,000$ steps ($100$ s) |
 | Velocity-pressure | SIMPLEC, default schemes of the VOF model |
@@ -155,29 +162,38 @@ The commands below start from the tutorial directory.
 
 ### Step 1: regular wave check
 
-Before the irregular sea state, check the tank with a single wave of height $H_s$ and period $T_p$. In the GUI (`code_saturne gui CASE/DATA/setup.xml`), open the notebook and set `regular` to $1$, then set the number of time steps to $5000$ ($20$ s), and run:
+Before the irregular sea state, check the empty tank with a single wave of height $H_s$ and period $T_p$. In the GUI (`code_saturne gui CASE/DATA/setup.xml`), open the notebook and set `regular` to $1$ and `structure` to $0$, then set the number of time steps to $5000$ ($20$ s), and run:
 
 ```bash
 cd Vof_Irregular_Waves/CASE
 code_saturne run -n 4 --id regular
 ```
 
-### Step 2: irregular sea state
+### Step 2: irregular sea state in the empty tank
 
-Set `regular` back to $0$ and the number of time steps to $25\,000$ (the shipped values), and run:
+Set `regular` back to $0$ and the number of time steps to $25\,000$, keep `structure` at $0$, and run:
 
 ```bash
 code_saturne run -n 4 --id irregular
+```
+
+### Step 3: the breakwater in the same sea state
+
+Set `structure` to $1$ (the case is shipped in this state) and run:
+
+```bash
+code_saturne run -n 4 --id breakwater
 ```
 
 The run writes in `RESU/<id>/`:
 
 - `wave_gauges.csv`: surface elevation at the three gauges and water volume of the tank, at every time step;
 - `wave_components.csv`: the frequency, amplitude, wavenumber and phase of each component, from which the linear solution can be rebuilt anywhere in the tank;
+- `structure_forces.csv` (with the breakwater): horizontal and vertical pressure force on the block, per unit width, at every time step;
 - `monitoring/`: velocity and pressure at the three probes;
 - `postprocessing/`: the fields every $2$ s (display the void fraction to see the waves).
 
-A gauge integrates the water fraction over the column of cells at its abscissa, which gives the water depth whatever the thickness of the interface.
+A gauge integrates the water fraction over the column of cells at its abscissa, which gives the water depth whatever the thickness of the interface. The force on the breakwater is the sum of the pressure over its faces, the pressure being counted from that of the air under the lid: in a closed tank the pressure is defined up to a constant, which would otherwise pollute the vertical force.
 
 ## Results and verification
 
@@ -241,15 +257,55 @@ The orbital velocity is what a designer needs to compute the loads on a slender 
 
 The water volume oscillates by $\pm 0.24\%$ and ends $0.02\%$ from its initial value: the wavemaker does not fill or empty the tank.
 
+### The breakwater in the same sea state
+
+Because the sea state is deterministic, the run with the breakwater can be compared with the empty tank **wave by wave, at the same gauge and the same instant**: the difference is the effect of the structure, and nothing else.
+
+<p align="center">
+  <img src="FIGURES/breakwater_waves.png"
+       alt="Surface elevation and spectra at the three gauges, with the breakwater and in the empty tank."
+       width="900"/>
+  <br>
+  <em>Figure 6: surface elevation (left) and spectra (right) at the three gauges, with the breakwater (blue) and in the empty tank (dashed). In the lee of the structure the waves are lower, shorter and steeper: part of the energy has moved to higher frequencies.</em>
+</p>
+
+| Gauge | $H_s$ with breakwater | $H_s$ empty tank | Ratio |
+|---|---|---|---|
+| $x = 2$ m (seaward) | $6.10$ cm | $5.96$ cm | $1.02$ |
+| $x = 5$ m (seaward) | $5.13$ cm | $5.74$ cm | $0.89$ |
+| $x = 8$ m (leeward) | $4.55$ cm | $5.50$ cm | $0.83$ |
+
+**Transmission.** Behind the breakwater the significant height is $83\%$ of that of the empty tank: a transmission coefficient $K_t = 0.83$, a plausible value for a crest submerged by $2.5\,H_s$. The spectrum shows more than a loss of height. Around the peak the energy is halved ($51\%$ of the empty tank between $0.5$ and $1.5\,f_p$), while the share of the energy above $1.5\,f_p$ rises from $6\%$ to $21\%$, with a second hump near $2 f_p$: over the shallow crest the waves steepen and release **higher harmonics**, which travel on as free short waves. A design based on $K_t$ alone would miss this change of period in the lee.
+
+**Seaward side.** The two seaward gauges do not show the same ratio ($1.02$ and $0.89$): the waves reflected by the block add to the incident ones in a partial standing pattern, constructive at one gauge and destructive at the other. Two gauges are not enough to separate incident and reflected waves, so no reflection coefficient is given. Note also that the wavemaker does not absorb the waves that come back to it: they are reflected again towards the structure, a limitation shared with a laboratory flume without active absorption.
+
+<p align="center">
+  <img src="FIGURES/breakwater_forces.png"
+       alt="Horizontal and vertical wave force on the breakwater over thirty seconds, with the Froude-Krylov estimate of the horizontal force."
+       width="900"/>
+  <br>
+  <em>Figure 7: wave loads on the breakwater per unit width. Top: horizontal force, with the Froude-Krylov estimate (pressure of the undisturbed linear wave on the front and back faces). Bottom: vertical force, the weight of the still water above the block being removed.</em>
+</p>
+
+| Load (per unit width) | Standard deviation | Extremes over the record |
+|---|---|---|
+| Horizontal force $F_x$ | $57$ N/m | $+140$ / $-174$ N/m |
+| Froude-Krylov estimate of $F_x$ | $51$ N/m | $+151$ / $-149$ N/m |
+| Vertical force, wave part | $74$ N/m | $+200$ / $-177$ N/m |
+
+**Loads.** In still water the vertical force is the weight of the water above the block, $\rho g \times 0.15 \times 0.9 = 1324$ N/m; the calculation gives $1327$ N/m at the first time step, which checks the force extraction. Under the waves the horizontal force follows the Froude-Krylov estimate in phase and in order of magnitude (correlation $0.78$) and exceeds it by about $10\%$ in standard deviation, with larger negative extremes: the estimate ignores the way the block disturbs the flow, which the calculation resolves. It is an order of magnitude, not a reference solution, and no validation is claimed on the loads. At scale 1:40 the forces per unit width are multiplied by $40^2$: the extreme horizontal force stands for about $280$ kN per metre of breakwater.
+
+The water volume oscillates by $\pm 0.26\%$ with no drift, as in the empty tank.
+
 ### Computational cost
 
-The irregular run ($40\,000$ cells, $25\,000$ time steps) takes about one hour on $4$ cores; the regular check about ten minutes.
+Each $100$ s run ($25\,000$ time steps on about $40\,000$ cells) takes $40$ minutes to one hour on $4$ cores; the regular check about ten minutes.
 
 ## Summary
 
-This tutorial built a numerical wave tank with the VOF model: a conservative wavemaker driven by a JONSWAP sea state, a closed tank with no open boundary, an absorbing beach and wave gauges. Checked first on a regular wave (height within $1.2\%$ at three gauges, reflection of the order of a percent), the tank then reproduces $100$ s of irregular sea wave by wave, with a significant height within $1.3$ to $4.3\%$ of linear theory, the loss coming from the short components that the mesh resolves least. Two lessons carry beyond this case: with the VOF model under gravity, take the **light fluid as reference density** and check that still water stays still before sending any wave; and judge an irregular sea state **against the linear signal of the same record**, not against the smooth target spectrum.
+This tutorial built a numerical wave tank with the VOF model: a conservative wavemaker driven by a JONSWAP sea state, a closed tank with no open boundary, an absorbing beach and wave gauges. Checked first on a regular wave (height within $1.2\%$ at three gauges, reflection of the order of a percent), the empty tank reproduces $100$ s of irregular sea wave by wave, with a significant height within $1.3$ to $4.3\%$ of linear theory, the loss coming from the short components that the mesh resolves least. A submerged breakwater carved out of the mesh then gives, in the same sea state, a transmission coefficient of $0.83$, a transfer of energy to higher harmonics in its lee, and the time series of the wave loads.
 
-From here, a design study replaces the empty working section by the structure of interest (a breakwater, a caisson, a pile) and reads the loads, the run-up or the transmitted waves in the same sea state, changed from the notebook.
+Three lessons carry beyond this case. With the VOF model under gravity, take the **light fluid as reference density** and check that still water stays still before sending any wave. Judge an irregular sea state **against the linear signal of the same record**, not against the smooth target spectrum. And calibrate the sea state in the **empty tank first**: with a deterministic wavemaker, the run with the structure is then compared wave by wave with its own reference.
 
 ## References
 

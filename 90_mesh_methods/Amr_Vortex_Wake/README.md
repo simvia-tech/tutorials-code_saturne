@@ -26,7 +26,7 @@ Maintained by [Simvia](https://Simvia.tech/fr), part of the
 
 After completing this tutorial you will be able to:
 
-1. Activate adaptive refinement with `cs_adaptive_refinement_define`, and know what each of its arguments controls, including the one that is not a refinement level.
+1. Activate adaptive refinement with `cs_adaptive_refinement_define`, and know what each of its arguments controls, including the first one, which is a maximum refinement level despite its name.
 2. Write a refinement indicator, here on the Q-criterion, and tune its threshold from the mesh size it produces.
 3. Avoid the three setup mistakes that make an adapted mesh unusable, none of which is about refinement itself.
 
@@ -117,7 +117,7 @@ Everything is in `CASE/SRC/cs_user_parameters.cpp`, and it is one call plus one
 function. The call declares the module:
 
 ```c
-cs_adaptive_refinement_define(2,        /* layers around the marked region */
+cs_adaptive_refinement_define(2,        /* maximum refinement level */
                               20,       /* adapt every 20 time steps */
                               _wake_indicator,
                               nullptr,  /* no extra input for the indicator */
@@ -127,10 +127,15 @@ cs_adaptive_refinement_define(2,        /* layers around the marked region */
 
 The GUI has no page for this, so the call belongs in `cs_user_parameters`.
 
-**The first argument is not a refinement level.** It is the number of cell layers
-kept refined *around* the marked region, a spatial margin so that a structure
-does not step outside the fine zone between two adaptations, twenty time steps
-apart here.
+**The first argument is the maximum refinement level.** The prototype calls it
+`n_layers` and documents it as a number of layers around the marked cells, but
+the module uses it as a cap: a cell is split only while its level is below this
+value (`_refine_step` in `src/mesh/cs_mesh_adaptive_refinement.cpp`). With 2, the
+finest cells are four times smaller than the base cells in each direction.
+
+The module adds its own safety margin. The direct neighbours of a marked cell are
+never coarsened, and two neighbouring cells never differ by more than one level,
+so a transition layer always surrounds the finest patch.
 
 The remaining arguments are the adaptation interval, the indicator and its
 optional payload, the interpolation used when fields are carried onto the new
@@ -140,10 +145,11 @@ count per rank drifts as the vortices move downstream.
 
 ### The indicator
 
-The indicator writes 1 for the cells of the region to keep refined. It describes
-a region, not an order to refine further: a cell that is marked and already
-refined stays as it is, and a cell that stops being marked is coarsened back.
-That is what lets the fine patch travel instead of accumulating.
+The indicator writes 1 for the cells of the region to keep refined. A marked
+cell is split once more at each adaptation until it reaches the maximum level,
+so a region newly marked reaches the finest spacing after two adaptations here.
+A cell that stops being marked is merged back one level per adaptation. That is
+what lets the fine patch travel instead of accumulating.
 
 The quantity tested here is the **Q-criterion**, the second invariant of the
 velocity gradient, which is positive in a vortex core and small in pure shear.
@@ -185,12 +191,12 @@ size out of the log, which is how such criteria are set in practice.
 | Setting | Value |
 |---|---:|
 | Background mesh | $\Delta=0.1D$ uniform to $x=10D$, then stretched |
-| Cells after carving the bar | 12 700 |
+| Cells after carving the bar | 13 500 |
 | Time step | 0.01 (constant) |
 | Iterations | 3000 (final time $30\,D/U_\infty$) |
 | Adaptation interval | every 20 time steps |
 | Q threshold | 0.5 |
-| Layers around the marked region | 2 |
+| Maximum refinement level | 2 (finest spacing $0.025D$) |
 
 ## Running the simulation
 
@@ -222,18 +228,22 @@ back to its original spacing.
 
 | Quantity | Value |
 |---|---:|
-| Base mesh | 12 700 cells |
-| Adapted mesh, established regime | about 25 000 cells |
-| Cells refined | 47 to 49 percent |
-| Uniform mesh at the fine spacing | 101 600 cells |
-| Ratio | 4.0 |
+| Base mesh | 13 500 cells |
+| Adapted mesh, established regime ($t \ge 22\,D/U_\infty$) | 25 000 to 26 400 cells |
+| Share of the adapted mesh made of refined cells | 47 to 50 percent, almost all at level 2 |
+| Uniform mesh at the finest spacing, split as the module splits | 864 000 cells |
+| Same spacing on a genuinely 2D mesh (one cell thick) | 216 000 cells |
+| Ratio, adapted versus genuinely 2D uniform | about 8 |
 
 The cell count settles rather than drifting, which is the sign that refinement
-and coarsening are in balance. The factor of four is modest because the case is
-two-dimensional and the wake occupies a large share of the domain; refinement
-splits a cell into eight, so the arithmetic is unforgiving when half the domain
-is marked. In three dimensions, where the region of interest is a small fraction
-of a volume, the same criterion pays far better.
+and coarsening are in balance.
+
+Refinement is isotropic: each split cuts a hexahedron into eight, including
+through the thickness of this one-cell-thick mesh. A level-2 cell is therefore
+64 cells, 16 of which are spent on the thickness of a plane flow. The fair
+comparison is with a 2D mesh at the same in-plane spacing, a factor of about
+eight. In three dimensions, where the region of interest is a small fraction of
+a volume and no split is wasted, the same criterion pays far better.
 
 ## Three things to get right
 
@@ -243,14 +253,14 @@ first.
 | Setting | Why |
 |---|---|
 | Writer set to `transient_connectivity` | the default writes the initial connectivity, so the output shows a pristine uniform mesh however much the solver has adapted |
-| Time step sized for the **refined** cells | refinement halves the cell size, so the Courant number doubles where the mesh adapts |
+| Time step sized for the **finest** cells | each level halves the cell size, so at level 2 the Courant number is four times its value on the base mesh |
 | Outlet far enough, with cells stretched towards it | vortices crossing a nearby outlet induce inflow through it, and the spurious vorticity this creates was at one point the most refined region of the domain |
 
 ## Summary
 
 Adaptive refinement in code_saturne 9.2 is declared in one call and driven by one
-user function. The call takes a margin in cell layers, not a refinement level,
-which the module does not expose at all; the function marks the region to keep
+user function. The call sets the maximum refinement level, despite the
+`n_layers` name of its first argument; the function marks the region to keep
 refined, and the solver splits, interpolates and merges as that region moves.
 
 The engineering is in the indicator. The criterion used here is the
@@ -258,7 +268,8 @@ Q-criterion, positive in a vortex core and small in pure shear, with a threshold
 tuned from the mesh size it produces.
 
 Set up this way the refined patches track the vortices and the mesh size settles,
-for four times fewer cells than a uniform mesh at the same fine spacing.
+for about eight times fewer cells than a two-dimensional uniform mesh at the
+same fine spacing.
 
 This case is a demonstration of the setup, not a validation: no quantity here is
 compared with reference data.

@@ -812,6 +812,16 @@ tutorials:
   difficulty: advanced
   tags: [amr, adaptive-refinement, mesh, q-criterion, vortex-street, cell-removal]
 
+- path: 90_mesh_methods/Amr_Dam_Break
+  title: Adaptive Mesh Refinement Following a Free Surface (VOF Dam Break)
+  topic: Mesh Methods (IBM / ALE / AMR)
+  module: vof
+  regime: multiphase
+  physics: [surface-tension]
+  cs_version: "9.3-alpha"
+  difficulty: advanced
+  tags: [amr, adaptive-refinement, mesh, vof, free-surface, dam-break, interface-tracking]
+
 # ---- 95_csauto ----
 - path: 95_csauto/Csa_Mesh_Convergence
   title: Mesh Convergence with csauto

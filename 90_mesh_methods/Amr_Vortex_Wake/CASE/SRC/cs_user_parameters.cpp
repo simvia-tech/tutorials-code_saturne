@@ -9,11 +9,12 @@
  * splitting, the interpolation of the fields onto the new cells, the merging
  * back when the region moves away, is the solver's business.
  *
- * The indicator describes a region to keep refined, not an order to refine one
- * more level. A cell that is marked and already refined stays as it is; a cell
- * that stops being marked is coarsened back. That is what lets the refined
- * patch travel with the vortices instead of accumulating behind them, and it is
- * also why the indicator must keep marking the cells it wants to keep fine.
+ * The indicator describes a region to keep refined. A marked cell is split
+ * once more at each adaptation until it reaches the maximum level (first
+ * argument of cs_adaptive_refinement_define); a cell that stops being marked is
+ * merged back one level per adaptation. That is what lets the refined patch
+ * travel with the vortices instead of accumulating behind them, and it is also
+ * why the indicator must keep marking the cells it wants to keep fine.
  *
  * The criterion used here is the Q-criterion, the second invariant of the
  * velocity gradient: positive in a vortex core, small in pure shear.
@@ -82,9 +83,9 @@ cs_user_parameters(cs_domain_t *domain)
 {
   CS_UNUSED(domain);
 
-  cs_adaptive_refinement_define(2,        /* layers kept around the marked
-                                             region, so the refined patch is
-                                             slightly ahead of the vortices */
+  cs_adaptive_refinement_define(2,        /* maximum refinement level: the
+                                             finest cells are 4 times smaller
+                                             than the base cells */
                                 20,       /* adapt every 20 time steps */
                                 _wake_indicator,
                                 nullptr,  /* the indicator needs no extra input */

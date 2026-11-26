@@ -130,15 +130,15 @@ z = 0.5;</formula>
       <gravity_z>0</gravity_z>
     </gravity>
     <notebook>
-      <var name="relax" value="0" oturns="No" editable="Yes" restart="Yes" description="0: frozen mixture (no mass transfer), 1: return to thermodynamic equilibrium with time scale tau"/>
-      <var name="tau" value="0" oturns="No" editable="Yes" restart="Yes" description="relaxation time scale [s], 0 = code default 1e-30 s (instantaneous equilibrium)"/>
-      <var name="p_left" value="7e6" oturns="No" editable="Yes" restart="Yes" description="left state pressure [Pa]"/>
-      <var name="t_left" value="555" oturns="No" editable="Yes" restart="Yes" description="left state temperature [K]"/>
-      <var name="p_right" value="1e6" oturns="No" editable="Yes" restart="Yes" description="right state pressure [Pa]"/>
-      <var name="t_right" value="430" oturns="No" editable="Yes" restart="Yes" description="right state temperature [K]"/>
-      <var name="alpha_left" value="0.01" oturns="No" editable="Yes" restart="Yes" description="steam volume fraction, left state"/>
-      <var name="alpha_right" value="0.99" oturns="No" editable="Yes" restart="Yes" description="steam volume fraction, right state"/>
-      <var name="xw" value="0.02" oturns="No" editable="Yes" restart="Yes" description="interface smoothing width [m], 0 = sharp"/>
+      <var id="0" name="relax" value="0" oturns="No" editable="Yes" restart="Yes" description="0: frozen mixture (no mass transfer), 1: return to thermodynamic equilibrium with time scale tau"/>
+      <var id="1" name="tau" value="0" oturns="No" editable="Yes" restart="Yes" description="relaxation time scale [s], 0 = code default 1e-30 s (instantaneous equilibrium)"/>
+      <var id="2" name="p_left" value="7e6" oturns="No" editable="Yes" restart="Yes" description="left state pressure [Pa]"/>
+      <var id="3" name="t_left" value="555" oturns="No" editable="Yes" restart="Yes" description="left state temperature [K]"/>
+      <var id="4" name="p_right" value="1e6" oturns="No" editable="Yes" restart="Yes" description="right state pressure [Pa]"/>
+      <var id="5" name="t_right" value="430" oturns="No" editable="Yes" restart="Yes" description="right state temperature [K]"/>
+      <var id="6" name="alpha_left" value="0.01" oturns="No" editable="Yes" restart="Yes" description="steam volume fraction, left state"/>
+      <var id="7" name="alpha_right" value="0.99" oturns="No" editable="Yes" restart="Yes" description="steam volume fraction, right state"/>
+      <var id="8" name="xw" value="0.02" oturns="No" editable="Yes" restart="Yes" description="interface smoothing width [m], 0 = sharp"/>
     </notebook>
     <omega>
       <omega_x>0</omega_x>

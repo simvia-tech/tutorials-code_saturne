@@ -50,6 +50,13 @@
         <output_at_end status="on"/>
         <time_dependency choice="fixed_mesh"/>
       </writer>
+      <writer id="-4" label="trajectories">
+        <directory name="postprocessing"/>
+        <format name="ensight" options=""/>
+        <frequency period="none"/>
+        <output_at_end status="on"/>
+        <time_dependency choice="fixed_mesh"/>
+      </writer>
     </output>
     <profiles/>
     <scalar_balances/>

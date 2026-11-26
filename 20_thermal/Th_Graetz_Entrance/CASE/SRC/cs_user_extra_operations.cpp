@@ -33,8 +33,17 @@ cs_user_extra_operations(cs_domain_t  *domain)
 {
   const cs_time_step_t *ts = domain->time_step;
 
-  if (ts->nt_cur != ts->nt_max || cs_glob_rank_id > 0)
+  if (ts->nt_cur != ts->nt_max)
     return;
+
+  /* The post-processing below works on the cells of one rank only, and
+     cs_function_evaluate() is collective (halo exchange): calling it on
+     rank 0 alone, as before, blocks a parallel run. The test must give
+     the same answer on all ranks. */
+  if (cs_glob_n_ranks > 1) {
+    bft_printf("Local Nusselt number: computed in serial runs only\n");
+    return;
+  }
 
   const cs_mesh_t *m = domain->mesh;
   const cs_mesh_quantities_t *mq = domain->mesh_quantities;

@@ -110,7 +110,7 @@ code_saturne run --id pe72
 code_saturne run --notebook-args lambda=0.0025 --id pe724
 ```
 
-Each run takes about three minutes in serial and writes `run_solver.log`, `nusselt_bottom_wall.csv` and the EnSight output. The user routine is written for a serial run.
+Each run takes about three minutes in serial and writes `run_solver.log`, `nusselt_bottom_wall.csv` and the EnSight output. The user routine is written for a serial run: in a parallel run it only prints a message in `run_solver.log` and writes no CSV file.
 
 ## Results and verification
 

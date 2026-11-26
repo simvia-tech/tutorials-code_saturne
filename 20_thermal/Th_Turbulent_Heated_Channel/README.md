@@ -115,7 +115,7 @@ cd Th_Turbulent_Heated_Channel/CASE
 code_saturne run
 ```
 
-The run writes `run_solver.log` (the summary line `Channel summary: ...` at the end), `channel_summary.csv`, `profiles.csv` and the EnSight output. The routines are written for a serial run.
+The run writes `run_solver.log` (the summary line `Channel summary: ...` at the end), `channel_summary.csv`, `profiles.csv` and the EnSight output. The source terms work in parallel, but the post-processing routine is written for a serial run: in a parallel run it only prints a message in `run_solver.log` and writes neither CSV file.
 
 ## Results and verification
 

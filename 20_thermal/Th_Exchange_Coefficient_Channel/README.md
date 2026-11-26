@@ -101,7 +101,7 @@ cd Th_Exchange_Coefficient_Channel/CASE
 code_saturne run
 ```
 
-The run takes about three minutes in serial and writes `run_solver.log`, `nusselt_bottom_wall.csv` and the EnSight output. The routine is written for a serial run. The external temperature and coefficient are edited in the GUI (**Boundary conditions > wall > Thermal**).
+The run takes about three minutes in serial and writes `run_solver.log`, `nusselt_bottom_wall.csv` and the EnSight output. The routine is written for a serial run: in a parallel run it only prints a message in `run_solver.log` and writes no CSV file. The external temperature and coefficient are edited in the GUI (**Boundary conditions > wall > Thermal**).
 
 ## Results and verification
 

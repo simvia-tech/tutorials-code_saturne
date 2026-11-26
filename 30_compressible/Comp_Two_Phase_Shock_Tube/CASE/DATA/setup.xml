@@ -120,7 +120,7 @@ z = 0.5;</formula>
       <gravity_z>0</gravity_z>
     </gravity>
     <notebook>
-      <var name="relax" value="0" oturns="No" editable="Yes" restart="Yes" description="0: frozen mixture (no mass transfer), 1: instantaneous return to thermodynamic equilibrium"/>
+      <var id="0" name="relax" value="0" oturns="No" editable="Yes" restart="Yes" description="0: frozen mixture (no mass transfer), 1: instantaneous return to thermodynamic equilibrium"/>
     </notebook>
     <omega>
       <omega_x>0</omega_x>

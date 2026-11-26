@@ -128,9 +128,9 @@ z = 0.5;</formula>
       <gravity_z>0</gravity_z>
     </gravity>
     <notebook>
-      <var name="u0" value="1" oturns="No" editable="Yes" restart="Yes" description="initial velocity of the water column [m/s]"/>
-      <var name="p0" value="1e5" oturns="No" editable="Yes" restart="Yes" description="initial pressure [Pa]"/>
-      <var name="t0" value="300" oturns="No" editable="Yes" restart="Yes" description="initial temperature [K]"/>
+      <var id="0" name="u0" value="1" oturns="No" editable="Yes" restart="Yes" description="initial velocity of the water column [m/s]"/>
+      <var id="1" name="p0" value="1e5" oturns="No" editable="Yes" restart="Yes" description="initial pressure [Pa]"/>
+      <var id="2" name="t0" value="300" oturns="No" editable="Yes" restart="Yes" description="initial temperature [K]"/>
     </notebook>
     <omega>
       <omega_x>0</omega_x>

@@ -12,12 +12,12 @@
         <location>all[]</location>
         <writer id="-2"/>
       </mesh>
-      <probe name="1" status="on">
+      <probe id="1" name="1" status="on">
         <probe_x>0.25</probe_x>
         <probe_y>0.001</probe_y>
         <probe_z>0.0025</probe_z>
       </probe>
-      <probe name="2" status="on">
+      <probe id="2" name="2" status="on">
         <probe_x>0.25</probe_x>
         <probe_y>0.01</probe_y>
         <probe_z>0.0025</probe_z>

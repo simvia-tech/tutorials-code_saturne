@@ -149,7 +149,10 @@
     </turbomachinery>
     <turbulence model="k-epsilon-PL">
       <initialization zone_id="1" choice="reference_value"/>
+      <property name="turbulent_viscosity" label="TurbVisc"/>
       <reference_velocity>10</reference_velocity>
+      <variable name="epsilon" label="epsilon"/>
+      <variable name="k" label="k"/>
       <wall_function>3</wall_function>
     </turbulence>
     <velocity_pressure>

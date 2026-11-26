@@ -115,12 +115,12 @@
       <gravity_z>0</gravity_z>
     </gravity>
     <notebook>
-      <var name="Hs" value="0.06" oturns="No" editable="Yes" restart="Yes" description="significant wave height [m]"/>
-      <var name="Tp" value="1.5" oturns="No" editable="Yes" restart="Yes" description="peak period [s]"/>
-      <var name="gamma" value="3.3" oturns="No" editable="Yes" restart="Yes" description="JONSWAP peak enhancement factor [-]"/>
-      <var name="depth" value="0.5" oturns="No" editable="Yes" restart="Yes" description="still water depth [m]"/>
-      <var name="regular" value="0" oturns="No" editable="Yes" restart="Yes" description="1: regular wave (H = Hs, T = Tp), 0: irregular JONSWAP sea state"/>
-      <var name="structure" value="1" oturns="No" editable="Yes" restart="Yes" description="1: submerged breakwater in the tank, 0: empty tank"/>
+      <var id="0" name="Hs" value="0.06" oturns="No" editable="Yes" restart="Yes" description="significant wave height [m]"/>
+      <var id="1" name="Tp" value="1.5" oturns="No" editable="Yes" restart="Yes" description="peak period [s]"/>
+      <var id="2" name="gamma" value="3.3" oturns="No" editable="Yes" restart="Yes" description="JONSWAP peak enhancement factor [-]"/>
+      <var id="3" name="depth" value="0.5" oturns="No" editable="Yes" restart="Yes" description="still water depth [m]"/>
+      <var id="4" name="regular" value="0" oturns="No" editable="Yes" restart="Yes" description="1: regular wave (H = Hs, T = Tp), 0: irregular JONSWAP sea state"/>
+      <var id="5" name="structure" value="1" oturns="No" editable="Yes" restart="Yes" description="1: submerged breakwater in the tank, 0: empty tank"/>
     </notebook>
     <omega>
       <omega_x>0</omega_x>
